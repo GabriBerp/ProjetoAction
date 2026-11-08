@@ -20,6 +20,10 @@ public interface IUsable
 {
     void Use();
 }
+public interface IReloadable
+{
+    void Reload();
+}
 public interface IMoveInput
 {
     Vector3 MoveDirection { get; }

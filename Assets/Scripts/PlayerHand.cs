@@ -14,6 +14,7 @@ public class PlayerHand : MonoBehaviour
 
     private IPickable heldItem;
     private IUsable heldUsable;
+    private IReloadable heldReloadable;
 
     private void Update()
     {
@@ -26,6 +27,9 @@ public class PlayerHand : MonoBehaviour
 
         if (Mouse.current.leftButton.wasPressedThisFrame && heldUsable != null)
             heldUsable.Use();
+
+        if (kb[Key.R].wasPressedThisFrame && heldReloadable != null)
+            heldReloadable.Reload();
     }
 
     private void TryPickUp()
@@ -45,6 +49,7 @@ public class PlayerHand : MonoBehaviour
 
         // Pega o uso, se existir (item sem uso simplesmente fica null)
         heldUsable = (pickable as Component)?.GetComponent<IUsable>();
+        heldReloadable = (pickable as Component)?.GetComponent<IReloadable>();
     }
 
     private void Throw()
@@ -55,5 +60,6 @@ public class PlayerHand : MonoBehaviour
         heldItem.Drop(force);
         heldItem = null;
         heldUsable = null;
+        heldReloadable = null;
     }
 }
