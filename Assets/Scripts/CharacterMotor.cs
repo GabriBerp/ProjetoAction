@@ -17,6 +17,9 @@ public class CharacterMotor : MonoBehaviour
 
     // Parâmetro: velocidade da queda no momento do impacto (valor positivo)
     public event Action<float> Landed;
+    private Vector3 dir;
+    private float speed;
+    private float yVel;
 
     void Awake()
     {
@@ -24,12 +27,11 @@ public class CharacterMotor : MonoBehaviour
         input = GetComponent<IMoveInput>();
     }
 
-    void FixedUpdate()
-    {
-        Vector3 dir = Vector3.ClampMagnitude(input.MoveDirection, 1f);
-        float speed = input.Run ? baseSpeed * runMultiplier : baseSpeed;
+    private void Update() {
+        dir = Vector3.ClampMagnitude(input.MoveDirection, 1f);
+        speed = input.Run ? baseSpeed * runMultiplier : baseSpeed;
 
-        float yVel = rb.linearVelocity.y;
+        yVel = rb.linearVelocity.y;
 
         if (!IsGrounded)
             lastFallSpeed = Mathf.Max(0f, -yVel);
@@ -38,7 +40,10 @@ public class CharacterMotor : MonoBehaviour
 
         if (input.ConsumeJump() && IsGrounded)
             yVel = jumpForce;
+    }
 
+    void FixedUpdate()
+    {
         rb.linearVelocity = new Vector3(dir.x * speed, yVel, dir.z * speed);
     }
 
