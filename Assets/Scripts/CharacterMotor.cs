@@ -20,6 +20,9 @@ public class CharacterMotor : MonoBehaviour
     private Vector3 dir;
     private float speed;
     private float yVel;
+    public event Action Jumped;
+    public bool IsMoving => dir.sqrMagnitude > 0.01f;
+    public bool Locked { get; set; }   // true = stun/morte (não move nem pula)
 
     void Awake()
     {
@@ -27,8 +30,17 @@ public class CharacterMotor : MonoBehaviour
         input = GetComponent<IMoveInput>();
     }
 
-    private void Update() {
-        dir = Vector3.ClampMagnitude(input.MoveDirection, 1f);
+    private void Update() 
+    {
+        if (Locked)
+        {
+            dir = Vector3.zero;
+            input.ConsumeJump();        // descarta pulos acumulados
+        }
+        else
+        {
+            dir = Vector3.ClampMagnitude(input.MoveDirection, 1f);
+        }
         speed = input.Run ? baseSpeed * runMultiplier : baseSpeed;
 
         yVel = rb.linearVelocity.y;
@@ -36,10 +48,13 @@ public class CharacterMotor : MonoBehaviour
         if (!IsGrounded)
             lastFallSpeed = Mathf.Max(0f, -yVel);
         else if (yVel < 0f)
-            yVel = 0f; // no chão, não reaplica velocidade descendente
+            yVel = 0f;
 
-        if (input.ConsumeJump() && IsGrounded)
+        if (!Locked && input.ConsumeJump() && IsGrounded)
+        {
             yVel = jumpForce;
+            Jumped?.Invoke();
+        }
     }
 
     void FixedUpdate()

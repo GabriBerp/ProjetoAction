@@ -20,6 +20,7 @@ public interface IUsable
 {
     void Use();
 }
+public interface ISwingWeapon { }
 public interface IReloadable
 {
     void Reload();
