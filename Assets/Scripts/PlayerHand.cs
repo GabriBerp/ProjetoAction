@@ -36,9 +36,15 @@ public class PlayerHand : MonoBehaviour
             ToggleBackpack();
 
         if (Mouse.current.leftButton.wasPressedThisFrame && heldUsable != null)
+        {
             heldUsable.Use();
-            if (heldSwing != null) ItemSwung?.Invoke();
-            else ItemUsed?.Invoke();
+            if (heldSwing != null) {
+                ItemSwung?.Invoke();
+            }
+            else {
+                ItemUsed?.Invoke();
+            }
+        }
 
         if (kb[Key.R].wasPressedThisFrame && heldReloadable != null)
             heldReloadable.Reload();
