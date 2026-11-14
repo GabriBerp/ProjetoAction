@@ -31,3 +31,20 @@ public interface IMoveInput
     bool Run { get; }
     bool ConsumeJump();
 }
+public interface ILockable
+{
+    bool Locked { get; set; }
+}
+
+public interface IRatSized
+{
+    RatSize Size { get; }
+}
+
+public interface IHealth
+{
+    int Current { get; }
+    int Max { get; }
+    bool IsDead { get; }
+    void Heal(int amount);
+}

@@ -5,7 +5,7 @@ public class PlayerAnimationDriver : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private CharacterMotor motor;
     [SerializeField] private PlayerHand hand;
-    [SerializeField] private PlayerHealth health;
+    [SerializeField] private Health health;
 
     private static readonly int IsMoving    = Animator.StringToHash("isMoving");
     private static readonly int IsStunned   = Animator.StringToHash("isStunned");
