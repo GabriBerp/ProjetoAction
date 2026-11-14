@@ -1,68 +1,102 @@
 # MOC — ProjetoAction (Second Brain)
 
-> Índice central do conhecimento do projeto Unity **ProjetoAction**.  
-> Navegue pelos conceitos via [[wikilinks]] e pelo grafo de dependências abaixo.
+> Hub central do conhecimento do projeto Unity **ProjetoAction**. Navegue por [[wikilinks]] e pelo grafo para localizar conceitos, contratos, decisões e aprendizados.
 
-## Visão geral
+## Estado atual (snapshot)
 
-- **Engine**: Unity 6000.6.4f1
-- **Cena principal**: `Assets/Scenes/SampleScene.unity`
-- **Entrada**: `Assets/InputSystem_Actions.inputactions`
-- **Domínio**: jogo em terceira pessoa com movimentação de personagem, inventário/mochila, itens coletáveis e inimigos com patrulha.
+- **Engine:** Unity 6000.6.4f1
+- **Cena principal:** `Assets/Scenes/SampleScene.unity` (`InputSystem_Actions.inputactions`)
+- **Domínio:** ação/aventura em terceira pessoa com rato — movimento, interação pela **boca** (1 item), **sacola LIFO** (tensão cômica), itens utilizáveis e inimigos com patrulha/ataque.
+- **Unity Pipeline/MCP CLI:** **conectado e pronto** (porta 7800, `com.unity.pipeline` 1.0.0, verificado em 2026-11-14). Detalhes: [[architecture/Unity-MCP-Connection]].
+- **Foco de design registrado:** feedback prioritariamente world-space/cena/câmera, HUD 2D mínimo, placeholders simples e sinalização 3D de dano/estado (jogador e inimigos). Ver [[notes/Feedback-GameFeel]] e ADRs.
+- **Último aprendizado registrado:** conexão Pipeline confirmada e baseline documental em [[notes/Playtest-Log]].
 
-## Mapa de notas
+## Mapa de navegação
 
 ### Núcleo do jogador
-- [[notes/Player]] — movimento, câmera, olhar, mão, animação e perfil de tamanho.
-- [[notes/Inventory]] — mochila, coleta e contratos de itens.
+- [[notes/Player]] — movimento, câmera/olhar, boca (1 item), animação, vida e feedback.
+- [[notes/Inventory]] — sacola LIFO, coleta, uso/reload/arremesso e legibilidade.
+- [[notes/Feedback-GameFeel]] — vida baixa, feedback de uso/falha, pistas visuais 3D e prompts.
 
 ### IA e mundo
-- [[notes/Enemy]] — comportamento e patrulha de inimigos.
-- [[notes/World-Scenes]] — cenas, prefabs, materiais e assets.
+- [[notes/Enemy]] — navegação/patrulha, ataque, animação e sinalização de estado.
+- [[notes/World-Scenes]] — `SampleScene`, prefabs/assets, integração e validação.
 
-### Arquitetura e integração
-- [[architecture/Overview]] — contratos, enums, organização de scripts e fluxo de dados.
-- [[architecture/Unity-MCP-Connection]] — conexão do editor Unity via Unity Pipeline / MCP CLI.
+### Arquitetura, contratos e integração
+- [[architecture/Overview]] — estrutura, fluxos e princípios.
+- [[architecture/Contract-Map]] — mapa de `Contracts.cs`/`Enuns.cs` (atual vs planejado).
+- [[architecture/Unity-MCP-Connection]] — conexão e operação do editor via Pipeline CLI.
+- [[architecture/Decisions/README]] — índice de ADRs e template.
 
-## Grafo (MOC)
+### Decisões & aprendizado
+- [[architecture/Decisions/ADR-0001-inventario-sacola-lifo]] — sacola LIFO intencional.
+- [[architecture/Decisions/ADR-0002-interacao-boca-um-item]] — boca, um item por vez.
+- [[architecture/Decisions/ADR-0003-feedback-world-space]] — feedback world-space/câmera, HUD mínimo.
+- [[architecture/Decisions/ADR-0004-contratos-evolucao-compativel]] — evolução não-destrutiva de contratos.
+- [[notes/Playtest-Log]] — registro datado de testes e achados.
+- [[notes/Glossary]] — termos canônicos do domínio.
+- [[ops/Second-Brain-Guide]] — como usar e manter este Second Brain.
+
+## Grafo (visão executável)
 
 ```mermaid
 flowchart TD
     MOC[[MOC — ProjetoAction]]
 
     subgraph Player[Jogador]
-        P1[[notes/Player]]
-        P2[[notes/Inventory]]
+      P1[[notes/Player]]
+      P2[[notes/Inventory]]
+      P3[[notes/Feedback-GameFeel]]
     end
 
     subgraph World[Mundo & IA]
-        W1[[notes/Enemy]]
-        W2[[notes/World-Scenes]]
+      W1[[notes/Enemy]]
+      W2[[notes/World-Scenes]]
     end
 
-    subgraph Arch[Arquitetura]
-        A1[[architecture/Overview]]
-        A2[[architecture/Unity-MCP-Connection]]
+    subgraph Arch[Arquitetura & Contratos]
+      A1[[architecture/Overview]]
+      A2[[architecture/Contract-Map]]
+      A3[[architecture/Unity-MCP-Connection]]
+      A4[[architecture/Decisions/README]]
     end
 
-    MOC --> P1
-    MOC --> P2
-    MOC --> W1
-    MOC --> W2
-    MOC --> A1
-    MOC --> A2
+    subgraph Learn[Decisões & Aprendizado]
+      D1[[architecture/Decisions/ADR-0001-inventario-sacola-lifo]]
+      D2[[architecture/Decisions/ADR-0002-interacao-boca-um-item]]
+      D3[[architecture/Decisions/ADR-0003-feedback-world-space]]
+      D4[[architecture/Decisions/ADR-0004-contratos-evolucao-compativel]]
+      L1[[notes/Playtest-Log]]
+      L2[[notes/Glossary]]
+      G[[ops/Second-Brain-Guide]]
+    end
 
-    P1 -->|usa contratos/enums| A1
-    P2 -->|usa contratos/enums| A1
-    W1 -->|usa contratos/enums| A1
-    P2 -->|interage com| W2
-    W1 -->|atua em| W2
-    A2 -->|controla editor/cena| W2
+    MOC --> P1 & P2 & P3 & W1 & W2 & A1 & A2 & A3 & A4 & L1 & L2 & G
+    A4 --> D1 & D2 & D3 & D4
+
+    A2 -->|sustenta| P1 & P2 & W1 & P3
+    D1 & D2 & D3 & D4 -->|orientam| A1 & A2 & P2 & P3
+    L1 -->|informa| D1 & D2 & D3 & D4 & P3 & P2 & W1
+    P3 --> P1 & P2 & W1
+    P2 <--> P1
+    W1 <--> P1
+    W2 --> P1 & P2 & W1 & P3
+    A3 -.->|valida/inspeciona| W2
+    L2 -.-> MOC
+    G -.-> MOC
 ```
 
-## Convenções deste Second Brain
+## Tarefas de conhecimento (manutenção leve)
+- [ ] Após mudar `Contracts.cs`/`Enuns.cs`: atualizar [[architecture/Contract-Map]] e citar ADR se aplicável.
+- [ ] Após decisão de design: registrar/atualizar ADR em [[architecture/Decisions/README]].
+- [ ] Após playtest/smoke: adicionar entrada em [[notes/Playtest-Log]].
+- [ ] Se estado do editor/Pipeline mudar: atualizar [[architecture/Unity-MCP-Connection]].
+- [ ] Ao evoluir feedback/inventário/interação: manter notas de domínio e status (atual vs planejado) coerentes.
 
+## Convenções deste Second Brain
 - Notas em `docs/notes/` capturam conceitos estáveis (alto nível), não micro-funções.
-- Notas em `docs/architecture/` registram decisões, fluxos e integrações.
-- Links usam `[[wikilinks]]` para navegação bidirecional conceitual.
-- Diagramas Mermaid representam fluxos principais para localizar dependências rápido.
+- `docs/architecture/` registra estrutura, contratos, integração e decisões (ADRs).
+- `[[wikilinks]]` conectam conceitos; Mermaid mapeia fluxos principais.
+- ADRs e [[notes/Playtest-Log]] são rastros de decisão/aprendizado (append-only quando aplicável).
+- Marcar explicitamente **atual** vs **planejado/aprovado** para evitar doc rot.
+- Guia completo: [[ops/Second-Brain-Guide]].
