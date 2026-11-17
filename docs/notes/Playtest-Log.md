@@ -10,7 +10,7 @@ Registro **append-only** de testes, observações e aprendizados do **ProjetoAct
 
 ## Checklist de smoke test (rápido)
 
-- [ ] **Conexão/Editor:** `unity status --until-ready` e `unity command editor status` OK (ver [[architecture/Unity-MCP-Connection]]).
+- [ ] **Conexão/Editor:** `node tools/unity-codemode/run.mjs --code "return unity.status()"` OK e `unity.command('editor status')` com `status: ready` (ver [[architecture/Unity-CodeMode-Connection]]).
 - [ ] **Compilação:** recompilação sem erros; console sem erros novos relevantes.
 - [ ] **Play Mode:** entra/sai sem travar; cena `SampleScene` carrega.
 - [ ] **Interação/boca:** foca e pega item no alcance (`E`) com 1 item ativo por vez; não pega 2 simultaneamente.
@@ -42,7 +42,7 @@ Registro **append-only** de testes, observações e aprendizados do **ProjetoAct
 - **Esperado:** servidor pronto e alcançável.
 - **Observado:** `7800 ready`, Pipeline 1.0.0 acessível (`Server Reachable: true`), `editor status: ready`, `compiling: false`, `playMode: stopped`, `Main Editor`.
 - **Achados:** conexão operacional; recomendável `set_auto_tick` para automação em background.
-- **Ações:** estado documentado em [[architecture/Unity-MCP-Connection]].
+- **Ações:** estado documentado em [[architecture/Unity-MCP-Connection]] (nota substituída em 2026-11-17).
 - **Status:** resolvido
 
 ### 2026-11-14 — Baseline de sistemas conhecidos (documental)
@@ -54,3 +54,13 @@ Registro **append-only** de testes, observações e aprendizados do **ProjetoAct
 - **Achados:** legibilidade/feedback world-space e sinalização 3D são prioridades aprovadas para validar em próximos playtests.
 - **Ações:** acompanhar via [[architecture/Contract-Map]], [[notes/Feedback-GameFeel]], ADR-0001..0004.
 - **Status:** aberto (para validação em playtest)
+
+### 2026-11-17 — Integração via Code Mode (substitui MCP)
+- **Cena/build:** ProjetoAction, Unity 6000.6.4f1 (PID 14040), Pipeline na porta 7801
+- **Objetivo:** validar a conexão com o Editor pela ferramenta única de Code Mode (`tools/unity-codemode`)
+- **Passos:** `--describe`; `--search "play mode"`; execução composta com `unity.status()`, `unity.command('editor status')`, `unity.command('scene list_open')` e `unity.consoleStatus()` no mesmo programa; loop + filtro sobre `unity.commands({ query: 'scene' })`; tentativa de `unity.command('asset delete', …)`.
+- **Esperado:** declarações e métodos descobertos; uma execução composta devolvendo só o resultado filtrado; comando destrutivo recusado.
+- **Observado:** `completed` com `status: ready`, `compiling: false`, `playMode: stopped`, `SampleScene` ativa e não-dirty; 27 comandos de cena encontrados e filtrados; `asset delete` recusado como destrutivo.
+- **Achados:** (1) o Pipeline atende um comando por vez — chamadas em `Promise.all` falham com "Editor busy", então o conector serializa na fila; (2) opções do CLI precisam vir antes do nome do comando, pois o que vem depois é interpretado como parâmetro do comando do editor.
+- **Ações:** runtime em `tools/unity-codemode`, decisão em [[architecture/Decisions/ADR-0005-codemode-em-vez-de-mcp]], estado em [[architecture/Unity-CodeMode-Connection]].
+- **Status:** resolvido

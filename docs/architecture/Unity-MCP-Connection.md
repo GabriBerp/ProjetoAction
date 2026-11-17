@@ -1,53 +1,11 @@
-# Unity MCP / Pipeline Connection
+# Unity MCP Connection (substituída)
 
-Integração do projeto Unity aberto no editor com ferramentas via **Unity Pipeline CLI** (`unity`). Referência geral: [[architecture/Overview]] | Índice: [[MOC]].
+- **Status:** **Substituída** em 2026-11-17 por [[architecture/Unity-CodeMode-Connection]].
+- **Motivo:** a integração passou a usar **Code Mode** (uma ferramenta de código compondo comandos do Pipeline CLI), em vez de um cliente MCP com uma chamada por ferramenta. Ver [[architecture/Decisions/ADR-0005-codemode-em-vez-de-mcp]].
+- **Histórico preservado:** a conexão via Pipeline CLI (`com.unity.pipeline`, porta 7800) foi verificada em 2026-11-14 e está registrada em [[notes/Playtest-Log]]. Em 2026-11-17 a porta observada é **7801** (editor PID 14040), estado `ready`.
 
-## Estado verificado (confirmado)
+## Estado atual
 
-- **Projeto:** `C:\Users\Educação\ProjetoAction`
-- **Editor Unity:** em execução (PID 24428, Unity 6000.6.4f1)
-- **Pacote:** `com.unity.pipeline` **1.0.0** instalado no projeto
-- **Servidor Pipeline:** **acessível e pronto** — porta **7800** (`Server Reachable: true`)
-- **`editor status`:** `status: "ready"`, `compiling: false`, `domainReloadInProgress: false`, `playMode: "stopped"`, instância `Main Editor`
-- **Última confirmação:** 2026-11-14 (após foco na janela do Unity para recarregar o pacote)
+Não usar esta nota como procedimento. Para conexão, comandos, descoberta e troubleshooting, ver [[architecture/Unity-CodeMode-Connection]].
 
-> Se o estado mudar (editor fechado, domínio recarregando, pacote ausente), atualize esta seção com nova data/resultado.
-
-## Como conectar / reconectar
-
-1. Confirmar que o Unity Editor está aberto neste projeto.
-2. Instalar/atualizar o pacote (se necessário):
-   ```bash
-   unity pipeline install
-   ```
-3. Trazer a janela do Unity para o foco para o editor recarregar o pacote.
-4. Aguardar e verificar prontidão:
-   ```bash
-   unity status --until-ready
-   unity pipeline list
-   unity command editor status
-   ```
-
-## Comandos úteis (após conexão)
-
-```bash
-# Recomendado para automação/headless (evita throttling com janela em segundo plano)
-unity command editor set_auto_tick --enabled true
-
-# Compilação
-unity command script recompile
-unity command script recompile_status
-
-# Testes
-unity command test list --mode editor
-```
-
-## Troubleshooting rápido
-- **Servidor não alcançável / instância sem Pipeline:** garantir pacote instalado, focar janela do Unity, aguardar domain reload e repetir `unity status --until-ready`.
-- **Comandos lentos/travando com editor em background:** habilitar `set_auto_tick`.
-- **Estado ambíguo:** consultar `unity pipeline list` e `unity command editor status` para detalhes (porta, versão, erros).
-
-## Relações
-- Permite inspecionar/controlar elementos de [[notes/World-Scenes]] e validar mudanças em [[notes/Player]], [[notes/Inventory]], [[notes/Enemy]] e [[notes/Feedback-GameFeel]].
-- Resultados de verificação/playtest devem ser registrados em [[notes/Playtest-Log]].
-- Parte das diretrizes operacionais do projeto (skill `unity-pipeline`).
+O comando `unity mcp` do CLI continua disponível (servidor/cliente MCP do Editor), porém **não é o caminho adotado** neste projeto e não há configuração de cliente MCP no repositório.

@@ -14,7 +14,8 @@ Como manter o Second Brain do **ProjetoAction** útil, confiável e enxuto. Índ
 | `docs/architecture/Overview.md` | Visão de módulos, fluxos e princípios | Mudanças estruturais de domínio/fluxo |
 | `docs/architecture/Contract-Map.md` | Interfaces/enums, implementadores/consumidores, estado (atual vs planejado) | Qualquer mudança em `Contracts.cs`/`Enuns.cs` ou integrações |
 | `docs/architecture/Decisions/` | ADRs e template | Decisões com trade-off ou impacto multi-sistema |
-| `docs/architecture/Unity-MCP-Connection.md` | Estado e uso do Pipeline/MCP CLI | Mudança no estado de conexão/ferramenta ou procedimento |
+| `docs/architecture/Unity-CodeMode-Connection.md` | Estado e uso do Code Mode (conector `unity` + Pipeline CLI) | Mudança no estado de conexão/ferramenta ou procedimento |
+| `docs/architecture/Unity-MCP-Connection.md` | Nota substituída do caminho MCP (histórico) | Só para preservar histórico/contexto |
 | `docs/notes/*.md` | Conceitos por domínio (Player, Inventory, Enemy, World, Feedback) | Novos sistemas/fluxos estáveis ou mudanças de semântica |
 | `docs/notes/Playtest-Log.md` | Evidências datadas de testes e achados | Após sessões de playtest/smoke relevantes |
 | `docs/notes/Glossary.md` | Termos canônicos do domínio | Surgimento de termo ambíguo ou importante |
@@ -34,7 +35,7 @@ Como manter o Second Brain do **ProjetoAction** útil, confiável e enxuto. Índ
    - Adicionar entrada em [[notes/Playtest-Log]] (objetivo, passos, esperado, observado, achados, ações).
    - Se revelar decisão pendente, abrir ADR `Proposto`.
 5. **Mudou estado de ferramentas/editor:**
-   - Atualizar [[architecture/Unity-MCP-Connection]] (data, porta, pronto/não, versão).
+   - Atualizar [[architecture/Unity-CodeMode-Connection]] (data, porta, pronto/não, versão).
 
 ## Convenções
 
@@ -50,7 +51,7 @@ Como manter o Second Brain do **ProjetoAction** útil, confiável e enxuto. Índ
 - [ ] Todos os `[[wikilinks]]` usados no `MOC` e notas principais têm arquivo correspondente.
 - [ ] `Contract-Map` alinhado a `Contracts.cs`/`Enuns.cs` (e mudanças planejadas marcadas).
 - [ ] ADRs relevantes indexados no `Decisions/README` com status/data corretos.
-- [ ] `Unity-MCP-Connection` reflete o último estado verificado.
+- [ ] `Unity-CodeMode-Connection` reflete o último estado verificado.
 - [ ] `Playtest-Log` tem registro das validações recentes/importantes.
 - [ ] Notas permanecem de alto nível (sem duplicar código volátil).
 

@@ -14,10 +14,10 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  m_FogMode: 3
-  m_FogDensity: 0.01
+  m_Fog: 1
+  m_FogColor: {r: 0.41852084, g: 0.890432, b: 0.9339623, a: 1}
+  m_FogMode: 2
+  m_FogDensity: 0.0025
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -27,7 +27,7 @@ RenderSettings:
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 95c1cbbf11e23a04180947cd9a0a96be, type: 2}
-  m_HaloStrength: 0.5
+  m_HaloStrength: 0.654
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
@@ -61422,6 +61422,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: eadca0f5a72058547812ce39c8a81c0b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1515252639}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: eadca0f5a72058547812ce39c8a81c0b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1515252640}
   m_SourcePrefab: {fileID: 100100000, guid: eadca0f5a72058547812ce39c8a81c0b, type: 3}
 --- !u!4 &772935443 stripped
 Transform:
@@ -106061,6 +106064,8 @@ MonoBehaviour:
   cameraTransform: {fileID: 330585546}
   holdPoint: {fileID: 881818673}
   backpack: {fileID: 1515252627}
+  health: {fileID: 0}
+  defense: {fileID: 0}
   pickupRange: 3
   throwForce: 10
   pickupMask:
@@ -106247,6 +106252,28 @@ MonoBehaviour:
   minStaminaToStart: 0.2
   rechargeOnlyOnGround: 0
   gliderVisual: {fileID: 0}
+--- !u!114 &1515252640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515252626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56b724ef7f7acef4fb694f1e688e2f93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Defense
+  health: {fileID: 0}
+  facing: {fileID: 330585546}
+  maxCharges: 3
+  rechargeDelay: 1
+  rechargeTime: 2
+  blockAngle: 140
+  blockCooldown: 0.35
+  perfectParryWindow: 0.2
+  perfectParryStun: 2
+  guardBreakStun: 2
 --- !u!1 &1534312994
 GameObject:
   m_ObjectHideFlags: 0
@@ -114188,6 +114215,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 233d80fb1ec367e41b0e879cbe9fdada, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwingWeapon
+  damage: 15
+  hitMultiple: 0
+  hitMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  range: 2
+  hitRadius: 0.8
+  ownerOriginHeight: 1
+  hitDelay: 0.3
+  recoveryTime: 0.25
+  cooldown: 0.6
 --- !u!43 &1611424068
 Mesh:
   m_ObjectHideFlags: 0
@@ -121620,6 +121658,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 233d80fb1ec367e41b0e879cbe9fdada, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwingWeapon
+  damage: 15
+  hitMultiple: 0
+  hitMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  range: 2
+  hitRadius: 0.8
+  ownerOriginHeight: 1
+  hitDelay: 0.3
+  recoveryTime: 0.25
+  cooldown: 0.6
 --- !u!43 &1836388890
 Mesh:
   m_ObjectHideFlags: 0

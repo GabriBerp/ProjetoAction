@@ -66,5 +66,5 @@ flowchart TD
 
 ## Validação
 - Registrar observações e ajustes em [[notes/Playtest-Log]].
-- Exercitar no Play Mode com editor conectado: [[architecture/Unity-MCP-Connection]].
+- Exercitar no Play Mode com editor conectado: [[architecture/Unity-CodeMode-Connection]].
 - Relacionar mudanças de contratos/integração a [[architecture/Contract-Map]] e ADRs.

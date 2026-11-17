@@ -23,7 +23,7 @@ Organização de cenas, prefabs e assets do mundo. Índice: [[MOC]].
 - Placeholders visuais simples são aceitáveis para validar comportamento.
 
 ## Validação e tooling
-- Controlável/inspecionável via editor conectado: [[architecture/Unity-MCP-Connection]].
+- Controlável/inspecionável via editor conectado: [[architecture/Unity-CodeMode-Connection]].
 - Registrar resultados de integração e sessões de teste em [[notes/Playtest-Log]].
 
 ## Relações (conceitual)
@@ -36,5 +36,5 @@ flowchart TD
     Scene --> Enemy[[notes/Enemy]]
     Scene --> FB[[notes/Feedback-GameFeel]]
 
-    Pipeline[[architecture/Unity-MCP-Connection]] -.->|inspeciona/valida| Scene
+    Pipeline[[architecture/Unity-CodeMode-Connection]] -.->|inspeciona/valida| Scene
 ```

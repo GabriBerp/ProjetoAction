@@ -18,7 +18,7 @@ Comportamento, navegação e combate de inimigos. Índice: [[MOC]] | Contratos: 
 - Interage com o jogador (dano/ameaça): [[notes/Player]].
 - Usa contratos/enums compartilhados: [[architecture/Overview]], [[architecture/Contract-Map]] (`IDamageable`, `IHealth`, `IUsable`, `IPickable`, etc.).
 - Atua em cenas e navegação: [[notes/World-Scenes]].
-- Validação e observações: [[notes/Playtest-Log]], [[architecture/Unity-MCP-Connection]].
+- Validação e observações: [[notes/Playtest-Log]], [[architecture/Unity-CodeMode-Connection]].
 
 ## Fluxo (alto nível)
 

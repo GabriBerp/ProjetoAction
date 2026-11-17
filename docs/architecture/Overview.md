@@ -32,7 +32,7 @@ Visão de alto nível da organização do código em `Assets/Scripts` e dos flux
 - [[notes/Playtest-Log]] — evidências de testes e aprendizados.
 
 ## Integração e ferramentas
-- Conexão editor/ferramentas: [[architecture/Unity-MCP-Connection]] (Pipeline/MCP CLI, porta 7800, estado verificado).
+- Conexão editor/ferramentas: [[architecture/Unity-CodeMode-Connection]] (Code Mode sobre o Pipeline CLI, porta 7801, estado verificado em 2026-11-17). Caminho MCP anterior: [[architecture/Unity-MCP-Connection]] (substituído).
 - Manutenção do conhecimento: [[ops/Second-Brain-Guide]].
 
 ## Fluxo de dependências (conceitual)

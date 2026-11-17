@@ -16,4 +16,5 @@ Definições curtas para padronizar linguagem no design, código e documentaçã
 | **Contrato** | Interface/tipo compartilhado que define fronteiras entre sistemas (ex.: `IUsable`, `IPickable`, `IHealth`). | `Assets/Scripts/Contracts.cs`, [[architecture/Contract-Map]] |
 | **ADR** | Architecture Decision Record — registro curto de contexto, decisão e consequências. | [[architecture/Decisions/README]] |
 | **Playtest log** | Registro datado de sessões de teste, resultados observados e aprendizados/ações. | [[notes/Playtest-Log]] |
-| **Pipeline/MCP CLI** | Ferramenta `unity` para conectar e operar o editor Unity (status, recompile, testes, comandos). | [[architecture/Unity-MCP-Connection]] |
+| **Code Mode** | Uma ferramenta única que executa código compondo comandos do editor (padrão Cloudflare Agents). | [[architecture/Unity-CodeMode-Connection]] |
+| **Pipeline/MCP CLI** | Ferramenta `unity` para conectar e operar o editor Unity (status, recompile, testes, comandos). | [[architecture/Unity-CodeMode-Connection]] |

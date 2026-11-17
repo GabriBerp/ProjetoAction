@@ -28,7 +28,7 @@ Sistemas que controlam o personagem jogável (rato). Índice: [[MOC]] | Contrato
 - Inventário e itens: [[notes/Inventory]].
 - Inimigos e dano/estado: [[notes/Enemy]].
 - Cena e integração: [[notes/World-Scenes]].
-- Validação: [[notes/Playtest-Log]], [[architecture/Unity-MCP-Connection]].
+- Validação: [[notes/Playtest-Log]], [[architecture/Unity-CodeMode-Connection]].
 
 ## Fluxo (alto nível)
 

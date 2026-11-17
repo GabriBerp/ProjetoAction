@@ -7,9 +7,9 @@
 - **Engine:** Unity 6000.6.4f1
 - **Cena principal:** `Assets/Scenes/SampleScene.unity` (`InputSystem_Actions.inputactions`)
 - **Domínio:** ação/aventura em terceira pessoa com rato — movimento, interação pela **boca** (1 item), **sacola LIFO** (tensão cômica), itens utilizáveis e inimigos com patrulha/ataque.
-- **Unity Pipeline/MCP CLI:** **conectado e pronto** (porta 7800, `com.unity.pipeline` 1.0.0, verificado em 2026-11-14). Detalhes: [[architecture/Unity-MCP-Connection]].
+- **Conexão com o Editor:** **Code Mode** (ferramenta única + conector `unity` sobre o Pipeline CLI), **verificado em 2026-11-17** — editor PID 14040, porta **7801**, `ready`, 196 comandos no catálogo. Detalhes: [[architecture/Unity-CodeMode-Connection]]. MCP: substituído por [[architecture/Decisions/ADR-0005-codemode-em-vez-de-mcp]].
 - **Foco de design registrado:** feedback prioritariamente world-space/cena/câmera, HUD 2D mínimo, placeholders simples e sinalização 3D de dano/estado (jogador e inimigos). Ver [[notes/Feedback-GameFeel]] e ADRs.
-- **Último aprendizado registrado:** conexão Pipeline confirmada e baseline documental em [[notes/Playtest-Log]].
+- **Último aprendizado registrado:** integração via Code Mode validada (execução composta, descoberta e guarda de comandos destrutivos) em [[notes/Playtest-Log]].
 
 ## Mapa de navegação
 
@@ -25,7 +25,8 @@
 ### Arquitetura, contratos e integração
 - [[architecture/Overview]] — estrutura, fluxos e princípios.
 - [[architecture/Contract-Map]] — mapa de `Contracts.cs`/`Enuns.cs` (atual vs planejado).
-- [[architecture/Unity-MCP-Connection]] — conexão e operação do editor via Pipeline CLI.
+- [[architecture/Unity-CodeMode-Connection]] — conexão e operação do editor via Code Mode (`tools/unity-codemode`).
+- [[architecture/Unity-MCP-Connection]] — nota substituída (histórico do caminho MCP).
 - [[architecture/Decisions/README]] — índice de ADRs e template.
 
 ### Decisões & aprendizado
@@ -57,7 +58,7 @@ flowchart TD
     subgraph Arch[Arquitetura & Contratos]
       A1[[architecture/Overview]]
       A2[[architecture/Contract-Map]]
-      A3[[architecture/Unity-MCP-Connection]]
+      A3[[architecture/Unity-CodeMode-Connection]]
       A4[[architecture/Decisions/README]]
     end
 
@@ -90,7 +91,7 @@ flowchart TD
 - [ ] Após mudar `Contracts.cs`/`Enuns.cs`: atualizar [[architecture/Contract-Map]] e citar ADR se aplicável.
 - [ ] Após decisão de design: registrar/atualizar ADR em [[architecture/Decisions/README]].
 - [ ] Após playtest/smoke: adicionar entrada em [[notes/Playtest-Log]].
-- [ ] Se estado do editor/Pipeline mudar: atualizar [[architecture/Unity-MCP-Connection]].
+- [ ] Se estado do editor/Pipeline mudar: atualizar [[architecture/Unity-CodeMode-Connection]].
 - [ ] Ao evoluir feedback/inventário/interação: manter notas de domínio e status (atual vs planejado) coerentes.
 
 ## Convenções deste Second Brain
