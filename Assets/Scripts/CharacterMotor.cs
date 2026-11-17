@@ -34,6 +34,16 @@ public class CharacterMotor : MonoBehaviour
     public event Action AirJumped;
     public float MaxFallSpeed { get; set; } = float.PositiveInfinity;
 
+    [Header("Water")]
+    [SerializeField] private float waterSpeedMultiplier = 0.6f;  // velocidade com 100% submerso
+    [SerializeField] private float waterGravityCancel = 0.85f;   // 0 = sem efeito, 1 = gravidade zerada
+    [SerializeField] private float waterVerticalDrag = 4f;       // quanto mais, mais "lento" sobe/desce
+    [SerializeField] private float swimForce = 4f;               // impulso de cada "braçada"
+    [SerializeField] private float swimThreshold = 0.5f;        // submersão mínima pra poder nadar
+
+    public float Submersion { get; set; }
+    private bool CanSwim => Submersion >= swimThreshold;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -56,7 +66,8 @@ public class CharacterMotor : MonoBehaviour
             if (input.ConsumeJump()) jumpRequested = true;
         }
 
-        speed = input.Run ? baseSpeed * runMultiplier : baseSpeed;
+        float waterMul = Mathf.Lerp(1f, waterSpeedMultiplier, Submersion);
+        speed = (input.Run ? baseSpeed * runMultiplier : baseSpeed) * waterMul;
     }
 
     void FixedUpdate()
@@ -80,11 +91,26 @@ public class CharacterMotor : MonoBehaviour
             coyoteTimer = Mathf.Max(0f, coyoteTimer - Time.fixedDeltaTime);
         }
 
+        if (Submersion > 0f)
+        {
+            float dt = Time.fixedDeltaTime;
+            // cancela parte da gravidade (flutuação) e amortece a velocidade vertical
+            yVel += -Physics.gravity.y * waterGravityCancel * Submersion * dt;
+            yVel = Mathf.Lerp(yVel, 0f, waterVerticalDrag * Submersion * dt);
+        }
+
         if (jumpRequested)
         {
             jumpRequested = false;
             if (!Locked)
             {
+                if (CanSwim)
+                {
+                    yVel = swimForce;                 // cada aperto = uma braçada
+                    coyoteTimer = 0f;
+                    airJumpsLeft = maxAirJumps;       // sair da água não gasta o pulo duplo
+                    Jumped?.Invoke();                 // remova se isso toca som/animação de pulo
+                }
                 if (coyoteTimer > 0f)
                 {
                     yVel = jumpForce;
