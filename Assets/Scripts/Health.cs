@@ -6,8 +6,9 @@ using UnityEngine.Events;
 // Vida generica: serve para Player, Inimigos, caixas, barris, portas quebraveis, etc.
 //
 // Tudo que e especifico de personagem e OPCIONAL:
-//  - Stun: so acontece se stunDuration > 0 (caixa = 0).
+//  - Stun: so acontece se stunDuration > 0 (caixa = 0). ApplyStun() funciona sempre.
 //  - ILockable: se nao existir no objeto, simplesmente nao trava nada.
+//  - Defense: se nao existir no objeto, nada e bloqueado.
 //  - disableOnDeath: lista opcional de componentes pra desligar na morte.
 //  - onDamaged / onDied: UnityEvents no Inspector (particula, som, loot, etc, sem escrever codigo).
 public class Health : MonoBehaviour, IDamageable, IHealth
@@ -18,7 +19,7 @@ public class Health : MonoBehaviour, IDamageable, IHealth
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private bool invulnerable = false;
 
-    [Header("Stun (0 = sem stun)")]
+    [Header("Stun ao levar dano (0 = sem stun)")]
     [SerializeField] private float stunDuration = 0f;
 
     [Header("Morte")]
@@ -33,12 +34,16 @@ public class Health : MonoBehaviour, IDamageable, IHealth
 
     private int health;
     private bool dead;
+    private bool stunned;
+    private float stunEndTime;
     private Coroutine stunRoutine;
     private ILockable lockable;
+    private Defense defense;
 
     public int Current => health;
     public int Max => maxHealth;
     public bool IsDead => dead;
+    public bool IsStunned => stunned;
     public bool Invulnerable { get => invulnerable; set => invulnerable = value; }
 
     // Eventos de codigo (usados pelos animation drivers, UI, etc.)
@@ -50,6 +55,7 @@ public class Health : MonoBehaviour, IDamageable, IHealth
     private void Awake()
     {
         lockable = GetComponent<ILockable>();   // pode ser null (caixa)
+        defense = GetComponent<Defense>();      // pode ser null
         health = maxHealth;
     }
 
@@ -58,13 +64,20 @@ public class Health : MonoBehaviour, IDamageable, IHealth
         if (stunRoutine != null)
         {
             stunRoutine = null;
+            stunned = false;
             if (!dead) SetLocked(false);
         }
     }
 
-    public void ReceberDano(int d)
+    public void ReceberDano(int d) => ReceberDano(d, null);
+
+    public void ReceberDano(int d, Component attacker)
     {
         if (dead || invulnerable || d <= 0) return;
+
+        // Sem atacante (queda, armadilha, etc.) nao ha o que bloquear.
+        if (defense != null && attacker != null && defense.TryDefend(attacker) != DefenseResult.None)
+            return;
 
         health = Mathf.Max(0, health - d);
         Damaged?.Invoke(d);
@@ -73,11 +86,20 @@ public class Health : MonoBehaviour, IDamageable, IHealth
 
         if (health <= 0) { Die(); return; }
 
-        if (stunDuration > 0f)
-        {
-            if (stunRoutine != null) StopCoroutine(stunRoutine);
-            stunRoutine = StartCoroutine(Stun());
-        }
+        ApplyStun(stunDuration);
+    }
+
+    // Se ja existe um stun mais longo em andamento, ele e mantido.
+    public void ApplyStun(float duration)
+    {
+        if (dead || duration <= 0f) return;
+
+        float end = Time.time + duration;
+        if (stunned && end <= stunEndTime) return;
+
+        if (stunRoutine != null) StopCoroutine(stunRoutine);
+        stunEndTime = end;
+        stunRoutine = StartCoroutine(Stun(duration));
     }
 
     public void Heal(int amount)
@@ -100,17 +122,21 @@ public class Health : MonoBehaviour, IDamageable, IHealth
     {
         if (stunRoutine != null) { StopCoroutine(stunRoutine); stunRoutine = null; }
         dead = false;
+        stunned = false;
         health = maxHealth;
         SetLocked(false);
         foreach (var b in disableOnDeath) if (b != null) b.enabled = true;
+        if (defense != null) defense.ResetState();
         HealthChanged?.Invoke(health, maxHealth);
     }
 
-    private IEnumerator Stun()
+    private IEnumerator Stun(float duration)
     {
+        stunned = true;
         SetLocked(true);
         StunChanged?.Invoke(true);
-        yield return new WaitForSeconds(stunDuration);
+        yield return new WaitForSeconds(duration);
+        stunned = false;
         SetLocked(false);
         StunChanged?.Invoke(false);
         stunRoutine = null;
@@ -119,6 +145,7 @@ public class Health : MonoBehaviour, IDamageable, IHealth
     private void Die()
     {
         dead = true;
+        stunned = false;
         if (stunRoutine != null) { StopCoroutine(stunRoutine); stunRoutine = null; }
         SetLocked(true);
 

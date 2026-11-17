@@ -8,6 +8,9 @@ public class PlayerHand : MonoBehaviour
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private Transform holdPoint; // filho da câmera, na frente dela
     [SerializeField] private Backpack backpack;
+    [Tooltip("Vazio = procura no proprio objeto ou nos pais.")]
+    [SerializeField] private Health health;
+    [SerializeField] private Defense defense;
 
     [Header("Configuração")]
     [SerializeField] private float pickupRange = 3f;
@@ -17,15 +20,23 @@ public class PlayerHand : MonoBehaviour
     private IPickable heldItem;
     private IUsable heldUsable;
     private IReloadable heldReloadable;
+    private ISwingWeapon heldSwing;
+
     public event Action ItemUsed;
     public event Action ItemSwung;
     public event Action ItemTossed;
 
-    private ISwingWeapon heldSwing;
+    private void Awake()
+    {
+        if (health == null) health = GetComponentInParent<Health>();
+        if (defense == null) defense = GetComponentInParent<Defense>();
+    }
 
     private void Update()
     {
         var kb = Keyboard.current;
+        bool stunned = health != null && health.IsStunned;
+
         if (kb[Key.E].wasPressedThisFrame && heldItem == null)
             TryPickUp();
 
@@ -35,19 +46,45 @@ public class PlayerHand : MonoBehaviour
         if (kb[Key.F].wasPressedThisFrame)
             ToggleBackpack();
 
-        if (Mouse.current.leftButton.wasPressedThisFrame && heldUsable != null)
-        {
-            heldUsable.Use();
-            if (heldSwing != null) {
-                ItemSwung?.Invoke();
-            }
-            else {
-                ItemUsed?.Invoke();
-            }
-        }
+        if (Mouse.current.leftButton.wasPressedThisFrame && heldUsable != null && !stunned)
+            UseHeld();
+
+        UpdateBlock(stunned);
 
         if (kb[Key.R].wasPressedThisFrame && heldReloadable != null)
             heldReloadable.Reload();
+    }
+
+    private void UseHeld()
+    {
+        if (heldSwing == null)
+        {
+            heldUsable.Use();
+            ItemUsed?.Invoke();
+            return;
+        }
+
+        // A animacao so toca se a arma aceitou o golpe (cooldown, bloqueio e stun ficam na arma).
+        if (!heldSwing.CanSwing) return;
+        heldUsable.Use();
+        ItemSwung?.Invoke();
+    }
+
+    // Segurar = bloqueia. O parry depende do instante em que o botao e APERTADO, por isso so
+    // wasPressedThisFrame inicia o bloqueio: segurar o botao antes nao reinicia a janela.
+    private void UpdateBlock(bool stunned)
+    {
+        if (defense == null) return;
+
+        var button = Mouse.current.rightButton;
+        if (stunned || heldSwing == null || !button.isPressed)
+        {
+            defense.StopBlock();
+            return;
+        }
+
+        if (button.wasPressedThisFrame && !heldSwing.IsSwinging)
+            defense.TryStartBlock();
     }
 
     private void TryPickUp()

@@ -1,11 +1,10 @@
 using System;
-using System.Collections;
 using UnityEngine;
 
 // Ataque do inimigo. O modo depende do item na mao:
-//   ISwingWeapon -> corpo-a-corpo (usa meleeRange / meleeCooldown)
+//   ISwingWeapon -> corpo-a-corpo (usa meleeRange / meleeCooldown; o dano sai da propria arma)
 //   IUsable      -> a distancia  (usa rangedRange / rangedCooldown)
-public class EnemyAttack : MonoBehaviour
+public class EnemyAttack : MonoBehaviour, IAttackFilter
 {
     public enum AttackMode { None, Melee, Ranged }
 
@@ -13,16 +12,14 @@ public class EnemyAttack : MonoBehaviour
     [Tooltip("Item inicial (precisa implementar IPickable). Opcional, tambem da pra chamar Equip().")]
     [SerializeField] private MonoBehaviour startingItem;
     [SerializeField] private Health health;
+    [SerializeField] private Defense defense;
+    [Tooltip("Camadas que a arma corpo-a-corpo deste inimigo pode acertar.")]
     [SerializeField] private LayerMask targetMask;
 
     [Header("Corpo-a-corpo (ISwingWeapon)")]
+    [Tooltip("Distancia pra IA decidir atacar. O alcance real do golpe e o da SwingWeapon.")]
     [SerializeField] private float meleeRange = 1.8f;
     [SerializeField] private float meleeCooldown = 1.2f;
-    [Tooltip("Se a arma ja causa dano sozinha (hitbox propria), desligue.")]
-    [SerializeField] private bool dealMeleeDamageFromEnemy = true;
-    [SerializeField] private int meleeDamage = 10;
-    [SerializeField] private float meleeHitDelay = 0.3f;   // sincronizar com a animacao
-    [SerializeField] private float meleeHitRadius = 1f;
 
     [Header("A distancia (IUsable)")]
     [SerializeField] private float rangedRange = 10f;
@@ -30,10 +27,13 @@ public class EnemyAttack : MonoBehaviour
 
     private IPickable item;
     private IUsable usable;
+    private ISwingWeapon swing;
     private float nextAttackTime;
 
     public AttackMode Mode { get; private set; } = AttackMode.None;
     public bool HasWeapon => Mode != AttackMode.None;
+    public bool IsAttacking => swing != null && swing.IsSwinging;
+    public LayerMask TargetMask => targetMask;
     public float Range => Mode == AttackMode.Melee ? meleeRange : Mode == AttackMode.Ranged ? rangedRange : 0f;
 
     // Mesmos eventos que o PlayerHand, pra reaproveitar as animacoes
@@ -43,6 +43,7 @@ public class EnemyAttack : MonoBehaviour
     private void Awake()
     {
         if (health == null) health = GetComponent<Health>();
+        if (defense == null) defense = GetComponent<Defense>();
     }
 
     private void OnEnable()  { if (health != null) health.Died += OnDied; }
@@ -57,11 +58,16 @@ public class EnemyAttack : MonoBehaviour
     {
         if (item != null) Unequip(Vector3.zero);
 
+        // IPickable (Pickable) e IUsable/ISwingWeapon (SwingWeapon) sao componentes diferentes
+        // do mesmo objeto, entao o cast direto nunca encontra a arma.
+        var itemComponent = newItem as Component;
+        usable = itemComponent != null ? itemComponent.GetComponent<IUsable>() : null;
+        swing = itemComponent != null ? itemComponent.GetComponent<ISwingWeapon>() : null;
+
         item = newItem;
-        usable = newItem as IUsable;
-        Mode = newItem is ISwingWeapon ? AttackMode.Melee
-             : usable != null          ? AttackMode.Ranged
-                                       : AttackMode.None;
+        Mode = swing != null ? AttackMode.Melee
+             : usable != null ? AttackMode.Ranged
+                              : AttackMode.None;
 
         item.PickUp(holdPoint);
         nextAttackTime = Time.time + 0.5f;   // pequeno delay antes do primeiro ataque
@@ -73,6 +79,7 @@ public class EnemyAttack : MonoBehaviour
         item.Drop(dropForce);
         item = null;
         usable = null;
+        swing = null;
         Mode = AttackMode.None;
     }
 
@@ -80,12 +87,16 @@ public class EnemyAttack : MonoBehaviour
     public bool TryAttack()
     {
         if (!HasWeapon || Time.time < nextAttackTime) return false;
+        if (health != null && (health.IsStunned || health.IsDead)) return false;
+        if (defense != null && defense.IsBlocking) return false;
 
         if (Mode == AttackMode.Melee)
         {
+            if (!swing.CanSwing) return false;
+
             nextAttackTime = Time.time + meleeCooldown;
+            if (usable != null) usable.Use();
             ItemSwung?.Invoke();
-            if (dealMeleeDamageFromEnemy) StartCoroutine(MeleeHit());
         }
         else
         {
@@ -94,23 +105,6 @@ public class EnemyAttack : MonoBehaviour
             ItemUsed?.Invoke();
         }
         return true;
-    }
-
-    private IEnumerator MeleeHit()
-    {
-        yield return new WaitForSeconds(meleeHitDelay);
-        if (!isActiveAndEnabled) yield break;
-
-        Vector3 center = transform.position + Vector3.up + transform.forward * (meleeRange * 0.5f);
-        foreach (var c in Physics.OverlapSphere(center, meleeHitRadius, targetMask))
-        {
-            var dmg = c.GetComponentInParent<IDamageable>();
-            if (dmg != null && !ReferenceEquals(dmg, health))
-            {
-                dmg.ReceberDano(meleeDamage);
-                break;
-            }
-        }
     }
 
     private void OnDied() => Unequip(transform.forward * 2f + Vector3.up);

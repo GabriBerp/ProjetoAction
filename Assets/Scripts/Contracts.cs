@@ -1,9 +1,12 @@
 using System;
 using UnityEngine;
 
-public interface IDamageable 
+public interface IDamageable
 {
     void ReceberDano(int d);
+
+    // Implementacao padrao: quem nao liga pra origem do dano (caixas, barris) nao precisa mudar nada.
+    void ReceberDano(int d, Component attacker) => ReceberDano(d);
 }
 public interface IPickable
 {
@@ -20,7 +23,15 @@ public interface IUsable
 {
     void Use();
 }
-public interface ISwingWeapon { }
+public interface ISwingWeapon
+{
+    bool CanSwing => true;
+    bool IsSwinging => false;
+}
+public interface IAttackFilter
+{
+    LayerMask TargetMask { get; }
+}
 public interface IReloadable
 {
     void Reload();
@@ -48,4 +59,12 @@ public interface IHealth
     int Max { get; }
     bool IsDead { get; }
     void Heal(int amount);
+}
+
+public enum DefenseResult
+{
+    None,
+    Blocked,
+    PerfectParry,
+    GuardBreak
 }
