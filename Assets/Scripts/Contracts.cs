@@ -30,6 +30,7 @@ public interface IMoveInput
     Vector3 MoveDirection { get; }
     bool Run { get; }
     bool ConsumeJump();
+    bool JumpHeld => false;
 }
 public interface ILockable
 {

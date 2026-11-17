@@ -12,54 +12,102 @@ public class CharacterMotor : MonoBehaviour
     private IMoveInput input;
     private int onGround = 0;
     private float lastFallSpeed;   // velocidade vertical (descendo) do último FixedUpdate
+    private Vector3 localDir;
+    private bool jumpRequested;
 
     public bool IsGrounded => onGround > 0;
 
     // Parâmetro: velocidade da queda no momento do impacto (valor positivo)
     public event Action<float> Landed;
-    private Vector3 dir;
     private float speed;
-    private float yVel;
     public event Action Jumped;
-    public bool IsMoving => dir.sqrMagnitude > 0.01f;
+    public bool IsMoving => localDir.sqrMagnitude > 0.01f;
     public bool Locked { get; set; }   // true = stun/morte (não move nem pula)
+    private PlayerLook look;
+    [SerializeField] private float airJumpForce = 5.5f;
+    [SerializeField] private int maxAirJumps = 1;
+    [SerializeField] private float coyoteTime = 0.12f;
+
+    private float coyoteTimer;
+    private int airJumpsLeft;
+
+    public event Action AirJumped;
+    public float MaxFallSpeed { get; set; } = float.PositiveInfinity;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
         input = GetComponent<IMoveInput>();
+        look = GetComponent<PlayerLook>();
     }
 
-    private void Update() 
+    private void Update()
     {
         if (Locked)
         {
-            dir = Vector3.zero;
-            input.ConsumeJump();        // descarta pulos acumulados
+            localDir = Vector3.zero;
+            input.ConsumeJump();
+            jumpRequested = false;
         }
         else
         {
-            dir = Vector3.ClampMagnitude(input.MoveDirection, 1f);
+            localDir = Vector3.ClampMagnitude(input.MoveDirection, 1f);
+            // acumula: se o FixedUpdate ainda não rodou, o pedido não se perde
+            if (input.ConsumeJump()) jumpRequested = true;
         }
-        speed = input.Run ? baseSpeed * runMultiplier : baseSpeed;
 
-        yVel = rb.linearVelocity.y;
+        speed = input.Run ? baseSpeed * runMultiplier : baseSpeed;
+    }
+
+    void FixedUpdate()
+    {
+        float yVel = rb.linearVelocity.y;
 
         if (!IsGrounded)
             lastFallSpeed = Mathf.Max(0f, -yVel);
         else if (yVel < 0f)
             yVel = 0f;
 
-        if (!Locked && input.ConsumeJump() && IsGrounded)
+        // yVel <= 0.01 evita recarregar pulos nos ticks logo após o pulo, quando
+        // o OnCollisionExit ainda não chegou e IsGrounded continua true.
+        if (IsGrounded && yVel <= 0.01f)
         {
-            yVel = jumpForce;
-            Jumped?.Invoke();
+            coyoteTimer = coyoteTime;
+            airJumpsLeft = maxAirJumps;
         }
-    }
+        else
+        {
+            coyoteTimer = Mathf.Max(0f, coyoteTimer - Time.fixedDeltaTime);
+        }
 
-    void FixedUpdate()
-    {
-        rb.linearVelocity = new Vector3(dir.x * speed, yVel, dir.z * speed);
+        if (jumpRequested)
+        {
+            jumpRequested = false;
+            if (!Locked)
+            {
+                if (coyoteTimer > 0f)
+                {
+                    yVel = jumpForce;
+                    coyoteTimer = 0f;   // impede um segundo pulo "de chão" durante a subida
+                    Jumped?.Invoke();
+                }
+                else if (airJumpsLeft > 0)
+                {
+                    yVel = airJumpForce;
+                    airJumpsLeft--;
+                    AirJumped?.Invoke();
+                }
+            }
+        }
+
+        yVel = Mathf.Max(yVel, -MaxFallSpeed);
+
+        Quaternion facing = look != null
+            ? Quaternion.Euler(0f, look.Yaw, 0f)
+            : transform.rotation;
+
+        Vector3 worldDir = facing * localDir;
+        rb.linearVelocity = new Vector3(worldDir.x * speed, yVel, worldDir.z * speed);
     }
 
     void OnCollisionEnter(Collision c)

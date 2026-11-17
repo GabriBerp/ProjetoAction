@@ -10,6 +10,7 @@ public class PlayerLook : MonoBehaviour
 
     private float pitch;
     private float yaw;
+    public float Yaw => yaw;
 
     void Awake()
     {
