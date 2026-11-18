@@ -5,6 +5,7 @@ Organização de cenas, prefabs e assets do mundo. Índice: [[MOC]].
 ## Cena principal
 
 - `Assets/Scenes/SampleScene.unity` — cena atual de integração e teste dos sistemas (jogador, sacola/itens, inimigos, navegação).
+  - Raiz `COZINHA` (88 × 88, pé-direito 32,7): balcões, armários, geladeira, fogão, pias, mesa. Plano de design de interiores/pontes/biomas em [[notes/Cozinha-Biomas]].
 
 ## Assets e pastas relevantes
 

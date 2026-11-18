@@ -21,6 +21,7 @@ public class PlayerHand : MonoBehaviour
     private IUsable heldUsable;
     private IReloadable heldReloadable;
     private ISwingWeapon heldSwing;
+    private IOwnedItem heldOwned;
 
     public event Action ItemUsed;
     public event Action ItemSwung;
@@ -137,10 +138,15 @@ public class PlayerHand : MonoBehaviour
         heldUsable = (pickable as Component)?.GetComponent<IUsable>();
         heldReloadable = (pickable as Component)?.GetComponent<IReloadable>();
         heldSwing = (pickable as Component)?.GetComponent<ISwingWeapon>();
+
+        heldOwned = (pickable as Component)?.GetComponent<IOwnedItem>();
+        if (heldOwned != null) heldOwned.SetOwner(health, cameraTransform);
     }
 
     private void ClearHeld()
     {
+        if (heldOwned != null) heldOwned.SetOwner(null, null);
+        heldOwned = null;
         heldItem = null;
         heldUsable = null;
         heldReloadable = null;

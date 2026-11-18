@@ -28,6 +28,7 @@ public class EnemyAttack : MonoBehaviour, IAttackFilter
     private IPickable item;
     private IUsable usable;
     private ISwingWeapon swing;
+    private IOwnedItem owned;
     private float nextAttackTime;
 
     public AttackMode Mode { get; private set; } = AttackMode.None;
@@ -63,6 +64,7 @@ public class EnemyAttack : MonoBehaviour, IAttackFilter
         var itemComponent = newItem as Component;
         usable = itemComponent != null ? itemComponent.GetComponent<IUsable>() : null;
         swing = itemComponent != null ? itemComponent.GetComponent<ISwingWeapon>() : null;
+        owned = itemComponent != null ? itemComponent.GetComponent<IOwnedItem>() : null;
 
         item = newItem;
         Mode = swing != null ? AttackMode.Melee
@@ -70,16 +72,19 @@ public class EnemyAttack : MonoBehaviour, IAttackFilter
                               : AttackMode.None;
 
         item.PickUp(holdPoint);
+        if (owned != null) owned.SetOwner(health, null);
         nextAttackTime = Time.time + 0.5f;   // pequeno delay antes do primeiro ataque
     }
 
     public void Unequip(Vector3 dropForce)
     {
         if (item == null) return;
+        if (owned != null) owned.SetOwner(null, null);
         item.Drop(dropForce);
         item = null;
         usable = null;
         swing = null;
+        owned = null;
         Mode = AttackMode.None;
     }
 

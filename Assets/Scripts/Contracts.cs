@@ -32,6 +32,12 @@ public interface IAttackFilter
 {
     LayerMask TargetMask { get; }
 }
+public interface IOwnedItem
+{
+    // Quem segura o item chama ao equipar e chama (null, null) ao soltar.
+    // aim = de onde sai a mira (player: camera). Null = usa o corpo do dono.
+    void SetOwner(Health owner, Transform aim);
+}
 public interface IReloadable
 {
     void Reload();

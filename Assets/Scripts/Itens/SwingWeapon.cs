@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Arma corpo-a-corpo. O dono e quem tem o Health acima dela na hierarquia (a arma fica
-// filha do holdPoint). O dano sai no fim do hitDelay, nao no clique: e esse intervalo
-// que permite ao alvo reagir com bloqueio ou Perfect Parry.
-public class SwingWeapon : MonoBehaviour, IUsable, ISwingWeapon
+// Arma corpo-a-corpo. O dono e a mira sao informados por quem segura (PlayerHand/EnemyAttack)
+// via SetOwner, entao a arma nao depende da hierarquia. O dano sai no fim do hitDelay, nao no
+// clique: e esse intervalo que permite ao alvo reagir com bloqueio ou Perfect Parry.
+public class SwingWeapon : MonoBehaviour, IUsable, ISwingWeapon, IOwnedItem
 {
     // (arma, dono, Time.time do impacto). A IA de bloqueio usa pra mirar a janela de parry.
     public static event Action<SwingWeapon, Health, float> SwingStarted;
@@ -18,7 +18,7 @@ public class SwingWeapon : MonoBehaviour, IUsable, ISwingWeapon
     [SerializeField] private LayerMask hitMask = ~0;
 
     [Header("Alcance")]
-    [Tooltip("Distancia maxima a partir do olho (camera) ou do peito (sem camera).")]
+    [Tooltip("Distancia maxima a partir da mira (camera) ou do peito do dono (sem mira).")]
     [SerializeField] private float range = 2f;
     [SerializeField] private float hitRadius = 0.8f;
     [SerializeField] private float ownerOriginHeight = 1f;
@@ -29,6 +29,8 @@ public class SwingWeapon : MonoBehaviour, IUsable, ISwingWeapon
     [SerializeField] private float recoveryTime = 0.25f;
     [SerializeField] private float cooldown = 0.6f;
 
+    private Health owner;
+    private Transform aim;
     private float nextSwingTime;
     private float swingEndTime;
     private readonly HashSet<IDamageable> hitBuffer = new HashSet<IDamageable>();
@@ -42,8 +44,6 @@ public class SwingWeapon : MonoBehaviour, IUsable, ISwingWeapon
         get
         {
             if (Time.time < nextSwingTime) return false;
-
-            var owner = GetComponentInParent<Health>();
             if (owner == null || owner.IsDead || owner.IsStunned) return false;
 
             var defense = owner.GetComponent<Defense>();
@@ -51,13 +51,17 @@ public class SwingWeapon : MonoBehaviour, IUsable, ISwingWeapon
         }
     }
 
+    public void SetOwner(Health newOwner, Transform newAim)
+    {
+        owner = newOwner;
+        aim = newAim;
+    }
+
     public void Use()
     {
         if (!CanSwing) return;
 
-        var owner = GetComponentInParent<Health>();
         float hitTime = Time.time + hitDelay;
-
         swingEndTime = hitTime + recoveryTime;
         nextSwingTime = Time.time + Mathf.Max(cooldown, hitDelay + recoveryTime);
 
@@ -65,20 +69,20 @@ public class SwingWeapon : MonoBehaviour, IUsable, ISwingWeapon
         StartCoroutine(SwingRoutine(owner));
     }
 
-    private IEnumerator SwingRoutine(Health owner)
+    private IEnumerator SwingRoutine(Health swinger)
     {
         yield return new WaitForSeconds(hitDelay);
 
         // Tomar stun (inclusive Perfect Parry), morrer ou soltar a arma durante o wind-up cancela o golpe.
-        if (owner == null || owner.IsDead || owner.IsStunned) yield break;
-        if (GetComponentInParent<Health>() != owner) yield break;
+        // swinger != owner cobre o drop e tambem a troca de dono.
+        if (swinger == null || swinger.IsDead || swinger.IsStunned || swinger != owner) yield break;
 
-        ResolveHit(owner);
+        ResolveHit();
     }
 
-    private void ResolveHit(Health owner)
+    private void ResolveHit()
     {
-        GetAim(owner, out Vector3 origin, out Vector3 direction);
+        GetAim(out Vector3 origin, out Vector3 direction);
 
         var filter = owner.GetComponent<IAttackFilter>();
         LayerMask mask = filter != null ? filter.TargetMask : hitMask;
@@ -108,14 +112,12 @@ public class SwingWeapon : MonoBehaviour, IUsable, ISwingWeapon
         if (closest != null) closest.ReceberDano(damage, owner);
     }
 
-    // Player: a camera esta na cadeia de pais do holdPoint. Inimigo: peito e forward do corpo.
-    private void GetAim(Health owner, out Vector3 origin, out Vector3 direction)
+    private void GetAim(out Vector3 origin, out Vector3 direction)
     {
-        var cam = GetComponentInParent<Camera>();
-        if (cam != null)
+        if (aim != null)
         {
-            origin = cam.transform.position;
-            direction = cam.transform.forward;
+            origin = aim.position;
+            direction = aim.forward;
             return;
         }
 
@@ -125,10 +127,9 @@ public class SwingWeapon : MonoBehaviour, IUsable, ISwingWeapon
 
     private void OnDrawGizmosSelected()
     {
-        var owner = GetComponentInParent<Health>();
         if (owner == null) return;
 
-        GetAim(owner, out Vector3 origin, out Vector3 direction);
+        GetAim(out Vector3 origin, out Vector3 direction);
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(origin + direction * Mathf.Max(0f, range - hitRadius), hitRadius);
     }

@@ -21,6 +21,7 @@
 ### IA e mundo
 - [[notes/Enemy]] — navegação/patrulha, ataque, animação e sinalização de estado.
 - [[notes/World-Scenes]] — `SampleScene`, prefabs/assets, integração e validação.
+- [[notes/Cozinha-Biomas]] — plano de design da cozinha: interiores de armários/balcões, pontes de rato e biomas (tropical, infernal, congelado, úmido).
 
 ### Arquitetura, contratos e integração
 - [[architecture/Overview]] — estrutura, fluxos e princípios.
@@ -93,6 +94,7 @@ flowchart TD
 - [ ] Após playtest/smoke: adicionar entrada em [[notes/Playtest-Log]].
 - [ ] Se estado do editor/Pipeline mudar: atualizar [[architecture/Unity-CodeMode-Connection]].
 - [ ] Ao evoluir feedback/inventário/interação: manter notas de domínio e status (atual vs planejado) coerentes.
+- [ ] Ao construir partes da cozinha: mover o item correspondente de [[notes/Cozinha-Biomas]] de planejado para atual.
 
 ## Convenções deste Second Brain
 - Notas em `docs/notes/` capturam conceitos estáveis (alto nível), não micro-funções.
