@@ -1,0 +1,7 @@
+{
+  "status": "error",
+  "executionId": "2983ac34-975e-4588-9e9a-06a426484acd",
+  "error": "Error: Code Mode execution timed out after 180000ms.\n    at Timeout._onTimeout (file:///C:/Users/Educa%C3%A7%C3%A3o/ProjetoAction/tools/unity-codemode/runtime.mjs:194:41)\n    at listOnTimeout (node:internal/timers:581:17)\n    at process.processTimers (node:internal/timers:519:7)",
+  "logs": [],
+  "calls": 21
+}

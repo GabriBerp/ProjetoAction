@@ -2,6 +2,7 @@
 
 > **Tipo:** plano/design (nada foi construído ainda). **Cena:** `Assets/Scenes/SampleScene.unity` → raiz `COZINHA`.
 > **Contexto:** ação/aventura em terceira pessoa com rato. Índice: [[MOC]] · Cena: [[notes/World-Scenes]].
+> **Plano focado em armários e balcões (medido em 2026-11-20):** [[notes/Cozinha-Armarios-Balcoes]] — receitas ProBuilder, distribuição e ocupação rata só nesses móveis.
 
 ## 1. Como usar este documento
 
@@ -12,6 +13,8 @@ Cada sistema abaixo tem: **(a)** o que já existe na cena, **(b)** a proposta co
 ## 2. Raio-X do que existe hoje
 
 Cena medida objeto por objeto (transform + bounds de malha em espaço de mundo).
+
+> ⚠️ **Tabela superada em 2026-11-19.** A cozinha foi reconstruída em **ProBuilder** e várias medidas mudaram (geladeira 28 de altura, mesa em z = 10, paredes passaram a 35 de altura, vassoura flutuando). Use **§15** como fonte atual; esta tabela fica só como histórico.
 
 ### 2.1 Volumetria
 
@@ -478,6 +481,8 @@ Convenções: prefixo por sistema (`Ponte_`, `Fachada_`, `Vila_`, `Musgo_`), piv
 
 ## 13. Estado de execução — protótipo Fase 1 (2026-11-18)
 
+> ⚠️ **Não está na cena salva (verificado 2026-11-19).** A cena não contém `Prototipo_Aberturas`: `COZINHA` tem 39 filhos, todos móveis/eletrodomésticos. O protótipo foi descartado ou não foi salvo. Manter esta seção como registro de método, **não** como estado.
+
 > Esta seção foi escrita depois das 1–12: é o registro do que já está na cena.
 
 Construído na cena como **fachada aplicada com primitivas** (caminho B do §5.1), dentro de `/COZINHA/Prototipo_Aberturas`. O grupo raiz fica em local `(0, -7,52, 0)` para que **local = mundo** em todos os filhos (facilita o ajuste fino).
@@ -510,6 +515,417 @@ Materiais reaproveitados: `BlackConcrete` (interior), `Wood` (batente/porta/gave
 ## 14. Ganchos extras (para depois, não agora)
 
 - Água molha o rato → apaga brasa → abre passagem no fogão (bioma ↔ bioma).
+
+---
+
+## 15. Revisão 2026-11-19 — estado real da cena + plano de execução em ProBuilder
+
+> **Tipo:** diagnóstico + plano (nada foi construído nesta revisão). **Substitui** as medidas de §2.1 e o relatório de §13. As intenções de §5–§12 continuam válidas; **as medidas, o método e a técnica mudam**, porque a cozinha agora é ProBuilder.
+> **Como foi medido:** leitura do YAML de `SampleScene.unity` (transforms + vértices dos `ProBuilderMesh`) e da hierarquia do editor aberto (Code Mode, porta 7800). Nada foi visto em imagem — `capture scene_view` é comando destrutivo e não foi executado. Números são confiáveis; **aparência não foi conferida visualmente**.
+
+### 15.1 O que mudou desde a última medição
+
+| Item | Antes (§2 / §13) | Agora (medido) |
+|---|---|---|
+| Construção | malhas fechadas, vindas do Blender | **87 malhas ProBuilder** em 176 GameObjects, tudo editável na cena |
+| Filhos de `COZINHA` | ~90 objetos soltos | **39** (2 `Pia`, 18 `Balcao`, 1 `Mesa`, 4 `Cadeiras`, 1 `Ground`, 1 `Roof`, 1 `Fogao`, 1 `Geladeira`, 1 `Vassoura`, 5 `Armario`, 1 `Microondas`, 3 `Wall`) |
+| Protótipo de aberturas | “executado” em §13 | **não existe na cena salva** (cena limpa, `isDirty: false`) |
+| Pé-direito | 32,76 (laje em 32,76) | igual: piso 0, teto 32,76; **paredes subiram para 35 de altura** |
+| Geladeira | 20 × 32 × 15,5 | **12 × 28 × 12** em (-37 / 13 / 5) → **topo em 27** |
+| Mesa | centro, tampo 11,5 | 20 × 12,5 × 40 em **(0 / 11 / 10)**, tampo 11,5 |
+| `WaterVolume` nas pias | ausente | **presente nas 2 pias** (componente já ligado) |
+| NavMesh | nenhum assado | **`Assets/Scenes/SampleScene/NavMesh-Ground.asset`** assado no `Ground` |
+| Objetos estáticos | 0 | **66** com `StaticEditorFlags` |
+| Luzes | 1 direcional | 1 direcional (nada mais). **Nenhum `Volume` na cena** |
+| Prefabs da cozinha | — | **nenhum**: os 18 balcões e 5 armários são cópias soltas na cena |
+
+### 15.2 Raio-X da construção (medido, espaço de mundo)
+
+| Elemento | Qtd | Posição | Dimensões | Notas |
+|---|---|---|---|---|
+| `Ground` | 1 | (0 / -0,5 / 0) | 90 × 1 × 90 | piso em y = 0 |
+| `Roof` | 1 | (0 / 33,26 / 0) | 90 × 1 × 90 | teto interior em 32,76 |
+| `Wall` | 3 | z = -44, x = ±44 | 90 × 35 × 2 | **lado sul (z = +44) aberto** |
+| `Balcao` | 18 | ver abaixo | 10,66 × 10 × 10 (corpo) | **tampo em 12,52; base em 2,52** — nenhum toca o chão |
+| `Balcao` cantos | 2 | (±37 / 7,52 / -37) | 10,5 × **13,52** × 10,5 | base em 0,76; são as “torres” do U |
+| `Armario` | 5 | y = 27 | 10 × 10 × comp. 20/25/30/50/70 | y 22 → 32; folga ao teto **0,76** |
+| `Geladeira` | 1 | (-37 / 13 / 5) | 12 × 28 × 12 | topo 27; prateleiras y = 6 e 13; **17 blocos de gelo**, 2 abaixo do piso |
+| `Fogao` | 1 | (15 / 6 / -37) | 12 × 14 × 12 | topo 13; 4 bocas em y = 13,13; prateleiras internas y = 4 e 8 |
+| `Forno` | 1 | (15 / 5,05 / -29,11) | 10 × 9,65 × 5,03 | solto à frente do fogão, topo 9,88 |
+| `Pia` | 2 | (37,56 / 7,52 / -5 e -15) | 10,66 × 10 × 10 | água 9,9 × 9 × 10 com topo em **11,83** (0,69 abaixo do tampo) |
+| `Microondas` | 1 | (36,13 / 15 / 32,08) | 6 × 5 × 12 | porta aberta (4,8 × 4) + `Prato` dentro em 13,17 |
+| `Mesa` + `Cadeiras` | 1 + 4 | (0 / 11 / 10) | 20 × 12,5 × 40 | tampo 11,5; cadeiras com topo em 17 |
+| `Vassoura` | 1 | (29,78 / 10,76 / 23,97) | 16,9 × 15,6 × 1,24 | **base flutua ~2,96** acima do chão |
+| `TransitionDoor` | 2 | (15 / 2 / -42,6) e (-42,68 / 2 / 5) | 3,75 × 2,75 × 1 | passagens no tamanho do rato |
+| `Water` + `WaterVolume` | 2 | nas pias | 9,9 × 9 × 10 | natação já funciona |
+
+**Layout dos balcões (o “U”):**
+
+| Fila | Posições | Face frontal (para o centro) |
+|---|---|---|
+| Norte | z = -37,56; x = -25, -15, -5, 5, 25 | **z = -32,23** |
+| Oeste | x = -37,56; z = -25, -15, -5, 15, 25, 35 | **x = -32,23** |
+| Leste | x = +37,56; z = -25, 5, 15, 25, 35 | **x = +32,23** |
+| Cantos | (±37 / -37) | 1,5 mais altos (topo 14,04) |
+
+Os vazios do U são preenchidos por eletrodomésticos, e isso está **coerente**: fogão em x = 15 (entre os balcões de x = 5 e 25), pias em z = -5 e -15 (entre -25 e 5), geladeira em z = 5 (entre -5 e 15). A planta funciona.
+
+### 15.3 Diagnóstico
+
+**O que já está resolvido (não mexer):**
+
+1. **Escala de colosso**: 88 × 88 com bancada de 12,52 de altura (~1,5 m na escala humana) — a fantasia de rato está pronta.
+2. **Circuito em U contínuo**: corredor de 9,48 de altura entre tampo e armários, e um **vão livre de 2,52 sob todos os balcões** — o “subsolo” já existe, e é contínuo nos três lados. Nada precisa ser escavado para o bioma úmido.
+3. **Verticalidade latente**: tampo (12,52) → armário (22) → topo de armário (32) → teto (32,76). Só falta rota.
+4. **Biomas já ancorados nos objetos**: água (pias), gelo (geladeira), fogo (bocas), sombra úmida (vão inferior).
+5. **Duas portas de saída no tamanho do rato** — bocas prontas atrás do fogão e atrás da geladeira.
+6. **Micro-ondas**: único interior legível hoje (porta aberta + prato). É a prova de que “interior com conteúdo” funciona nesta cena.
+7. **Natação** da pia já operacional (`WaterVolume`).
+
+**O que trava a leitura de “civilização vivendo aqui há muito tempo”:**
+
+1. **Nada tem dentro.** Todos os módulos são sólidos: 24 vértices por armário (= um cubo maciço), 488 por balcão. Não existe cavidade, gaveta, porta nem prateleira visível — e sem “dentro” não existe história.
+2. **Uma única luz (direcional).** Sem luz local, interior é preto chapado e bioma é indiferenciado.
+3. **Zero vocabulário orgânico.** Nenhum material de musgo, folha, ferrugem, fuligem, papelão ou tecido. Nenhuma planta, nenhuma teia, nenhuma poeira.
+4. **Zero tralha de rato.** Não há nada construído por bichos: nem palito, nem barbante, nem rolha.
+5. **Zero pontes e zero rotas verticais** para o jogador. A bancada é um penhasco de 12,52 sem escada.
+6. **Nada é instância.** 18 balcões e 5 armários são cópias independentes; qualquer variante aberta terá de ser feita 20 vezes sem prefab.
+7. **Poeira/idade não têm como aparecer**: sem oclusão local, sem contraste de material, sem marcas.
+
+**Achados que precisam de saneamento antes de construir por cima** (baratos, mas visíveis):
+
+| # | Achado | Medida do erro |
+|---|---|---|
+| 1 | `Vassoura` flutua | base em y ≈ 2,96 (deveria ser 0) |
+| 2 | Cadeira em (-21,63 / 8,54 / 15) com escala 1,96 e torcida | deveria sentar no piso, escala 1 |
+| 3 | 11 `Item` flutuam sobre a mesa | y = 14,41 contra tampo 11,5 → **2,9 de vazio** |
+| 4 | 2 blocos de `Gelo` abaixo do piso | topos em -5,67 e -0,15 |
+| 5 | `Geladeira` invade 1,33 os balcões vizinhos | balcão de z = -5 termina em z = 0,33; geladeira começa em z = -1 |
+| 6 | NavMesh só no `Ground` | qualquer prop sobre a rota muda a malha; re-assar por fase |
+
+### 15.4 Por que ProBuilder muda o plano
+
+O gargalo do plano original (§5.1) era geométrico: abrir um móvel exigia Blender. **Isso acabou.** Com os módulos já em ProBuilder, um interior é uma operação de dois passos (**Inset + Extrude negativo**) no próprio objeto — com colisor gerado automaticamente e sem sair do editor.
+
+Consequências práticas:
+
+- **Caminho único**: esqueça a comparação Blender × fachada aplicada. Tudo se faz na cena.
+- **Profundidade real**: o interior passa de 1,7 (fachada colada) para **6,5–7,5 navegáveis**.
+- **Custo dominante deixa de ser triângulo e passa a ser objeto + colisor**: cada `ProBuilderMesh` traz `MeshCollider`, e 200 props com `MeshCollider` pesam. Ver §15.13.
+- **Prefab é obrigatório**, não opcional: sem instância, corrigir 20 módulos significa 20 cirurgias.
+
+### 15.5 Sistema A — gavetas e portas entreabertas com interior
+
+#### 15.5.1 Receita 1 — cavidade (o interior) em um módulo existente
+
+Base de tudo. Funciona em `Balcao`, `Armario`, `Mesa` e no `Forno`.
+
+1. Selecionar o módulo (ex.: `Balcao` em x = -15) → `Tools > ProBuilder > ProBuilder Window`.
+2. Entrar em **Face** mode e clicar na **face frontal** (a que olha para o centro da sala).
+3. **Inset** (`Actions > Inset`) com *Amount* = **0,55** → cria o batente; o miolo continua selecionado.
+4. **Extrude** (`Actions > Extrude`) com *Distance* = **-6,5** → empurra o miolo para dentro da normal, gerando paredes laterais e fundo. (negativo = para dentro)
+5. Conferir as faces internas: se alguma aparecer preta/invertida, `Actions > Flip Normals` só nela.
+6. Com as faces internas selecionadas, atribuir **`InteriorDark`** (material novo, §15.9) — sem isso o nicho é branco e some.
+7. Prateleira: `New Shape > Cube` **8,0 × 0,3 × 5,5**, encostar no fundo com recuo de 0,5 da boca. Pode ficar filha (não precisa `Merge Objects`).
+8. Colisor: manter o `MeshCollider` (convexo = **off**, é estático) — o rato passa a poder entrar e não atravessar.
+9. Renomear (`Balcao_N2_Nicho`) e salvar como **prefab** antes de duplicar.
+
+> **Medida útil por tipo:** balcão 10,66 de profundidade → nicho **6,5** (sobram 2,6 de casca). Armário 10 de profundidade → nicho **6,2** (sobram 1,9 de parede traseira + 0,55 de batente). Não passar de 7,5: o fundo fica a menos de 1,3 da parede da sala.
+
+#### 15.5.2 Receita 2 — gaveta puxada
+
+1. `New Shape > Cube` **4,6 × 1,8 × 4,2** (a caixa da gaveta).
+2. Face mode → selecionar a **face superior** → **Inset 0,35** → **Extrude -1,5** (fundo a 0,3).
+3. Frente: outro Cube **5,0 × 3,0 × 0,5** colado na boca da caixa; puxador = Cube 1,6 × 0,3 × 0,3 (ou `Cylinder` achatado, 8 lados).
+4. Trilhos: 2 Cubes **4,2 × 0,2 × 0,2** nas laterais, recuados 0,3.
+5. Posicionar: deslocar **+3,0 a +3,5** no eixo normal da fachada (≈35% do curso) e **1,5 abaixo** da boca do nicho, para ler “puxada”.
+6. Grupo `Gaveta_*` com pivô na **base-centro**; prefab.
+
+**Faixa vertical recomendada no balcão** (frente tem 10 de altura, de 2,52 a 12,52): gaveta **8,5 → 11,5** (3 de altura); portas **3,0 → 8,2** (5,2). Assim qualquer módulo aceita gaveta em cima + 2 portas embaixo sem redesenho.
+
+#### 15.5.3 Receita 3 — porta com dobradiça
+
+1. `New Shape > Cube` **largura × altura × 0,45** (folha).
+2. Criar um **Empty** `Hinge_*` **na borda** da folha (na face, na altura do meio).
+3. Parentear a folha ao Empty e ajustar `localPosition` = (+largura/2, 0, 0) → a folha passa a girar sobre a quina.
+4. Rotacionar o **Empty** em Y: **20°–30°** (abaixo disso lê fechada; acima de 45° vira convite óbvio).
+5. Dobradiças: 2 cilindros 0,25 × 0,5 no eixo.
+6. Porta **arrancada**: mesmo objeto, Empty a 65–80°, folha deslocada −0,5 em Y e 8° em Z; uma dobradiça caída no chão.
+
+> O pivô na borda é o detalhe que faz a diferença: porta que gira pelo centro parece placa solta.
+
+#### 15.5.4 Receita 4 — buraco roído
+
+O balcão **não tem rodapé**: o corpo começa em 2,52. Então o “buraco” é uma abertura na **parte baixa da face frontal** (y 3,0–5,0), não no piso.
+
+1. Face frontal → **Inset 0,9** → **Extrude -5,0** (cavidade rasa, tipo toca).
+2. Selecionar a face interna e aplicar **Bevel** pequeno (0,2) para quebrar a circularidade perfeita.
+3. Opcional: mover 2–3 vértices internos 0,15 para o buraco ficar irregular.
+4. Serragem no chão (plano 2 × 2 com material `MossDry`) + marcas de dente (3 semicírculos de 0,25).
+
+#### 15.5.5 O que vai dentro (senão é buraco preto)
+
+Kit mínimo, tudo entre **0,6 e 2,5** (mobília de rato). Cada peça: 1–3 primitivas ProBuilder.
+
+| Peça | Primitiva e medida | Onde aparece |
+|---|---|---|
+| Rolha | Cylinder 0,8 × 1,2 | gaveta, feira |
+| Tampinha | Cylinder 0,9 × 0,15 | moeda, telhado |
+| Caixa de fósforo | Cube 2,0 × 0,7 × 1,3 | parede, casa |
+| Carretel | Cylinder 1,0 × 1,4 + 2 discos | torre, mesa |
+| Pregador | 2 Cubes 0,2 × 2,0 × 0,3 + mola | ponte, estrutura |
+| Clipe | 3 segmentos finos | gancho, grampo |
+| Palito | Cube 0,08 × 3,0 × 0,08 | viga, ponte |
+| Botão | Cylinder 0,35 × 0,08 | detalhe pessoal |
+| Barbante | Cylinder 0,06 × comp., 6 lados | amarração, corrimão |
+| Latinha | Cylinder 0,6 × 1,1 | lata, panela |
+
+Dentro dos módulos **humanos** o conteúdo é humano (potes, latas, sacos, cereais); dentro dos nichos **de rato** é tralha. Essa troca de vocabulário é o que conta a história.
+
+#### 15.5.6 Distribuição — 21 intervenções, coordenadas reais
+
+Regra do ⅓ (§4.2): **não abrir tudo**. Plano: 6 gavetas, 8 portas entreabertas, 3 arrancadas, 4 buracos roídos, em 18 balcões + 5 armários.
+
+**Bancadas** (fachadas: norte z = -32,23 · oeste x = -32,23 · leste x = +32,23)
+
+| # | Módulo | Intervenção | Conteúdo | Papel |
+|---|---|---|---|---|
+| 1 | norte x = -25 | gaveta puxada 3,2 + gaveta caída no chão | tralha, tampinhas | **degrau** da rota de subida |
+| 2 | norte x = -15 | porta arrancada | potes, pano, teia | interior legível do saguão |
+| 3 | norte x = -5 | buraco roído (y 3–5) | serragem, ninho | entrada do subsolo |
+| 4 | norte x = 5 | gaveta 35% | garfos, barbante | leitura a 10 un |
+| 5 | norte x = 25 | porta entreaberta 26° | latas | equilíbrio junto ao fogão |
+| 6 | oeste z = -25 | gaveta caída + entulho | caixas | plataforma baixa/lixo |
+| 7 | oeste z = -15 | porta arrancada | tralha + musgo | abandono do lado gelado |
+| 8 | oeste z = -5 | buraco roído + fungo | ninho | boca do subsolo oeste |
+| 9 | oeste z = 15 | gaveta puxada 40% | tampinhas empilhadas | **Feira** |
+| 10 | oeste z = 25 | porta entreaberta 22° | cereais | ritmo do corredor |
+| 11 | oeste z = 35 | buraco roído | raízes | canto esquecido |
+| 12 | leste z = -25 | porta entreaberta 30° | potes úmidos | transição pia ↔ armário |
+| 13 | leste z = 5 | gaveta puxada 30% | botões | leitura central |
+| 14 | leste z = 15 | gaveta puxada 40% | barracas | **Feira da Gaveta** (§15.7) |
+| 15 | leste z = 25 | porta arrancada | sucata | abandono leste |
+| 16 | leste z = 35 | porta entreaberta 24° | potes | junto ao micro-ondas |
+| 17 | canto oeste (-37/-37) | porta entreaberta no nível alto | nada (silhueta) | torre/gate |
+
+**Armários** (fachadas: z = -32 · x = ±32)
+
+| # | Módulo | Intervenção | Conteúdo | Papel |
+|---|---|---|---|---|
+| 18 | A1 (-17,25 / -37, comp. 50) | 3 bays: 2 portas entreabertas (25° e 20°) + 1 porta solta | potes, caixas, **vila dentro** | interior principal, visto do chão |
+| 19 | A2 (32 / -37, comp. 20) | 1 porta entreaberta 30° | tralha | depósito |
+| 20 | A3 (-37,25 / -17, comp. 30) | 1 porta 45° (aberta) | vazio com teia | atalho de ponte |
+| 21 | A4 (37 / 3, comp. 70) | 2 entreabertas (25° e 30°) + 1 vão sem porta (nicho-ninho) | vila/estoque | “prédios” leste |
+| 22 | A5 (-37,25 / 24, comp. 25) | 1 porta arrancada | sucata | abandono no alto |
+
+**Custo estimado:** 21 intervenções ≈ 250–450 tris cada + 10 props por abertura ≈ **12k tris** e **~+120 objetos**. Aceitável em triângulo; o que pesa é colisor (§15.13).
+
+**Aceite:** parado a 3 un de um balcão, dá para dizer o que tem dentro; e o rato entra em pelo menos **3** nichos.
+
+### 15.6 Sistema B — pontes do tamanho do rato
+
+#### 15.6.1 Vãos reais (onde a ponte cabe)
+
+| Vão | Onde | Medida | Leitura |
+|---|---|---|---|
+| V1 | A1 termina em x = 7,75 → A2 começa em x = 22 | **14,25 de vão**, altura y ≈ 26 | a ponte principal, **sobre o fogão** |
+| V2 | A3 termina em z = -2 → topo da geladeira (z = -1 .. 11, y = 27) → A5 começa em z = 11,5 | 2 saltos curtos + 3 de altura | “passagem do Polo Norte” |
+| V3 | A4 (x = 32, y 22–32) → micro-ondas (topo 17,5, z = 32) | 4,5 de descida | escada de gancho |
+| V4 | cadeira x = -11 (topo 17) ↔ cadeira x = 11 (topo 17) | 22 de vão sobre a mesa (tampo 11,5) | ponte alta da praça |
+| V5 | tampo do balcão (12,52) ↔ fundo do armário (22) | **9,48** | drop/rampa — precisa de intermediários |
+| V6 | subsolo (0 → 2,52) nos três lados | contínuo | rota segura |
+
+#### 15.6.2 Tipologias e como fazer em ProBuilder
+
+| Peça | Como construir | Largura | Vão |
+|---|---|---|---|
+| Prancha de palitos | Cube 0,9 × 0,2 × comp. + `Inset` nas pontas; 3 palitos por baixo (0,08) | 0,9 | 4–6 |
+| Ponte de régua | Cube plano + 2 corrimãos (Cube 0,1 × 0,6) + barbante | 1,0 | 6–9 |
+| Ponte de pregadores | 2 pregadores como apoios + 3 travessas | 0,8 | 3–5 |
+| Pênsil de barbante | 2 cordas (Cylinder 0,06, 6 lados) + 6 tábuas 0,5 | 0,5 | 8–14 |
+| Escada de garfo | 2 Cabos + 6 dentes (Cube 0,08) | 0,7 | vertical |
+| Ponte quebrada | metade da pênsil + ponta pendurada 40° e 2 tábuas caídas | 0,8 | 4 |
+| Rampa de espátula | Cube 0,8 × 0,15 × comp. rotacionado | 0,8 | desnível 2–4 |
+
+`New Shape > Stair` serve para os degraus de subida (garfo/caixa de fósforo) — economiza montagem manual.
+
+#### 15.6.3 Rotas propostas
+
+```mermaid
+flowchart LR
+  subgraph Alto[Armarios y=22..32]
+    A1[A1 x-17 / 50]
+    A2[A2 x32 / 20]
+    A3[A3 z-17 / 30]
+    A4[A4 z3 / 70]
+    A5[A5 z24 / 25]
+  end
+  GEL[Geladeira topo y27]
+  BAN[Bancada y12,52]
+  FOG[Fogao topo y13]
+  PIA[Pias agua y11,83]
+  MESA[Mesa tampo 11,5]
+  SUB[Subsolo 0..2,52]
+  A1 -- V1 pensil 14,25 --> A2
+  A3 -- V2 rampa --> GEL -- V2b --> A5
+  A4 -- V3 escada --> BAN
+  BAN -- V5 corda/patamares --> A1
+  A2 -- rampa de espatula --> FOG
+  BAN -- salto --> PIA
+  SUB -- 4 buracos --> BAN
+  MESA -- V4 ponte alta --> MESA
+```
+
+1. **Rota Norte (principal):** do armário A1 (x = 7,75) à ponte pênsil V1 até A2 (x = 22), y ≈ 26. Dois pontos de suspensão ancorados nos batentes. **Passa em frente ao fogão**: metade das cordas chamuscada, uma tábua queimada — a ponte “sentiu” o calor.
+2. **Rota Oeste (gelada):** A3 (y 24) → rampa curta → topo da geladeira (y 27) → rampa → A5. Aproveitar as **2 portas soltas** (`Porta` em -27,5/10/3 e -29/23/4) como pranchas — material narrativo pronto.
+3. **Rota Leste:** A4 (y 22) → ponte curta ao tampo da pia (12,52) via 3 patamares + corda. Do micro-ondas (17,5) sobe escada de gancho até A4.
+4. **Atalho do forno:** do tampo (12,52) desce rampa de espátula até o **topo do forno** (9,88) e entra na boca (10 × 9,65).
+5. **Subida do chão (3 caminhos, sem teleporte):** (i) caixa de fósforo (1,2) → gaveta caída (3,0) → gaveta puxada (6,2) → corda até 12,52 [tudo em x = -25]; (ii) vassoura (após saneada: 0 → 18,56) + barbante até o armário; (iii) porta solta como rampa no canto oeste.
+6. **Rota dos fundos:** o vão de 2,52 sob os 18 balcões conecta os 4 buracos roídos e as 2 `TransitionDoor`. É a rota segura (inimigo grande não passa).
+
+**Regra:** cada rota tem **1 vão quebrado** (V1 tem 2 tábuas caídas). Isso dá leitura de perigo e marca de tempo.
+
+**Aceite:** ir do chão ao topo de um armário e atravessar para outro **a pé**, sem pular no vazio e sem clipping de câmera.
+
+### 15.7 Sistema C — mini construções de tralha (a civilização)
+
+**Escala:** casinha 2,0 × 1,2 × 2,5; porta 0,9 × 1,0; telhado 35–40°; fogueira 0,8. Tudo **2–3× o rato**, nunca 10×.
+
+**Como construir em ProBuilder:** caixa de fósforo = Cube 2,0 × 0,7 × 1,3; parede = 4–6 caixas empilhadas com 3–5° de inclinação cada (é o desalinho que vende “feito à mão”); telhado = 2 Cubes finos rotacionados 35°; telhado de tampinha = Cylinder achatado; amarração = Cylinder 0,06. Sempre `Merge Objects` em casas de 6+ peças para não explodir a contagem de objetos.
+
+| # | Assentamento | Onde (coords reais) | O que tem | Função |
+|---|---|---|---|---|
+| 1 | **Vila do Vão** | dentro de A1: x -40..6, y 22,6..31, z -37 | 7 casas em 2 fileiras, escada de garfo, praça em frente ao vão da porta | hub visual visto do chão |
+| 2 | **Porto da Pia** | borda leste da pia z = -5: x 32,6..42, y 12,52..13,4 (água em 11,83) | doca de palitos, 2 barcos de casca, vara de pescar, rede | ponto de pesca; ensina natação |
+| 3 | **Forte de Gelo** | topo da geladeira (x -42..-32, z 0..10, y 27) + prateleiras internas y 6 e 13 | 4 iglus, muralha quebrada, bandeira de barbante | abrigo do bioma congelado |
+| 4 | **Forja do Forno** | topo do forno (15 / 9,88 / -29) + interior 10 × 9,65 | bigorna de botão, martelo de prego, fogueira de rato | craft/upgrade (gancho) |
+| 5 | **Feira da Gaveta** | gaveta puxada do balcão leste z = 15 | barracas de fósforo, tampinhas como moeda, balança de clipe | comércio/narrativa |
+| 6 | **Vigia da Mesa** | tampo (0 / 11,5 / 10) + cadeira x = 11 | torre de carretel, escada de garfo, bandeira | ponto de vista |
+
+**Sinais de vida (o que faz parecer habitado, não decorado):** fumaça fina em 2 chaminés (partícula, não luz); 3 luzes acesas de 12; trilhas desgastadas no pó ligando os assentamentos; fiação de barbante entre casas (poste de prego); estoques de tampinhas; 1 ninho abandonado com um botão azul; 1 casa **em construção** (palitos sem telhado) e 1 **abandonada** (telhado caído); 3 riscos de altura na parede (marcas de gerações).
+
+**Aceite:** de qualquer ponto do chão, **2 assentamentos** são reconhecíveis como feitos por alguém.
+
+### 15.8 Sistema D — os biomas, aplicados a estas medidas
+
+As 5 assinaturas de §4.5 continuam valendo (luz, material, vegetação, tralha, som). Abaixo só o que muda com a geometria real.
+
+| Bioma | Área real | Âncora (leitura de longe) | Luz | Vegetação | Borda |
+|---|---|---|---|---|---|
+| **Tropical** | pias x 32–44, z -22..2, água y 2,83–11,83 | anel de calcário na borda z = -5 + torneira pingando | ciano `#7FD3C0`, 3 pts fracos | samambaia na beirada, aguapé na água, musgo no ralo | perde força a 4 un da pia |
+| **Infernal** | fogão x 8..22, z -44..-28, y 12..16 (+ forno) | parede de fuligem de x 9..21 subindo até y 22 | laranja `#FF7A2A`, 2 pts nas bocas + flicker | **zero verde** num raio de 4 | fuligem + cinza; verde só a 6+ |
+| **Congelado** | geladeira x -44..-30, z -2..12, y 0..28 | língua de geada 2 un além do móvel, no piso e na parede | azul `#8FC8FF`, 4 + lâmpada piscando | líquen escuro, nada verde | geada irregular, seguindo junta |
+| **Úmido** | vão 0..2,52 sob os 18 balcões + 4 buracos | marcas de dente + serragem | quase nenhuma: cogumelo emissivo a cada 8–10 | musgo em 60% das bases, fetos, raízes | escuro; só sobe pelos buracos |
+| **Neutro** | mesa (0/11,5/10) + cadeiras | poeira e teias nas quinas | branco difuso | nenhuma | respiro entre biomas |
+
+**Detalhe de ouro do bioma congelado:** o topo da geladeira (27) é uma **praça** de onde se vê tudo; e a lâmpada interna ainda piscando depois de décadas é o melhor “abandono” que a cena pode ter. **Do tropical:** a água está 0,69 abaixo do tampo — dá para fazer uma borda de pedra e o rato entrar pela água.
+
+**Fog:** antes de prometer neblina local, verificar se o URP 17 desta instalação expõe *override* de Fog por `Volume`. Se não expuser, resolver com **partículas de névoa** (3 sistemas) — não vale trocar o pipeline por isso.
+
+### 15.9 Sistema E — vegetação e abandono
+
+**Receitas ProBuilder (não precisa de Blender):**
+
+| Peça | Construção | Medida | Custo |
+|---|---|---|---|
+| Mancha de musgo | `New Shape > Plane` 3 × 3 com 3 × 3 subdivisions → Vertex mode → mover Y entre -0,12 e +0,12 (borda mais baixa) → material `MossWet`; 3 tamanhos | 2–4 | 18 tris |
+| Tufo de grama | Cube 0,06 × 1,1 × 0,02, duplicar 5 em leque; ou Plane 0,4 × 1,2 com topo deslocado | 0,6–1,2 | 10 tris |
+| Trepadeira | Cube 0,25 × 4 × 0,08 → `Subdivide` 4 ao longo → mover vértices em X para serpentear; empilhar até 12 | módulo 4 | 60 tris |
+| Cogumelo | Cylinder 0,25 × 0,8 (haste) + Cone 1,2 × 0,5 (chapéu) → `Merge Objects` | 0,6–1,4 | 40 tris |
+| Raiz aérea | Cylinder 0,12 × 3, 6 lados, ponta entortada | 3–6 | 24 tris |
+| Teia | 4 fios finos (Cube 0,02) em quina + 1 triângulo; nunca no meio da parede | 1–2 | 12 tris |
+
+**Materiais a criar (não existe nenhum orgânico hoje):** `InteriorDark`, `MossWet`, `MossDry`, `Foliage`, `Rust`, `Ash`, `Charcoal`, `Frost`, `Cardboard`, `EmberGlow`. URP/Lit com uma textura por material; reaproveitar texturas existentes (`Cabeluda` para musgo, `Wood` para papelão) evita produzir arte nova agora.
+
+**Distribuição (umidade = vegetação):**
+
+| Local | Densidade | O que cresce |
+|---|---|---|
+| Borda da pia e ralo | alta | musgo molhado, feto, aguapé, trepadeira na torneira |
+| Vão sob os balcões | alta (escura) | musgo, cogumelo brilhante, raiz |
+| Juntas de parede/quinas | média | trepadeira, musgo seco, grama em rachadura |
+| Paredes longe da água | baixa | mancha de musgo seco, poeira |
+| Raio de 4 un do fogão | **zero** | fuligem, cinza, teia queimada |
+| Interior da geladeira | zero | líquen, gelo |
+| **Lado sul aberto (z = +44)** | alta | o “quintal” tomado: trepadeiras descendo, grama no piso |
+
+**A fachada sul aberta é uma oportunidade, não um bug:** transformá-la na borda do mundo — entulho, trepadeira descendo do teto e luz entrando rasante. Se o fechamento for desejado, fazer parede **quebrada** com entulho, nunca lisa.
+
+### 15.10 Luz e atmosfera (orçamento real)
+
+| Camada | Quantidade | Sombra | Uso |
+|---|---|---|---|
+| Directional | 1 (existe) | sim | sol vindo do lado sul aberto |
+| Point por bioma | 12–14 | só 4 | bocas do fogão, pia, geladeira, cogumelos |
+| Spot | 3 | 1 com sombra | vão do exaustor, sobre a pia, sobre a vila |
+| Emissivo (sem luz) | livre | — | brasa, cogumelo, lâmpada da geladeira, `EmberGlow` |
+| `Volume` local | 4 (não há nenhum hoje) | — | ajuste de exposição/contraste por bioma, blend 4–6 |
+| Probes | 1 `LightProbeGroup` por bioma + 1 `ReflectionProbe` na pia | — | sem probe, props escuros ficam chapados |
+
+Script mínimo de alto impacto: **`LightFlicker`** (~15 linhas, ruído em intensidade + posição) na lâmpada da geladeira e nas 2 bocas acesas. Nada mais precisa de código: portas e gavetas são estáticas.
+
+**Aceite:** cobrir metade da tela e ainda assim saber em que bioma o jogador está.
+
+### 15.11 Organização e prefabs
+
+**Hierarquia-alvo** (hoje: 39 filhos soltos em `COZINHA`):
+
+```
+COZINHA
+├─ Arquitetura      (Ground, Roof, Wall, forro rebaixado)
+├─ Eletrodomesticos (Geladeira, Fogao, Forno, Microondas, Pias, Water)
+├─ Moveis
+│   ├─ Balcao_N1 … Balcao_L5   (módulo + Fachada_*)
+│   └─ Armario_A1 … A5
+├─ Pontes / Assentamentos / Vegetacao
+├─ Iluminacao
+└─ Volumes         (BiomeTrigger, CameraVolume)
+```
+
+**Fluxo ProBuilder + prefab (obrigatório antes de duplicar):**
+
+1. Construir **um** módulo mestre (`Balcao_Mestre`).
+2. Arrastar para `Assets/Prefabs/Moveis/` → prefab.
+3. Variantes: `Fachada_Gaveta`, `Fachada_Porta`, `Fachada_Buraco` como prefabs próprios, e o módulo recebe-os como filhos.
+4. Substituir as 18 cópias atuais por instâncias.
+5. **Prefab Variant** para os cantos (13,52) em vez de geometria própria.
+
+### 15.12 Roadmap por fases (revisado para ProBuilder)
+
+| Fase | Entrega | Esforço | Aceite |
+|---|---|---|---|
+| **0 — Saneamento** | agrupar hierarquia; corrigir vassoura/cadeira/itens/gelo; prefabs dos 18 balcões; re-assar NavMesh | 1 sessão | nada flutuando; cena idêntica à vista |
+| **1 — Interiores** | Receitas 1–3 em **6 balcões + 1 armário** (norte x -25 e -15, leste z 5 e 15, oeste z 15, canto oeste, A1) + `InteriorDark` + 3 luzes internas | 2–3 sessões | ver dentro de 6 móveis; entrar em 2 nichos |
+| **2 — Verticais** | forro rebaixado sobre o U (0,76 → 3,26 de folga); V1 pênsil; V2 geladeira; 3 subidas do chão | 3 sessões | chão → armário → armário a pé |
+| **3 — Assentamentos** | Vilas 1, 2 e 3 + sinais de vida | 3 sessões | 2 vilas legíveis do chão |
+| **4 — Biomas** | 4 volumes + 14 luzes + âncoras + `LightFlicker` | 3 sessões | reconhecer bioma com metade da tela coberta |
+| **5 — Natureza** | plantas, musgo, teias, poeira, mordidas, decals | 2–3 sessões | manchas irregulares, nada limpo |
+| **6 — Polimento** | vilas 4–6, ponte quebrada, partículas, som | 2 sessões | passeio completo sem clipping |
+
+> Se for para fazer **só uma coisa**: Fase 1, começando pelos dois balcões do norte (x = -25 e -15), porque são os que o jogador vê de frente ao entrar.
+
+### 15.13 Riscos específicos de ProBuilder
+
+| Risco | Efeito | Mitigação |
+|---|---|---|
+| **`MeshCollider` em todo prop** | 200 props ≈ 200 colisores de malha | em peça fora de rota, remover `MeshCollider` e pôr `BoxCollider`; em assentamento, 1 colisor agregado |
+| **Sem batching automático** | draw calls sobem com 300 objetos | marcar `Static` (66 já estão), compartilhar ≤3 materiais por kit, `Merge Objects` em casas |
+| **Extrude negativo com face não planar** | triângulos tortos/artefato | `Actions > Triangulate` depois de mover vértices |
+| **UV esticada nas faces novas** | textura “puxada” no nicho | usar material liso/cor no interior em vez de textura detalhada |
+| **Pivô no centro** | porta girando como placa | Empty na borda (Receita 3) |
+| **Abrir demais** | vira casa de boneca, perde abandono | regra do ⅓ (§15.5.6): 21 intervenções, nunca 40 |
+| **NavMesh só no `Ground`** | props novos mudam a rota do inimigo | re-assar por fase; props fora da rota em layer ignorada |
+| **Câmera em espaço apertado** | 6,5 no nicho, 2,5 no subsolo, 0,76 no sótão | `CameraVolume` (offset curto) + forro rebaixado |
+| **Vão sul aberto** | parece cena inacabada | assumir como “quintal” tomado por vegetação, ou parede quebrada |
+
+### 15.14 Ganchos (continua valendo §14)
+
+- Água (tropical) apaga brasa (infernal) → abre passagem no fogão.
+- Gelo escorregadio + `Glider` = atalho das pontes para a mesa.
+- Formigas disputando a Feira da Gaveta.
+- Minimapa (`Minimap` existe) com tint por bioma.
+- Diário de gerações: 3 riscos de altura na parede da Vila do Vão.
+
 - Gelo escorregadio + `Glider` = atalhos aéreos.
 - Formigas como segunda facção disputando a feira.
 - Minimapa (`Minimap` já existe) com tint por bioma.

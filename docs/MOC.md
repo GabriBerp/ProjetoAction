@@ -22,6 +22,7 @@
 - [[notes/Enemy]] — navegação/patrulha, ataque, animação e sinalização de estado.
 - [[notes/World-Scenes]] — `SampleScene`, prefabs/assets, integração e validação.
 - [[notes/Cozinha-Biomas]] — plano de design da cozinha: interiores de armários/balcões, pontes de rato e biomas (tropical, infernal, congelado, úmido).
+- [[notes/Cozinha-Armarios-Balcoes]] — plano focado (2026-11-20) só em **armários e balcões**: medições atuais, receitas ProBuilder de gaveta/porta/nicho, distribuição nas 18+5 peças, ocupação rata e biomas nos móveis.
 
 ### Arquitetura, contratos e integração
 - [[architecture/Overview]] — estrutura, fluxos e princípios.

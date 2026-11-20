@@ -1,0 +1,1263 @@
+{
+  "status": "completed",
+  "executionId": "86e51a23-e96e-4cf9-a806-045bdb2b605f",
+  "result": {
+    "cozinhaId": 1099511656439,
+    "flat": [
+      {
+        "id": 1099511656439,
+        "name": "COZINHA",
+        "parent": 0,
+        "comps": [
+          "Transform"
+        ]
+      },
+      {
+        "id": 1099511656096,
+        "name": "Pia",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656450,
+        "name": "Water",
+        "parent": 1099511656096,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "BoxCollider",
+          "WaterVolume",
+          "NavMeshObstacle"
+        ]
+      },
+      {
+        "id": 1099511655879,
+        "name": "Pia",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511655932,
+        "name": "Water",
+        "parent": 1099511655879,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "BoxCollider",
+          "WaterVolume",
+          "NavMeshObstacle"
+        ]
+      },
+      {
+        "id": 1099511656166,
+        "name": "Balcao",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656596,
+        "name": "Balcao",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656839,
+        "name": "Balcao",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656317,
+        "name": "Balcao",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656065,
+        "name": "Balcao",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656058,
+        "name": "Balcao",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656628,
+        "name": "Balcao",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656491,
+        "name": "Balcao",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656739,
+        "name": "Balcao",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656352,
+        "name": "Balcao",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511655971,
+        "name": "Balcao",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656498,
+        "name": "Balcao",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656213,
+        "name": "Balcao",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656605,
+        "name": "Balcao",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656484,
+        "name": "Balcao",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656829,
+        "name": "Balcao",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511655892,
+        "name": "Balcao",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656875,
+        "name": "Balcao",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656180,
+        "name": "Mesa",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656846,
+        "name": "Cadeiras",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656142,
+        "name": "Cadeiras",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 3298534910850,
+        "name": "Cadeiras",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656302,
+        "name": "Cadeiras",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656294,
+        "name": "Ground",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider",
+          "NavMeshSurface"
+        ]
+      },
+      {
+        "id": 1099511656861,
+        "name": "Roof",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511655964,
+        "name": "Fogao",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656048,
+        "name": "Boquinha",
+        "parent": 1099511655964,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656417,
+        "name": "Boquinha",
+        "parent": 1099511655964,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656473,
+        "name": "Boquinha",
+        "parent": 1099511655964,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656033,
+        "name": "Boquinha",
+        "parent": 1099511655964,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656809,
+        "name": "Forno",
+        "parent": 1099511655964,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656703,
+        "name": "Prateleira (1)",
+        "parent": 1099511655964,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656372,
+        "name": "Prateleira (2)",
+        "parent": 1099511655964,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656012,
+        "name": "TransitionDoor",
+        "parent": 1099511655964,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "BoxCollider"
+        ]
+      },
+      {
+        "id": 1099511656359,
+        "name": "Geladeira",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656072,
+        "name": "TransitionDoor",
+        "parent": 1099511656359,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "BoxCollider"
+        ]
+      },
+      {
+        "id": 1099511656379,
+        "name": "Porta",
+        "parent": 1099511656359,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656657,
+        "name": "Porta",
+        "parent": 1099511656359,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511655916,
+        "name": "Prateleira",
+        "parent": 1099511656359,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656665,
+        "name": "Prateleira",
+        "parent": 1099511656359,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656280,
+        "name": "Gelo",
+        "parent": 1099511656359,
+        "comps": [
+          "Transform",
+          "PolyShape",
+          "MeshRenderer",
+          "ProBuilderMesh",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656718,
+        "name": "Gelo",
+        "parent": 1099511656359,
+        "comps": [
+          "Transform",
+          "PolyShape",
+          "MeshRenderer",
+          "ProBuilderMesh",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656266,
+        "name": "Gelo",
+        "parent": 1099511656359,
+        "comps": [
+          "Transform",
+          "PolyShape",
+          "MeshRenderer",
+          "ProBuilderMesh",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656200,
+        "name": "Gelo",
+        "parent": 1099511656359,
+        "comps": [
+          "Transform",
+          "PolyShape",
+          "MeshRenderer",
+          "ProBuilderMesh",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511655942,
+        "name": "Gelo",
+        "parent": 1099511656359,
+        "comps": [
+          "Transform",
+          "PolyShape",
+          "MeshRenderer",
+          "ProBuilderMesh",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656589,
+        "name": "Gelo",
+        "parent": 1099511656359,
+        "comps": [
+          "Transform",
+          "PolyShape",
+          "MeshRenderer",
+          "ProBuilderMesh",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656538,
+        "name": "Gelo",
+        "parent": 1099511656359,
+        "comps": [
+          "Transform",
+          "PolyShape",
+          "MeshRenderer",
+          "ProBuilderMesh",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656531,
+        "name": "Gelo",
+        "parent": 1099511656359,
+        "comps": [
+          "Transform",
+          "PolyShape",
+          "MeshRenderer",
+          "ProBuilderMesh",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656650,
+        "name": "Gelo",
+        "parent": 1099511656359,
+        "comps": [
+          "Transform",
+          "PolyShape",
+          "MeshRenderer",
+          "ProBuilderMesh",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656685,
+        "name": "Gelo",
+        "parent": 1099511656359,
+        "comps": [
+          "Transform",
+          "PolyShape",
+          "MeshRenderer",
+          "ProBuilderMesh",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656409,
+        "name": "Gelo",
+        "parent": 1099511656359,
+        "comps": [
+          "Transform",
+          "PolyShape",
+          "MeshRenderer",
+          "ProBuilderMesh",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656524,
+        "name": "Gelo",
+        "parent": 1099511656359,
+        "comps": [
+          "Transform",
+          "PolyShape",
+          "MeshRenderer",
+          "ProBuilderMesh",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656555,
+        "name": "Gelo",
+        "parent": 1099511656359,
+        "comps": [
+          "Transform",
+          "PolyShape",
+          "MeshRenderer",
+          "ProBuilderMesh",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511655925,
+        "name": "Gelo",
+        "parent": 1099511656359,
+        "comps": [
+          "Transform",
+          "PolyShape",
+          "MeshRenderer",
+          "ProBuilderMesh",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656342,
+        "name": "Gelo",
+        "parent": 1099511656359,
+        "comps": [
+          "Transform",
+          "PolyShape",
+          "MeshRenderer",
+          "ProBuilderMesh",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511655907,
+        "name": "Gelo",
+        "parent": 1099511656359,
+        "comps": [
+          "Transform",
+          "PolyShape",
+          "MeshRenderer",
+          "ProBuilderMesh",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656642,
+        "name": "Gelo",
+        "parent": 1099511656359,
+        "comps": [
+          "Transform",
+          "PolyShape",
+          "MeshRenderer",
+          "ProBuilderMesh",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511655985,
+        "name": "Particle System",
+        "parent": 1099511656359,
+        "comps": [
+          "Transform",
+          "ParticleSystem",
+          "ParticleSystemRenderer"
+        ]
+      },
+      {
+        "id": 1099511656822,
+        "name": "Vassoura",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656331,
+        "name": "Cabeça",
+        "parent": 1099511656822,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511655871,
+        "name": "Cabelo",
+        "parent": 1099511656331,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656239,
+        "name": "Armario",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656287,
+        "name": "Armario",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656259,
+        "name": "Armario",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656464,
+        "name": "Armario",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511655900,
+        "name": "Armario",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656546,
+        "name": "Microondas",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656087,
+        "name": "Prato",
+        "parent": 1099511656546,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656135,
+        "name": "Porta",
+        "parent": 1099511656546,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656694,
+        "name": "Panel",
+        "parent": 1099511656546,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656802,
+        "name": "Button",
+        "parent": 1099511656694,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656079,
+        "name": "Button",
+        "parent": 1099511656694,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656788,
+        "name": "Button",
+        "parent": 1099511656694,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656324,
+        "name": "Button",
+        "parent": 1099511656694,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511655864,
+        "name": "Button",
+        "parent": 1099511656694,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656853,
+        "name": "Button",
+        "parent": 1099511656694,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656155,
+        "name": "Button",
+        "parent": 1099511656694,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656672,
+        "name": "Button",
+        "parent": 1099511656694,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656868,
+        "name": "Button",
+        "parent": 1099511656694,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656563,
+        "name": "Button",
+        "parent": 1099511656694,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656772,
+        "name": "Button",
+        "parent": 1099511656694,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656106,
+        "name": "Wall",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656193,
+        "name": "Wall",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      },
+      {
+        "id": 1099511656425,
+        "name": "Wall",
+        "parent": 1099511656439,
+        "comps": [
+          "Transform",
+          "ProBuilderMesh",
+          "ProBuilderShape",
+          "MeshRenderer",
+          "MeshFilter",
+          "MeshCollider"
+        ]
+      }
+    ],
+    "roots": [
+      {
+        "id": 1099511656002,
+        "name": "MainCamera"
+      },
+      {
+        "id": 1099511656044,
+        "name": "Directional Light"
+      },
+      {
+        "id": 1099511656210,
+        "name": "Global Volume"
+      },
+      {
+        "id": 1099511656027,
+        "name": "Canvas"
+      },
+      {
+        "id": 1099511656575,
+        "name": "Player"
+      },
+      {
+        "id": 1099511655995,
+        "name": "Item"
+      },
+      {
+        "id": 1099511656753,
+        "name": "Item (6)"
+      },
+      {
+        "id": 1099511656019,
+        "name": "Item (3)"
+      },
+      {
+        "id": 1099511656885,
+        "name": "Item (7)"
+      },
+      {
+        "id": 1099511656514,
+        "name": "Item (1)"
+      },
+      {
+        "id": 1099511656387,
+        "name": "Item (8)"
+      },
+      {
+        "id": 1099511656310,
+        "name": "Item (4)"
+      },
+      {
+        "id": 1099511656246,
+        "name": "Item (9)"
+      },
+      {
+        "id": 1099511655951,
+        "name": "Item (2)"
+      },
+      {
+        "id": 1099511656401,
+        "name": "Item (10)"
+      },
+      {
+        "id": 1099511656795,
+        "name": "Item (5)"
+      },
+      {
+        "id": 1099511656394,
+        "name": "Item (11)"
+      },
+      {
+        "id": 1099511656763,
+        "name": "EventSystem"
+      },
+      {
+        "id": 1099511656701,
+        "name": "Gun"
+      },
+      {
+        "id": 1099511656712,
+        "name": "Stick"
+      },
+      {
+        "id": 1099511656617,
+        "name": "Nail"
+      },
+      {
+        "id": 1099511656439,
+        "name": "COZINHA"
+      },
+      {
+        "id": 1099511656767,
+        "name": "PATROLNODES"
+      },
+      {
+        "id": 1099511657014,
+        "name": "Enemy"
+      }
+    ]
+  },
+  "logs": [],
+  "calls": 1
+}

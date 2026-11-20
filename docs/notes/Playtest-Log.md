@@ -64,3 +64,12 @@ Registro **append-only** de testes, observações e aprendizados do **ProjetoAct
 - **Achados:** (1) o Pipeline atende um comando por vez — chamadas em `Promise.all` falham com "Editor busy", então o conector serializa na fila; (2) opções do CLI precisam vir antes do nome do comando, pois o que vem depois é interpretado como parâmetro do comando do editor.
 - **Ações:** runtime em `tools/unity-codemode`, decisão em [[architecture/Decisions/ADR-0005-codemode-em-vez-de-mcp]], estado em [[architecture/Unity-CodeMode-Connection]].
 - **Status:** resolvido
+### 2026-11-20 — Combate melee: análise, durabilidade e feedback visual
+- **Cena/build:** `SampleScene`, Unity 6000.6.4f1, editor conectado via Code Mode (play mode automatizado com harness temporário)
+- **Objetivo:** validar o combate dos dois lados (jogador e inimigo) e validar durabilidade de armas corpo-a-corpo, dano de arremesso e feedback visual de golpe/dano.
+- **Passos:** leitura de `PlayerHand`, `SwingWeapon`, `EnemyAttack`, `EnemyNavmesh`, `Defense`, `Health`; harness em play mode (8 asserções por lado) com posicionamento determinístico dos alvos, `SwingWeapon.Use()` e `EnemyAttack.TryAttack()`.
+- **Esperado:** golpes aplicando dano via `IDamageable`, durabilidade X por golpe e Y por arremesso, quebra em 0, animação de varredura da arma e flash de dano no inimigo.
+- **Observado:** jogador: 4 de dano no inimigo, durabilidade -1, arma variou ~30° durante o golpe, flash detectado no `MaterialPropertyBlock`. Inimigo: passou a ter arma (`EnemyStick`) e atacou com 6 de dano no jogador, durabilidade -1, arma variou ~14°. Arremesso: 6 de dano (Z) e -4 de durabilidade (Y); arremesso com Z=0 não causou dano. Durabilidade 0: arma quebrou, `PlayerHand` liberou a referência e o objeto foi destruído.
+- **Achados:** antes deste incremento o inimigo estava **sem arma** (`EnemyAttack.holdPoint`/`startingItem` vazios) e com `targetMask` = 0, então o modo melee nunca acontecia; o prefab também não acertava a layer `Player` (3). A layer do jogador é `Player` (3) e não existe layer de inimigo — a arma do jogador usa `hitMask` ~0.
+- **Ações:** `SwingWeapon` (durabilidade + eventos `Swung`/`Broke`), `Pickable.throwDamage` (Z), `ThrownItem`, `WeaponSwingVisual`, `Feedback/DamageFlash`; inimigo da cena equipado com `HoldPoint` + `EnemyStick` e `targetMask` = layer `Player` (também corrigido no prefab).
+- **Status:** resolvido (visual não inspecionado em screenshot; validado por medição de rotação e cor de material)

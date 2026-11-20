@@ -29,6 +29,7 @@ public class EnemyAttack : MonoBehaviour, IAttackFilter
     private IUsable usable;
     private ISwingWeapon swing;
     private IOwnedItem owned;
+    private SwingWeapon swingWeapon;
     private float nextAttackTime;
 
     public AttackMode Mode { get; private set; } = AttackMode.None;
@@ -65,6 +66,8 @@ public class EnemyAttack : MonoBehaviour, IAttackFilter
         usable = itemComponent != null ? itemComponent.GetComponent<IUsable>() : null;
         swing = itemComponent != null ? itemComponent.GetComponent<ISwingWeapon>() : null;
         owned = itemComponent != null ? itemComponent.GetComponent<IOwnedItem>() : null;
+        swingWeapon = itemComponent != null ? itemComponent.GetComponent<SwingWeapon>() : null;
+        if (swingWeapon != null) swingWeapon.Broke += OnWeaponBroke;
 
         item = newItem;
         Mode = swing != null ? AttackMode.Melee
@@ -78,6 +81,7 @@ public class EnemyAttack : MonoBehaviour, IAttackFilter
 
     public void Unequip(Vector3 dropForce)
     {
+        if (swingWeapon != null) { swingWeapon.Broke -= OnWeaponBroke; swingWeapon = null; }
         if (item == null) return;
         if (owned != null) owned.SetOwner(null, null);
         item.Drop(dropForce);
@@ -110,6 +114,20 @@ public class EnemyAttack : MonoBehaviour, IAttackFilter
             ItemUsed?.Invoke();
         }
         return true;
+    }
+
+    // A arma quebrou na mao (durabilidade zerada): fica sem arma, sem tentar soltar o que sumiu.
+    private void OnWeaponBroke(SwingWeapon weapon)
+    {
+        if (weapon != swingWeapon) return;
+
+        swingWeapon.Broke -= OnWeaponBroke;
+        swingWeapon = null;
+        item = null;
+        usable = null;
+        swing = null;
+        owned = null;
+        Mode = AttackMode.None;
     }
 
     private void OnDied() => Unequip(transform.forward * 2f + Vector3.up);

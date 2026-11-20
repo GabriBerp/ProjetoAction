@@ -6,6 +6,9 @@ using UnityEngine;
 // Arma corpo-a-corpo. O dono e a mira sao informados por quem segura (PlayerHand/EnemyAttack)
 // via SetOwner, entao a arma nao depende da hierarquia. O dano sai no fim do hitDelay, nao no
 // clique: e esse intervalo que permite ao alvo reagir com bloqueio ou Perfect Parry.
+//
+// Durabilidade: cada golpe gasta X (durabilityPerSwing) e cada arremesso que acerta um inimigo
+// gasta Y (durabilityPerThrow). Ao chegar em 0 a arma quebra (encolhe e some).
 public class SwingWeapon : MonoBehaviour, IUsable, ISwingWeapon, IOwnedItem
 {
     // (arma, dono, Time.time do impacto). A IA de bloqueio usa pra mirar a janela de parry.
@@ -29,26 +32,54 @@ public class SwingWeapon : MonoBehaviour, IUsable, ISwingWeapon, IOwnedItem
     [SerializeField] private float recoveryTime = 0.25f;
     [SerializeField] private float cooldown = 0.6f;
 
+    [Header("Durabilidade")]
+    [Tooltip("Cargas totais. Ao chegar em 0 a arma quebra.")]
+    [SerializeField] private int maxDurability = 12;
+    [Tooltip("Durabilidade perdida a cada golpe (X).")]
+    [SerializeField] private int durabilityPerSwing = 1;
+    [Tooltip("Durabilidade perdida quando a arma arremessada acerta um inimigo (Y).")]
+    [SerializeField] private int durabilityPerThrow = 4;
+    [Tooltip("Duracao do efeito de quebra antes do objeto sumir.")]
+    [SerializeField] private float breakDuration = 0.15f;
+
     private Health owner;
     private Transform aim;
     private float nextSwingTime;
     private float swingEndTime;
+    private int durability;
+    private bool broken;
     private readonly HashSet<IDamageable> hitBuffer = new HashSet<IDamageable>();
 
     public float Range => range;
     public int Damage => damage;
     public bool IsSwinging => Time.time < swingEndTime;
+    public float SwingDuration => hitDelay + recoveryTime;
+
+    public int Durability => durability;
+    public int MaxDurability => maxDurability;
+    public bool Broken => broken;
+
+    // Disparado quando o golpe e aceito (cooldown/stun/bloqueio ja passaram). O visual da arma escuta.
+    public event Action<SwingWeapon> Swung;
+    // Disparado quando a durabilidade chega a 0. Quem segura a arma usa pra se livrar dela.
+    public event Action<SwingWeapon> Broke;
 
     public bool CanSwing
     {
         get
         {
+            if (broken) return false;
             if (Time.time < nextSwingTime) return false;
             if (owner == null || owner.IsDead || owner.IsStunned) return false;
 
             var defense = owner.GetComponent<Defense>();
             return defense == null || !defense.IsBlocking;
         }
+    }
+
+    private void Awake()
+    {
+        durability = Mathf.Max(0, maxDurability);
     }
 
     public void SetOwner(Health newOwner, Transform newAim)
@@ -66,7 +97,18 @@ public class SwingWeapon : MonoBehaviour, IUsable, ISwingWeapon, IOwnedItem
         nextSwingTime = Time.time + Mathf.Max(cooldown, hitDelay + recoveryTime);
 
         SwingStarted?.Invoke(this, owner, hitTime);
+        Swung?.Invoke(this);
         StartCoroutine(SwingRoutine(owner));
+
+        // Gasta X agora, mas so quebra no fim do golpe: o ataque que gastou a ultima carga acontece.
+        if (Spend(durabilityPerSwing) && isActiveAndEnabled) StartCoroutine(BreakAfter(swingEndTime));
+    }
+
+    // Chamado pelo item arremessado quando ele acerta um alvo. Gasta Y e quebra na hora se zerar.
+    public void ApplyThrowWear()
+    {
+        if (broken) return;
+        if (Spend(durabilityPerThrow)) Break();
     }
 
     private IEnumerator SwingRoutine(Health swinger)
@@ -123,6 +165,50 @@ public class SwingWeapon : MonoBehaviour, IUsable, ISwingWeapon, IOwnedItem
 
         origin = owner.transform.position + Vector3.up * ownerOriginHeight;
         direction = owner.transform.forward;
+    }
+
+    // Retorna true se a durabilidade acabou.
+    private bool Spend(int amount)
+    {
+        if (broken || amount <= 0) return false;
+
+        durability = Mathf.Max(0, durability - amount);
+        return durability <= 0;
+    }
+
+    private IEnumerator BreakAfter(float time)
+    {
+        float wait = time - Time.time;
+        if (wait > 0f) yield return new WaitForSeconds(wait);
+        Break();
+    }
+
+    private void Break()
+    {
+        if (broken) return;
+        broken = true;
+
+        Broke?.Invoke(this);
+
+        if (isActiveAndEnabled && Application.isPlaying) StartCoroutine(BreakRoutine());
+        else Destroy(gameObject);
+    }
+
+    // Feedback simples da quebra: a arma encolhe e some.
+    private IEnumerator BreakRoutine()
+    {
+        Vector3 startScale = transform.localScale;
+        float t = 0f;
+
+        while (t < breakDuration)
+        {
+            t += Time.deltaTime;
+            float k = breakDuration <= 0f ? 1f : Mathf.Clamp01(t / breakDuration);
+            transform.localScale = startScale * (1f - k);
+            yield return null;
+        }
+
+        Destroy(gameObject);
     }
 
     private void OnDrawGizmosSelected()

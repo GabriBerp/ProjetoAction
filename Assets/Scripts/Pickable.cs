@@ -6,11 +6,16 @@ public class Pickable : MonoBehaviour, IPickable
     [SerializeField] private Vector3 heldLocalPosition = Vector3.zero;
     [SerializeField] private Vector3 heldLocalEuler = Vector3.zero;
 
+    [Header("Arremesso")]
+    [Tooltip("Dano (Z) causado quando o item arremessado acerta um alvo. Nunca negativo.")]
+    [SerializeField] private int throwDamage = 5;
+
     private Rigidbody rb;
     private Collider[] colliders;
     private IHoldListener[] listeners;
 
     public bool IsHeld { get; private set; }
+    public int ThrowDamage => Mathf.Max(0, throwDamage);
 
     private void Awake()
     {

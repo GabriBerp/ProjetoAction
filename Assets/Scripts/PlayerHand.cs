@@ -15,6 +15,7 @@ public class PlayerHand : MonoBehaviour
     [Header("Configuração")]
     [SerializeField] private float pickupRange = 3f;
     [SerializeField] private float throwForce = 10f;
+    [SerializeField] private float maxThrowMultiplier = 10f;
     [SerializeField] private LayerMask pickupMask = ~0;
 
     private IPickable heldItem;
@@ -22,6 +23,7 @@ public class PlayerHand : MonoBehaviour
     private IReloadable heldReloadable;
     private ISwingWeapon heldSwing;
     private IOwnedItem heldOwned;
+    private SwingWeapon heldWeapon;
 
     public event Action ItemUsed;
     public event Action ItemSwung;
@@ -126,8 +128,27 @@ public class PlayerHand : MonoBehaviour
 
     private void Throw()
     {
-        Vector3 force = cameraTransform.forward * throwForce;
+        Rigidbody rb = (heldItem as Component)?.GetComponent<Rigidbody>();
+        float mass = rb != null ? rb.mass : 1f;
+
+        float multiplier = Mathf.Min(1f / Mathf.Max(mass, 0.0001f), maxThrowMultiplier);
+        Vector3 force = cameraTransform.forward * (throwForce * multiplier);
+
+        // Z vem do proprio item: qualquer coisa seguravel tem dano de arremesso.
+        var component = heldItem as Component;
+        int throwDamage = component != null && component.TryGetComponent(out Pickable pickable)
+            ? pickable.ThrowDamage
+            : 0;
+
         heldItem.Drop(force);
+
+        if (component != null)
+        {
+            var thrown = component.GetComponent<ThrownItem>();
+            if (thrown == null) thrown = component.gameObject.AddComponent<ThrownItem>();
+            thrown.Launch(throwDamage, health);
+        }
+
         ClearHeld();
         ItemTossed?.Invoke();
     }
@@ -138,6 +159,8 @@ public class PlayerHand : MonoBehaviour
         heldUsable = (pickable as Component)?.GetComponent<IUsable>();
         heldReloadable = (pickable as Component)?.GetComponent<IReloadable>();
         heldSwing = (pickable as Component)?.GetComponent<ISwingWeapon>();
+        heldWeapon = (pickable as Component)?.GetComponent<SwingWeapon>();
+        if (heldWeapon != null) heldWeapon.Broke += OnHeldWeaponBroke;
 
         heldOwned = (pickable as Component)?.GetComponent<IOwnedItem>();
         if (heldOwned != null) heldOwned.SetOwner(health, cameraTransform);
@@ -145,11 +168,19 @@ public class PlayerHand : MonoBehaviour
 
     private void ClearHeld()
     {
+        if (heldWeapon != null) { heldWeapon.Broke -= OnHeldWeaponBroke; heldWeapon = null; }
         if (heldOwned != null) heldOwned.SetOwner(null, null);
         heldOwned = null;
         heldItem = null;
         heldUsable = null;
         heldReloadable = null;
         heldSwing = null;
+    }
+
+    // A arma quebrou na mao: a referencia nao pode continuar apontando pra ela.
+    private void OnHeldWeaponBroke(SwingWeapon weapon)
+    {
+        if (weapon != heldWeapon) return;
+        ClearHeld();
     }
 }

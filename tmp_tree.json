@@ -1,0 +1,4089 @@
+{
+ "matched": [
+  {
+   "id": 1099511656439,
+   "name": "COZINHA",
+   "comps": [
+    "Transform"
+   ],
+   "parent": 0,
+   "path": "",
+   "y": {
+    "go": "1193836974",
+    "name": "COZINHA",
+    "pos": [
+     0,
+     7.516931,
+     0
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 0,
+    "min": null,
+    "max": null
+   }
+  },
+  {
+   "id": 1099511656096,
+   "name": "Pia",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "480343762",
+    "name": "Pia",
+    "pos": [
+     37.56,
+     0,
+     -15
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 616,
+    "min": [
+     -5.6621895,
+     -5,
+     -5.0000005
+    ],
+    "max": [
+     5,
+     5.0000005,
+     5
+    ]
+   }
+  },
+  {
+   "id": 1099511656450,
+   "name": "Water",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "BoxCollider",
+    "WaterVolume",
+    "NavMeshObstacle"
+   ],
+   "parent": 1099511656096,
+   "path": "/COZINHA/Pia",
+   "y": {
+    "go": "1217154533",
+    "name": "Water",
+    "pos": [
+     0.0099983215,
+     -0.19000006,
+     -0.05000019
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 24,
+    "min": [
+     -4.95,
+     -4.5,
+     -5
+    ],
+    "max": [
+     4.95,
+     4.5,
+     5
+    ]
+   }
+  },
+  {
+   "id": 1099511655879,
+   "name": "Pia",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "34883577",
+    "name": "Pia",
+    "pos": [
+     37.56,
+     0,
+     -5
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 616,
+    "min": [
+     -5.6621895,
+     -5,
+     -5.0000005
+    ],
+    "max": [
+     5,
+     5,
+     5
+    ]
+   }
+  },
+  {
+   "id": 1099511655932,
+   "name": "Water",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "BoxCollider",
+    "WaterVolume",
+    "NavMeshObstacle"
+   ],
+   "parent": 1099511655879,
+   "path": "/COZINHA/Pia",
+   "y": {
+    "go": "156195948",
+    "name": "Water",
+    "pos": [
+     0.01,
+     -0.19000006,
+     0
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 24,
+    "min": [
+     -4.95,
+     -4.5,
+     -5
+    ],
+    "max": [
+     4.95,
+     4.5,
+     5
+    ]
+   }
+  },
+  {
+   "id": 1099511656166,
+   "name": "Balcao",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "728684404",
+    "name": "Balcao",
+    "pos": [
+     37.56,
+     0,
+     -25
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 488,
+    "min": [
+     -5.6621895,
+     -5,
+     -7
+    ],
+    "max": [
+     5,
+     5.0000005,
+     5
+    ]
+   }
+  },
+  {
+   "id": 1099511656596,
+   "name": "Balcao",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "1534312994",
+    "name": "Balcao",
+    "pos": [
+     25,
+     0,
+     -37.56
+    ],
+    "rot": [
+     0,
+     0.7071068,
+     0,
+     0.7071068
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 488,
+    "min": [
+     -5.000000766062428,
+     -5.0000002660624006,
+     -5.000005466062677
+    ],
+    "max": [
+     7.00000467248759,
+     5.000000766062427,
+     5.662189801299146
+    ]
+   }
+  },
+  {
+   "id": 1099511656839,
+   "name": "Balcao",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "2063369454",
+    "name": "Balcao",
+    "pos": [
+     5,
+     0,
+     -37.56
+    ],
+    "rot": [
+     0,
+     0.7071068,
+     0,
+     0.7071068
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 488,
+    "min": [
+     -5.000000766062428,
+     -5.0000002660624006,
+     -5.0000002660624006
+    ],
+    "max": [
+     5.0000002660624006,
+     5.0000002660624006,
+     5.662189801299146
+    ]
+   }
+  },
+  {
+   "id": 1099511656317,
+   "name": "Balcao",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "1017853843",
+    "name": "Balcao",
+    "pos": [
+     37,
+     0,
+     -37
+    ],
+    "rot": [
+     0,
+     0.7071068,
+     0,
+     0.7071068
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 192,
+    "min": [
+     -5.0000002660624006,
+     -8.516932453207076,
+     -5.500000292668641
+    ],
+    "max": [
+     5.500000292668641,
+     5.0000002660624006,
+     5.0000042660626125
+    ]
+   }
+  },
+  {
+   "id": 1099511656065,
+   "name": "Balcao",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "424683243",
+    "name": "Balcao",
+    "pos": [
+     -37,
+     0,
+     -37
+    ],
+    "rot": [
+     0,
+     1,
+     0,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 192,
+    "min": [
+     -5.5,
+     -8.516932,
+     -5.5
+    ],
+    "max": [
+     5.000004,
+     5,
+     5
+    ]
+   }
+  },
+  {
+   "id": 1099511656058,
+   "name": "Balcao",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "420851180",
+    "name": "Balcao",
+    "pos": [
+     -5,
+     0,
+     -37.56
+    ],
+    "rot": [
+     0,
+     0.7071068,
+     0,
+     0.7071068
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 488,
+    "min": [
+     -5.000000766062428,
+     -5.0000002660624006,
+     -5.0000002660624006
+    ],
+    "max": [
+     5.0000002660624006,
+     5.0000002660624006,
+     5.662189801299146
+    ]
+   }
+  },
+  {
+   "id": 1099511656628,
+   "name": "Balcao",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "1635638637",
+    "name": "Balcao",
+    "pos": [
+     -15,
+     0,
+     -37.56
+    ],
+    "rot": [
+     0,
+     0.7071068,
+     0,
+     0.7071068
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 488,
+    "min": [
+     -5.000000766062428,
+     -5.0000002660624006,
+     -5.0000002660624006
+    ],
+    "max": [
+     5.0000002660624006,
+     5.0000002660624006,
+     5.662189801299146
+    ]
+   }
+  },
+  {
+   "id": 1099511656491,
+   "name": "Balcao",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "1288692190",
+    "name": "Balcao",
+    "pos": [
+     -25,
+     0,
+     -37.56
+    ],
+    "rot": [
+     0,
+     0.7071068,
+     0,
+     0.7071068
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 488,
+    "min": [
+     -7.000000372487361,
+     -5.0000002660624006,
+     -5.0000016660624755
+    ],
+    "max": [
+     5.0000002660624006,
+     5.000000766062427,
+     5.662191701299247
+    ]
+   }
+  },
+  {
+   "id": 1099511656739,
+   "name": "Balcao",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "1917983130",
+    "name": "Balcao",
+    "pos": [
+     37.56,
+     0,
+     5.0000005
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 488,
+    "min": [
+     -5.6621895,
+     -5,
+     -5.0000005
+    ],
+    "max": [
+     5,
+     5,
+     5
+    ]
+   }
+  },
+  {
+   "id": 1099511656352,
+   "name": "Balcao",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "1068520123",
+    "name": "Balcao",
+    "pos": [
+     37.56,
+     0,
+     15
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 488,
+    "min": [
+     -5.6621895,
+     -5,
+     -5.0000005
+    ],
+    "max": [
+     5,
+     5,
+     5
+    ]
+   }
+  },
+  {
+   "id": 1099511655971,
+   "name": "Balcao",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "250105118",
+    "name": "Balcao",
+    "pos": [
+     37.56,
+     0,
+     25
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 488,
+    "min": [
+     -5.6621895,
+     -5,
+     -5.0000005
+    ],
+    "max": [
+     5,
+     5,
+     5
+    ]
+   }
+  },
+  {
+   "id": 1099511656498,
+   "name": "Balcao",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "1292000306",
+    "name": "Balcao",
+    "pos": [
+     -37.56,
+     0,
+     25
+    ],
+    "rot": [
+     0,
+     1,
+     0,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 488,
+    "min": [
+     -5,
+     -5,
+     -5
+    ],
+    "max": [
+     5.6621895,
+     5,
+     5.0000005
+    ]
+   }
+  },
+  {
+   "id": 1099511656213,
+   "name": "Balcao",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "840111786",
+    "name": "Balcao",
+    "pos": [
+     -37.56,
+     0,
+     15
+    ],
+    "rot": [
+     0,
+     1,
+     0,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 488,
+    "min": [
+     -5,
+     -5,
+     -5
+    ],
+    "max": [
+     5.6621895,
+     5,
+     5.0000005
+    ]
+   }
+  },
+  {
+   "id": 1099511656605,
+   "name": "Balcao",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "1556346911",
+    "name": "Balcao",
+    "pos": [
+     -37.56,
+     0,
+     -5
+    ],
+    "rot": [
+     0,
+     1,
+     0,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 488,
+    "min": [
+     -5,
+     -5,
+     -5
+    ],
+    "max": [
+     5.6621895,
+     5,
+     5.0000005
+    ]
+   }
+  },
+  {
+   "id": 1099511656484,
+   "name": "Balcao",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "1288194335",
+    "name": "Balcao",
+    "pos": [
+     -37.56,
+     0,
+     -15
+    ],
+    "rot": [
+     0,
+     1,
+     0,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 488,
+    "min": [
+     -5,
+     -5,
+     -5
+    ],
+    "max": [
+     5.6621895,
+     5,
+     5.0000005
+    ]
+   }
+  },
+  {
+   "id": 1099511656829,
+   "name": "Balcao",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "2035791420",
+    "name": "Balcao",
+    "pos": [
+     -37.56,
+     0,
+     -25
+    ],
+    "rot": [
+     0,
+     1,
+     0,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 488,
+    "min": [
+     -5,
+     -5,
+     -7
+    ],
+    "max": [
+     5.6621895,
+     5.0000005,
+     5.0000005
+    ]
+   }
+  },
+  {
+   "id": 1099511655892,
+   "name": "Balcao",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "103537147",
+    "name": "Balcao",
+    "pos": [
+     -37.56,
+     0,
+     35
+    ],
+    "rot": [
+     0,
+     1,
+     0,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 578,
+    "min": [
+     -5,
+     -8.02397,
+     -5
+    ],
+    "max": [
+     5.6621895,
+     5,
+     5.0000005
+    ]
+   }
+  },
+  {
+   "id": 1099511656875,
+   "name": "Balcao",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "2111028657",
+    "name": "Balcao",
+    "pos": [
+     37.56,
+     0,
+     35
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 578,
+    "min": [
+     -5.6621895,
+     -8.033862,
+     -5.0000005
+    ],
+    "max": [
+     5,
+     5,
+     5
+    ]
+   }
+  },
+  {
+   "id": 1099511656180,
+   "name": "Mesa",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "766230121",
+    "name": "Mesa",
+    "pos": [
+     0,
+     3.483069,
+     10
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 368,
+    "min": [
+     -10,
+     -12,
+     -20
+    ],
+    "max": [
+     10,
+     0.5,
+     20
+    ]
+   }
+  },
+  {
+   "id": 1099511656846,
+   "name": "Cadeiras",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "2087543009",
+    "name": "Cadeiras",
+    "pos": [
+     11,
+     -1.516931,
+     5
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 336,
+    "min": [
+     -5,
+     -7,
+     -4
+    ],
+    "max": [
+     5,
+     11,
+     4
+    ]
+   }
+  },
+  {
+   "id": 1099511656142,
+   "name": "Cadeiras",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "665505096",
+    "name": "Cadeiras",
+    "pos": [
+     -11,
+     -1.516931,
+     5
+    ],
+    "rot": [
+     0,
+     1,
+     0,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 336,
+    "min": [
+     -5,
+     -7,
+     -4
+    ],
+    "max": [
+     5,
+     11,
+     4
+    ]
+   }
+  },
+  {
+   "id": 3298534910850,
+   "name": "Cadeiras",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "19579297",
+    "name": "Cadeiras",
+    "pos": [
+     -21.633942,
+     1.022284,
+     15
+    ],
+    "rot": [
+     -0.36715648,
+     0.9301592,
+     0,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 336,
+    "min": [
+     -11.165268792348801,
+     -8.527885572886706,
+     -4.000000072602521
+    ],
+    "max": [
+     8.43315697065587,
+     5.472959989088025,
+     4.000000072602521
+    ]
+   }
+  },
+  {
+   "id": 1099511656302,
+   "name": "Cadeiras",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "1003510411",
+    "name": "Cadeiras",
+    "pos": [
+     17,
+     -1.516931,
+     16
+    ],
+    "rot": [
+     0,
+     0.25277993,
+     0,
+     0.9675238
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 336,
+    "min": [
+     -6.317587840276849,
+     -6.999999976040715,
+     -5.934524426595882
+    ],
+    "max": [
+     6.317587840276849,
+     10.999999962349696,
+     5.934524426595882
+    ]
+   }
+  },
+  {
+   "id": 1099511656294,
+   "name": "Ground",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider",
+    "NavMeshSurface"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "988832443",
+    "name": "Ground",
+    "pos": [
+     0,
+     -8.016932,
+     0
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 24,
+    "min": [
+     -45,
+     -0.5,
+     -45
+    ],
+    "max": [
+     45,
+     0.5,
+     45
+    ]
+   }
+  },
+  {
+   "id": 1099511656861,
+   "name": "Roof",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "2101687948",
+    "name": "Roof",
+    "pos": [
+     0,
+     25.74,
+     0
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 24,
+    "min": [
+     -45,
+     -0.5,
+     -45
+    ],
+    "max": [
+     45,
+     0.5,
+     45
+    ]
+   }
+  },
+  {
+   "id": 1099511655964,
+   "name": "Fogao",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "210587509",
+    "name": "Fogao",
+    "pos": [
+     15,
+     -1.516931,
+     -37
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 440,
+    "min": [
+     -6,
+     -7,
+     -6.000347
+    ],
+    "max": [
+     6,
+     7,
+     6
+    ]
+   }
+  },
+  {
+   "id": 1099511656048,
+   "name": "Boquinha",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511655964,
+   "path": "/COZINHA/Fogao",
+   "y": {
+    "go": "410541758",
+    "name": "Boquinha",
+    "pos": [
+     3.5,
+     7.125,
+     -3.375
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 80,
+    "min": [
+     -2,
+     -0.125,
+     -2
+    ],
+    "max": [
+     2,
+     0.125,
+     2
+    ]
+   }
+  },
+  {
+   "id": 1099511656417,
+   "name": "Boquinha",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511655964,
+   "path": "/COZINHA/Fogao",
+   "y": {
+    "go": "1145721666",
+    "name": "Boquinha",
+    "pos": [
+     3.5,
+     7.125,
+     3
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 80,
+    "min": [
+     -1.25,
+     -0.125,
+     -1.25
+    ],
+    "max": [
+     1.25,
+     0.125,
+     1.25
+    ]
+   }
+  },
+  {
+   "id": 1099511656473,
+   "name": "Boquinha",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511655964,
+   "path": "/COZINHA/Fogao",
+   "y": {
+    "go": "1268556945",
+    "name": "Boquinha",
+    "pos": [
+     -3,
+     7.125,
+     -3.375
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 80,
+    "min": [
+     -1.25,
+     -0.125,
+     -1.25
+    ],
+    "max": [
+     1.25,
+     0.125,
+     1.25
+    ]
+   }
+  },
+  {
+   "id": 1099511656033,
+   "name": "Boquinha",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511655964,
+   "path": "/COZINHA/Fogao",
+   "y": {
+    "go": "381129091",
+    "name": "Boquinha",
+    "pos": [
+     -3,
+     7.125,
+     3
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 80,
+    "min": [
+     -1.5,
+     -0.125,
+     -1.5
+    ],
+    "max": [
+     1.5,
+     0.125,
+     1.5
+    ]
+   }
+  },
+  {
+   "id": 1099511656809,
+   "name": "Forno",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511655964,
+   "path": "/COZINHA/Fogao",
+   "y": {
+    "go": "2021006011",
+    "name": "Forno",
+    "pos": [
+     0,
+     -0.94717216,
+     7.886711
+    ],
+    "rot": [
+     0.2164396,
+     0,
+     0,
+     0.97629607
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 1520,
+    "min": [
+     -5.000000583728024,
+     -4.825967614778097,
+     -2.5163495164289134
+    ],
+    "max": [
+     5.000000583728024,
+     4.825967614778097,
+     2.5163495164289134
+    ]
+   }
+  },
+  {
+   "id": 1099511656703,
+   "name": "Prateleira (1)",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511655964,
+   "path": "/COZINHA/Fogao",
+   "y": {
+    "go": "1819769215",
+    "name": "Prateleira (1)",
+    "pos": [
+     0,
+     2,
+     0
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 24,
+    "min": [
+     -4.5,
+     -0.125,
+     -5
+    ],
+    "max": [
+     4.5,
+     0.125,
+     5
+    ]
+   }
+  },
+  {
+   "id": 1099511656372,
+   "name": "Prateleira (2)",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511655964,
+   "path": "/COZINHA/Fogao",
+   "y": {
+    "go": "1102614550",
+    "name": "Prateleira (2)",
+    "pos": [
+     0,
+     -2,
+     0
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 24,
+    "min": [
+     -4.5,
+     -0.125,
+     -5
+    ],
+    "max": [
+     4.5,
+     0.125,
+     5
+    ]
+   }
+  },
+  {
+   "id": 1099511656012,
+   "name": "TransitionDoor",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "BoxCollider"
+   ],
+   "parent": 1099511655964,
+   "path": "/COZINHA/Fogao",
+   "y": {
+    "go": "363043790",
+    "name": "TransitionDoor",
+    "pos": [
+     0,
+     -4,
+     -5.6
+    ],
+    "rot": [
+     -0.5,
+     0.5,
+     -0.5,
+     0.5
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 24,
+    "min": [
+     -1.8750000000000002,
+     -1.3750001000000003,
+     -0.5
+    ],
+    "max": [
+     1.8750000000000002,
+     1.3750001000000003,
+     0.5
+    ]
+   }
+  },
+  {
+   "id": 1099511656359,
+   "name": "Geladeira",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "1075190585",
+    "name": "Geladeira",
+    "pos": [
+     -37,
+     5.483069,
+     5
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 1172,
+    "min": [
+     -6,
+     -14,
+     -6
+    ],
+    "max": [
+     6,
+     14,
+     6
+    ]
+   }
+  },
+  {
+   "id": 1099511656072,
+   "name": "TransitionDoor",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "BoxCollider"
+   ],
+   "parent": 1099511656359,
+   "path": "/COZINHA/Geladeira",
+   "y": {
+    "go": "453546835",
+    "name": "TransitionDoor",
+    "pos": [
+     -5.679,
+     -11,
+     0
+    ],
+    "rot": [
+     0,
+     0,
+     -0.7071068,
+     0.7071068
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 24,
+    "min": [
+     -0.5000000266062401,
+     -1.3750001731671657,
+     -1.8750000997734002
+    ],
+    "max": [
+     0.5000000266062401,
+     1.3750001731671657,
+     1.8750000997734002
+    ]
+   }
+  },
+  {
+   "id": 1099511656379,
+   "name": "Porta",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656359,
+   "path": "/COZINHA/Geladeira",
+   "y": {
+    "go": "1106787083",
+    "name": "Porta",
+    "pos": [
+     9.5,
+     -3,
+     -2
+    ],
+    "rot": [
+     0,
+     0.38268343,
+     0,
+     0.92387956
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 24,
+    "min": [
+     -3.8006990519478685,
+     -9.500000465332405,
+     -3.8006992181419115
+    ],
+    "max": [
+     3.8006990519478685,
+     9.500000465332405,
+     3.8006992181419115
+    ]
+   }
+  },
+  {
+   "id": 1099511656657,
+   "name": "Porta",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656359,
+   "path": "/COZINHA/Geladeira",
+   "y": {
+    "go": "1667011696",
+    "name": "Porta",
+    "pos": [
+     8,
+     10,
+     -1
+    ],
+    "rot": [
+     0,
+     0.2164396,
+     0,
+     0.97629607
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 24,
+    "min": [
+     -2.452956777167202,
+     -3.000000350236814,
+     -4.690021427400703
+    ],
+    "max": [
+     2.452956777167202,
+     3.000000350236814,
+     4.690021427400703
+    ]
+   }
+  },
+  {
+   "id": 1099511655916,
+   "name": "Prateleira",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656359,
+   "path": "/COZINHA/Geladeira",
+   "y": {
+    "go": "125082083",
+    "name": "Prateleira",
+    "pos": [
+     -1,
+     -7,
+     0
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 24,
+    "min": [
+     -4.5,
+     -0.125,
+     -5
+    ],
+    "max": [
+     4.5,
+     0.125,
+     5
+    ]
+   }
+  },
+  {
+   "id": 1099511656665,
+   "name": "Prateleira",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656359,
+   "path": "/COZINHA/Geladeira",
+   "y": {
+    "go": "1697041287",
+    "name": "Prateleira",
+    "pos": [
+     -1,
+     0,
+     0
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 24,
+    "min": [
+     -4.5,
+     -0.125,
+     -5
+    ],
+    "max": [
+     4.5,
+     0.125,
+     5
+    ]
+   }
+  },
+  {
+   "id": 1099511656280,
+   "name": "Gelo",
+   "comps": [
+    "Transform",
+    "PolyShape",
+    "MeshRenderer",
+    "ProBuilderMesh",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656359,
+   "path": "/COZINHA/Geladeira",
+   "y": {
+    "go": "953083581",
+    "name": "Gelo",
+    "pos": [
+     -5.021,
+     -8.09,
+     -0.53999996
+    ],
+    "rot": [
+     0,
+     -1,
+     0,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 50,
+    "min": [
+     -1.3816939e-8,
+     -0.66227627,
+     -4
+    ],
+    "max": [
+     5,
+     1.0000001,
+     1.0749799e-8
+    ]
+   }
+  },
+  {
+   "id": 1099511656718,
+   "name": "Gelo",
+   "comps": [
+    "Transform",
+    "PolyShape",
+    "MeshRenderer",
+    "ProBuilderMesh",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656359,
+   "path": "/COZINHA/Geladeira",
+   "y": {
+    "go": "1852306293",
+    "name": "Gelo",
+    "pos": [
+     -1.6199989,
+     -8.09,
+     4.5200005
+    ],
+    "rot": [
+     0,
+     -1,
+     0,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 50,
+    "min": [
+     -1.3816939e-8,
+     -0.66227627,
+     -4
+    ],
+    "max": [
+     5,
+     1.0000001,
+     1.0749799e-8
+    ]
+   }
+  },
+  {
+   "id": 1099511656266,
+   "name": "Gelo",
+   "comps": [
+    "Transform",
+    "PolyShape",
+    "MeshRenderer",
+    "ProBuilderMesh",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656359,
+   "path": "/COZINHA/Geladeira",
+   "y": {
+    "go": "928711013",
+    "name": "Gelo",
+    "pos": [
+     -1.0629997,
+     -5.92,
+     -4.533
+    ],
+    "rot": [
+     0.7071068,
+     0,
+     -0.7071068,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 50,
+    "min": [
+     -4.000000212849921,
+     -1.0000001532124856,
+     -1.3816939735233592e-8
+    ],
+    "max": [
+     1.0749799572023467e-8,
+     0.6622763052413628,
+     5.0000002660624006
+    ]
+   }
+  },
+  {
+   "id": 1099511656200,
+   "name": "Gelo",
+   "comps": [
+    "Transform",
+    "PolyShape",
+    "MeshRenderer",
+    "ProBuilderMesh",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656359,
+   "path": "/COZINHA/Geladeira",
+   "y": {
+    "go": "795787626",
+    "name": "Gelo",
+    "pos": [
+     -1.0629997,
+     7.6599994,
+     -4.533
+    ],
+    "rot": [
+     0.7071068,
+     0,
+     -0.7071068,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 50,
+    "min": [
+     -4.000000212849921,
+     -1.0000001532124856,
+     -1.3816939735233592e-8
+    ],
+    "max": [
+     1.0749799572023467e-8,
+     0.6622763052413628,
+     5.0000002660624006
+    ]
+   }
+  },
+  {
+   "id": 1099511655942,
+   "name": "Gelo",
+   "comps": [
+    "Transform",
+    "PolyShape",
+    "MeshRenderer",
+    "ProBuilderMesh",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656359,
+   "path": "/COZINHA/Geladeira",
+   "y": {
+    "go": "177492131",
+    "name": "Gelo",
+    "pos": [
+     -6.1879997,
+     -7.11,
+     4.467
+    ],
+    "rot": [
+     0,
+     0,
+     1,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 222,
+    "min": [
+     0,
+     -5.5,
+     -3
+    ],
+    "max": [
+     4,
+     6.0973747e-7,
+     1.0000001
+    ]
+   }
+  },
+  {
+   "id": 1099511656589,
+   "name": "Gelo",
+   "comps": [
+    "Transform",
+    "PolyShape",
+    "MeshRenderer",
+    "ProBuilderMesh",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656359,
+   "path": "/COZINHA/Geladeira",
+   "y": {
+    "go": "1529614765",
+    "name": "Gelo",
+    "pos": [
+     -0.52399826,
+     -7.11,
+     -1.8599999
+    ],
+    "rot": [
+     0,
+     0,
+     1,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 222,
+    "min": [
+     0,
+     -5.5,
+     -3
+    ],
+    "max": [
+     4,
+     6.0973747e-7,
+     1.0000001
+    ]
+   }
+  },
+  {
+   "id": 1099511656538,
+   "name": "Gelo",
+   "comps": [
+    "Transform",
+    "PolyShape",
+    "MeshRenderer",
+    "ProBuilderMesh",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656359,
+   "path": "/COZINHA/Geladeira",
+   "y": {
+    "go": "1422186384",
+    "name": "Gelo",
+    "pos": [
+     1.7099991,
+     12.5,
+     -1.8599999
+    ],
+    "rot": [
+     0,
+     0,
+     1,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 222,
+    "min": [
+     0,
+     -5.5,
+     -3
+    ],
+    "max": [
+     4,
+     6.0973747e-7,
+     1.0000001
+    ]
+   }
+  },
+  {
+   "id": 1099511656531,
+   "name": "Gelo",
+   "comps": [
+    "Transform",
+    "PolyShape",
+    "MeshRenderer",
+    "ProBuilderMesh",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656359,
+   "path": "/COZINHA/Geladeira",
+   "y": {
+    "go": "1390442266",
+    "name": "Gelo",
+    "pos": [
+     5.299999,
+     -12.71,
+     4.37
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 222,
+    "min": [
+     -4,
+     -6.0973747e-7,
+     -3
+    ],
+    "max": [
+     0,
+     5.5,
+     1.0000001
+    ]
+   }
+  },
+  {
+   "id": 1099511656650,
+   "name": "Gelo",
+   "comps": [
+    "Transform",
+    "PolyShape",
+    "MeshRenderer",
+    "ProBuilderMesh",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656359,
+   "path": "/COZINHA/Geladeira",
+   "y": {
+    "go": "1663911400",
+    "name": "Gelo",
+    "pos": [
+     5.299999,
+     6.729999,
+     4.37
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 222,
+    "min": [
+     -4,
+     -6.0973747e-7,
+     -3
+    ],
+    "max": [
+     0,
+     5.5,
+     1.0000001
+    ]
+   }
+  },
+  {
+   "id": 1099511656685,
+   "name": "Gelo",
+   "comps": [
+    "Transform",
+    "PolyShape",
+    "MeshRenderer",
+    "ProBuilderMesh",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656359,
+   "path": "/COZINHA/Geladeira",
+   "y": {
+    "go": "1771945236",
+    "name": "Gelo",
+    "pos": [
+     -2.0800018,
+     -6.99,
+     3.6099997
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 222,
+    "min": [
+     -4,
+     -6.0973747e-7,
+     -3
+    ],
+    "max": [
+     0,
+     5.5,
+     1.0000001
+    ]
+   }
+  },
+  {
+   "id": 1099511656409,
+   "name": "Gelo",
+   "comps": [
+    "Transform",
+    "PolyShape",
+    "MeshRenderer",
+    "ProBuilderMesh",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656359,
+   "path": "/COZINHA/Geladeira",
+   "y": {
+    "go": "1136739880",
+    "name": "Gelo",
+    "pos": [
+     1.7350006,
+     6.94,
+     1.8959999
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 222,
+    "min": [
+     -4,
+     -6.0973747e-7,
+     -3
+    ],
+    "max": [
+     0,
+     5.5,
+     1.0000001
+    ]
+   }
+  },
+  {
+   "id": 1099511656524,
+   "name": "Gelo",
+   "comps": [
+    "Transform",
+    "PolyShape",
+    "MeshRenderer",
+    "ProBuilderMesh",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656359,
+   "path": "/COZINHA/Geladeira",
+   "y": {
+    "go": "1383391006",
+    "name": "Gelo",
+    "pos": [
+     2.4500008,
+     -6.99,
+     3.0699997
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     0.37,
+     1
+    ],
+    "nverts": 222,
+    "min": [
+     -4,
+     -2.256028639e-7,
+     -3
+    ],
+    "max": [
+     0,
+     2.035,
+     1.0000001
+    ]
+   }
+  },
+  {
+   "id": 1099511656555,
+   "name": "Gelo",
+   "comps": [
+    "Transform",
+    "PolyShape",
+    "MeshRenderer",
+    "ProBuilderMesh",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656359,
+   "path": "/COZINHA/Geladeira",
+   "y": {
+    "go": "1462843760",
+    "name": "Gelo",
+    "pos": [
+     -1.9599991,
+     0.069999695,
+     3.6000004
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     0.37,
+     1
+    ],
+    "nverts": 222,
+    "min": [
+     -4,
+     -2.256028639e-7,
+     -3
+    ],
+    "max": [
+     0,
+     2.035,
+     1.0000001
+    ]
+   }
+  },
+  {
+   "id": 1099511655925,
+   "name": "Gelo",
+   "comps": [
+    "Transform",
+    "PolyShape",
+    "MeshRenderer",
+    "ProBuilderMesh",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656359,
+   "path": "/COZINHA/Geladeira",
+   "y": {
+    "go": "153193508",
+    "name": "Gelo",
+    "pos": [
+     -1.9599991,
+     6.8700004,
+     3.6000004
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     0.37,
+     1
+    ],
+    "nverts": 222,
+    "min": [
+     -4,
+     -2.256028639e-7,
+     -3
+    ],
+    "max": [
+     0,
+     2.035,
+     1.0000001
+    ]
+   }
+  },
+  {
+   "id": 1099511656342,
+   "name": "Gelo",
+   "comps": [
+    "Transform",
+    "PolyShape",
+    "MeshRenderer",
+    "ProBuilderMesh",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656359,
+   "path": "/COZINHA/Geladeira",
+   "y": {
+    "go": "1042668711",
+    "name": "Gelo",
+    "pos": [
+     5.6399994,
+     -12.52,
+     -2.1
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     0.37,
+     1
+    ],
+    "nverts": 222,
+    "min": [
+     -4,
+     -2.256028639e-7,
+     -3
+    ],
+    "max": [
+     0,
+     2.035,
+     1.0000001
+    ]
+   }
+  },
+  {
+   "id": 1099511655907,
+   "name": "Gelo",
+   "comps": [
+    "Transform",
+    "PolyShape",
+    "MeshRenderer",
+    "ProBuilderMesh",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656359,
+   "path": "/COZINHA/Geladeira",
+   "y": {
+    "go": "112388212",
+    "name": "Gelo",
+    "pos": [
+     3.1800003,
+     0.22000027,
+     -0.7800002
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     0.71,
+     1
+    ],
+    "nverts": 222,
+    "min": [
+     -4,
+     -4.329136037e-7,
+     -3
+    ],
+    "max": [
+     0,
+     3.905,
+     1.0000001
+    ]
+   }
+  },
+  {
+   "id": 1099511656642,
+   "name": "Gelo",
+   "comps": [
+    "Transform",
+    "PolyShape",
+    "MeshRenderer",
+    "ProBuilderMesh",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656359,
+   "path": "/COZINHA/Geladeira",
+   "y": {
+    "go": "1646918412",
+    "name": "Gelo",
+    "pos": [
+     2.8670006,
+     6.7900004,
+     -2.22
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     0.71,
+     1
+    ],
+    "nverts": 222,
+    "min": [
+     -4,
+     -4.329136037e-7,
+     -3
+    ],
+    "max": [
+     0,
+     3.905,
+     1.0000001
+    ]
+   }
+  },
+  {
+   "id": 1099511655985,
+   "name": "Particle System",
+   "comps": [
+    "Transform",
+    "ParticleSystem",
+    "ParticleSystemRenderer"
+   ],
+   "parent": 1099511656359,
+   "path": "/COZINHA/Geladeira",
+   "y": {
+    "go": "293358111",
+    "name": "Particle System",
+    "pos": [
+     4.38,
+     7.95,
+     1.62
+    ],
+    "rot": [
+     0,
+     0.7071068,
+     0,
+     0.7071068
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 0,
+    "min": null,
+    "max": null
+   }
+  },
+  {
+   "id": 1099511656822,
+   "name": "Vassoura",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "2032359933",
+    "name": "Vassoura",
+    "pos": [
+     29.78,
+     3.2430692,
+     23.97
+    ],
+    "rot": [
+     -0.2826897,
+     -0.6519499,
+     -0.28686473,
+     0.64246136
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 80,
+    "min": [
+     -8.44693749141416,
+     -7.800133386545982,
+     -0.6188392276119905
+    ],
+    "max": [
+     8.446937491647155,
+     7.800133386545981,
+     0.6188392280449149
+    ]
+   }
+  },
+  {
+   "id": 1099511656331,
+   "name": "Cabeça",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656822,
+   "path": "/COZINHA/Vassoura",
+   "y": {
+    "go": "1033884546",
+    "name": "Cabeça",
+    "pos": [
+     0,
+     -11.17,
+     0.11
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 24,
+    "min": [
+     -3,
+     -0.25,
+     -0.5
+    ],
+    "max": [
+     3,
+     0.25,
+     0.5
+    ]
+   }
+  },
+  {
+   "id": 1099511655871,
+   "name": "Cabelo",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656331,
+   "path": "/COZINHA/Vassoura/Cabeça",
+   "y": {
+    "go": "31718440",
+    "name": "Cabelo",
+    "pos": [
+     0,
+     -2.73,
+     0.01
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 24,
+    "min": [
+     -3,
+     -3.1689177,
+     -1.1759053
+    ],
+    "max": [
+     3,
+     2.5,
+     0.8068327
+    ]
+   }
+  },
+  {
+   "id": 1099511656239,
+   "name": "Armario",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "906259802",
+    "name": "Armario",
+    "pos": [
+     -37.25,
+     19.483068,
+     24
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 24,
+    "min": [
+     -5,
+     -5,
+     -12.5
+    ],
+    "max": [
+     5,
+     5,
+     12.5
+    ]
+   }
+  },
+  {
+   "id": 1099511656287,
+   "name": "Armario",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "963506405",
+    "name": "Armario",
+    "pos": [
+     -37.25,
+     19.483068,
+     -17
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 24,
+    "min": [
+     -5,
+     -5,
+     -15
+    ],
+    "max": [
+     5,
+     5,
+     15
+    ]
+   }
+  },
+  {
+   "id": 1099511656259,
+   "name": "Armario",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "922956654",
+    "name": "Armario",
+    "pos": [
+     37,
+     19.483068,
+     3
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 24,
+    "min": [
+     -5,
+     -5,
+     -35
+    ],
+    "max": [
+     5,
+     5,
+     35
+    ]
+   }
+  },
+  {
+   "id": 1099511656464,
+   "name": "Armario",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "1246667765",
+    "name": "Armario",
+    "pos": [
+     -17.25,
+     19.483068,
+     -37
+    ],
+    "rot": [
+     0,
+     0.7071068,
+     0,
+     0.7071068
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 24,
+    "min": [
+     -25.000001330311996,
+     -5.0000002660624006,
+     -5.000000266062399
+    ],
+    "max": [
+     25.000001330311996,
+     5.0000002660624006,
+     5.000000266062399
+    ]
+   }
+  },
+  {
+   "id": 1099511655900,
+   "name": "Armario",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "111679206",
+    "name": "Armario",
+    "pos": [
+     32,
+     19.483068,
+     -37
+    ],
+    "rot": [
+     0,
+     0.7071068,
+     0,
+     0.7071068
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 24,
+    "min": [
+     -10.000000532124801,
+     -5.0000002660624006,
+     -5.0000002660624006
+    ],
+    "max": [
+     10.000000532124801,
+     5.0000002660624006,
+     5.0000002660624006
+    ]
+   }
+  },
+  {
+   "id": 1099511656546,
+   "name": "Microondas",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "1440419682",
+    "name": "Microondas",
+    "pos": [
+     36.13,
+     7.483069,
+     32.08
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 684,
+    "min": [
+     -3,
+     -2.5,
+     -6
+    ],
+    "max": [
+     3,
+     2.5,
+     6
+    ]
+   }
+  },
+  {
+   "id": 1099511656087,
+   "name": "Prato",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656546,
+   "path": "/COZINHA/Microondas",
+   "y": {
+    "go": "461247678",
+    "name": "Prato",
+    "pos": [
+     -0.5489998,
+     -1.8341408,
+     0.799778
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 260,
+    "min": [
+     -2.0891304,
+     -0.0408597,
+     -3.5433106
+    ],
+    "max": [
+     2.0891304,
+     0.0408597,
+     3.5433104
+    ]
+   }
+  },
+  {
+   "id": 1099511656135,
+   "name": "Porta",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656546,
+   "path": "/COZINHA/Microondas",
+   "y": {
+    "go": "660136967",
+    "name": "Porta",
+    "pos": [
+     -4.8800015,
+     0,
+     1
+    ],
+    "rot": [
+     0,
+     -0.5372997,
+     0,
+     0.8433914
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 1592,
+    "min": [
+     -2.5617020290277863,
+     -2.0000000424281,
+     -4.410616993513255
+    ],
+    "max": [
+     2.234012845224857,
+     2.0000000424281,
+     4.410616993513255
+    ]
+   }
+  },
+  {
+   "id": 1099511656694,
+   "name": "Panel",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656546,
+   "path": "/COZINHA/Microondas",
+   "y": {
+    "go": "1794762490",
+    "name": "Panel",
+    "pos": [
+     -2.9970016,
+     -0.010601044,
+     -4.9206276
+    ],
+    "rot": [
+     0,
+     0,
+     0.7071068,
+     0.7071068
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 24,
+    "min": [
+     -0.05866814712187729,
+     -2.3690011260604185,
+     -0.9833126523245022
+    ],
+    "max": [
+     0.05866814712187729,
+     2.3690011260604185,
+     0.9833126523245022
+    ]
+   }
+  },
+  {
+   "id": 1099511656802,
+   "name": "Button",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656694,
+   "path": "/COZINHA/Microondas/Panel",
+   "y": {
+    "go": "2018067889",
+    "name": "Button",
+    "pos": [
+     -2.0809233,
+     0.11392617,
+     0.46406364
+    ],
+    "rot": [
+     0,
+     0,
+     8.940697e-8,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 24,
+    "min": [
+     -0.22680473988086206,
+     -0.055257834555846944,
+     -0.42561530000000336
+    ],
+    "max": [
+     0.22680473988086206,
+     0.055257834555846944,
+     0.42561530000000336
+    ]
+   }
+  },
+  {
+   "id": 1099511656079,
+   "name": "Button",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656694,
+   "path": "/COZINHA/Microondas/Panel",
+   "y": {
+    "go": "461025344",
+    "name": "Button",
+    "pos": [
+     0.629,
+     0.114,
+     0.161
+    ],
+    "rot": [
+     0,
+     0,
+     8.940697e-8,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 24,
+    "min": [
+     -0.17500000988086245,
+     -0.055257825292439056,
+     -0.17500000000000138
+    ],
+    "max": [
+     0.17500000988086245,
+     0.055257825292439056,
+     0.17500000000000138
+    ]
+   }
+  },
+  {
+   "id": 1099511656788,
+   "name": "Button",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656694,
+   "path": "/COZINHA/Microondas/Panel",
+   "y": {
+    "go": "2009707862",
+    "name": "Button",
+    "pos": [
+     0.185,
+     0.114,
+     0.161
+    ],
+    "rot": [
+     0,
+     0,
+     8.940697e-8,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 24,
+    "min": [
+     -0.17500000988086245,
+     -0.055257825292439056,
+     -0.17500000000000138
+    ],
+    "max": [
+     0.17500000988086245,
+     0.055257825292439056,
+     0.17500000000000138
+    ]
+   }
+  },
+  {
+   "id": 1099511656324,
+   "name": "Button",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656694,
+   "path": "/COZINHA/Microondas/Panel",
+   "y": {
+    "go": "1018829995",
+    "name": "Button",
+    "pos": [
+     -0.262,
+     0.114,
+     0.161
+    ],
+    "rot": [
+     0,
+     0,
+     8.940697e-8,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 24,
+    "min": [
+     -0.17500000988086245,
+     -0.055257825292439056,
+     -0.17500000000000138
+    ],
+    "max": [
+     0.17500000988086245,
+     0.055257825292439056,
+     0.17500000000000138
+    ]
+   }
+  },
+  {
+   "id": 1099511655864,
+   "name": "Button",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656694,
+   "path": "/COZINHA/Microondas/Panel",
+   "y": {
+    "go": "27467091",
+    "name": "Button",
+    "pos": [
+     0.629,
+     0.114,
+     -0.253
+    ],
+    "rot": [
+     0,
+     0,
+     8.940697e-8,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 24,
+    "min": [
+     -0.17500000988086245,
+     -0.055257825292439056,
+     -0.17500000000000138
+    ],
+    "max": [
+     0.17500000988086245,
+     0.055257825292439056,
+     0.17500000000000138
+    ]
+   }
+  },
+  {
+   "id": 1099511656853,
+   "name": "Button",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656694,
+   "path": "/COZINHA/Microondas/Panel",
+   "y": {
+    "go": "2090539253",
+    "name": "Button",
+    "pos": [
+     0.185,
+     0.114,
+     -0.253
+    ],
+    "rot": [
+     0,
+     0,
+     8.940697e-8,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 24,
+    "min": [
+     -0.17500000988086245,
+     -0.055257825292439056,
+     -0.17500000000000138
+    ],
+    "max": [
+     0.17500000988086245,
+     0.055257825292439056,
+     0.17500000000000138
+    ]
+   }
+  },
+  {
+   "id": 1099511656155,
+   "name": "Button",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656694,
+   "path": "/COZINHA/Microondas/Panel",
+   "y": {
+    "go": "700092394",
+    "name": "Button",
+    "pos": [
+     -0.262,
+     0.114,
+     -0.253
+    ],
+    "rot": [
+     0,
+     0,
+     8.940697e-8,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 24,
+    "min": [
+     -0.17500000988086245,
+     -0.055257825292439056,
+     -0.17500000000000138
+    ],
+    "max": [
+     0.17500000988086245,
+     0.055257825292439056,
+     0.17500000000000138
+    ]
+   }
+  },
+  {
+   "id": 1099511656672,
+   "name": "Button",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656694,
+   "path": "/COZINHA/Microondas/Panel",
+   "y": {
+    "go": "1707675406",
+    "name": "Button",
+    "pos": [
+     0.629,
+     0.114,
+     -0.678
+    ],
+    "rot": [
+     0,
+     0,
+     8.940697e-8,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 24,
+    "min": [
+     -0.17500000988086245,
+     -0.055257825292439056,
+     -0.17500000000000138
+    ],
+    "max": [
+     0.17500000988086245,
+     0.055257825292439056,
+     0.17500000000000138
+    ]
+   }
+  },
+  {
+   "id": 1099511656868,
+   "name": "Button",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656694,
+   "path": "/COZINHA/Microondas/Panel",
+   "y": {
+    "go": "2108417167",
+    "name": "Button",
+    "pos": [
+     0.185,
+     0.114,
+     -0.678
+    ],
+    "rot": [
+     0,
+     0,
+     8.940697e-8,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 24,
+    "min": [
+     -0.17500000988086245,
+     -0.055257825292439056,
+     -0.17500000000000138
+    ],
+    "max": [
+     0.17500000988086245,
+     0.055257825292439056,
+     0.17500000000000138
+    ]
+   }
+  },
+  {
+   "id": 1099511656563,
+   "name": "Button",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656694,
+   "path": "/COZINHA/Microondas/Panel",
+   "y": {
+    "go": "1475977096",
+    "name": "Button",
+    "pos": [
+     -0.262,
+     0.114,
+     -0.678
+    ],
+    "rot": [
+     0,
+     0,
+     8.940697e-8,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 24,
+    "min": [
+     -0.17500000988086245,
+     -0.055257825292439056,
+     -0.17500000000000138
+    ],
+    "max": [
+     0.17500000988086245,
+     0.055257825292439056,
+     0.17500000000000138
+    ]
+   }
+  },
+  {
+   "id": 1099511656772,
+   "name": "Button",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656694,
+   "path": "/COZINHA/Microondas/Panel",
+   "y": {
+    "go": "1983168958",
+    "name": "Button",
+    "pos": [
+     -2.0809233,
+     0.11392617,
+     -0.45737457
+    ],
+    "rot": [
+     0,
+     0,
+     8.940697e-8,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 24,
+    "min": [
+     -0.22680473988086206,
+     -0.055257834555846944,
+     -0.42561530000000336
+    ],
+    "max": [
+     0.22680473988086206,
+     0.055257834555846944,
+     0.42561530000000336
+    ]
+   }
+  },
+  {
+   "id": 1099511656106,
+   "name": "Wall",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "520673163",
+    "name": "Wall",
+    "pos": [
+     -44,
+     7.733069,
+     0
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 24,
+    "min": [
+     -1,
+     -17.5,
+     -45
+    ],
+    "max": [
+     1,
+     17.5,
+     45
+    ]
+   }
+  },
+  {
+   "id": 1099511656193,
+   "name": "Wall",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "780516155",
+    "name": "Wall",
+    "pos": [
+     44,
+     7.733069,
+     0
+    ],
+    "rot": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 128,
+    "min": [
+     -1,
+     -17.5,
+     -45
+    ],
+    "max": [
+     1.0276985,
+     17.5,
+     45
+    ]
+   }
+  },
+  {
+   "id": 1099511656425,
+   "name": "Wall",
+   "comps": [
+    "Transform",
+    "ProBuilderMesh",
+    "ProBuilderShape",
+    "MeshRenderer",
+    "MeshFilter",
+    "MeshCollider"
+   ],
+   "parent": 1099511656439,
+   "path": "/COZINHA",
+   "y": {
+    "go": "1159741856",
+    "name": "Wall",
+    "pos": [
+     0,
+     7.733069,
+     -44
+    ],
+    "rot": [
+     0,
+     0.7071068,
+     0,
+     0.7071068
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "nverts": 128,
+    "min": [
+     -45.00002239456267,
+     -17.500000931218402,
+     -1.0000031532126457
+    ],
+    "max": [
+     45.00002239456267,
+     17.500000931218402,
+     1.0000002532124945
+    ]
+   }
+  }
+ ],
+ "mismatches": [],
+ "roots": [
+  {
+   "id": 1099511656002,
+   "name": "MainCamera"
+  },
+  {
+   "id": 1099511656044,
+   "name": "Directional Light"
+  },
+  {
+   "id": 1099511656210,
+   "name": "Global Volume"
+  },
+  {
+   "id": 1099511656027,
+   "name": "Canvas"
+  },
+  {
+   "id": 1099511656575,
+   "name": "Player"
+  },
+  {
+   "id": 1099511655995,
+   "name": "Item"
+  },
+  {
+   "id": 1099511656753,
+   "name": "Item (6)"
+  },
+  {
+   "id": 1099511656019,
+   "name": "Item (3)"
+  },
+  {
+   "id": 1099511656885,
+   "name": "Item (7)"
+  },
+  {
+   "id": 1099511656514,
+   "name": "Item (1)"
+  },
+  {
+   "id": 1099511656387,
+   "name": "Item (8)"
+  },
+  {
+   "id": 1099511656310,
+   "name": "Item (4)"
+  },
+  {
+   "id": 1099511656246,
+   "name": "Item (9)"
+  },
+  {
+   "id": 1099511655951,
+   "name": "Item (2)"
+  },
+  {
+   "id": 1099511656401,
+   "name": "Item (10)"
+  },
+  {
+   "id": 1099511656795,
+   "name": "Item (5)"
+  },
+  {
+   "id": 1099511656394,
+   "name": "Item (11)"
+  },
+  {
+   "id": 1099511656763,
+   "name": "EventSystem"
+  },
+  {
+   "id": 1099511656701,
+   "name": "Gun"
+  },
+  {
+   "id": 1099511656712,
+   "name": "Stick"
+  },
+  {
+   "id": 1099511656617,
+   "name": "Nail"
+  },
+  {
+   "id": 1099511656439,
+   "name": "COZINHA"
+  },
+  {
+   "id": 1099511656767,
+   "name": "PATROLNODES"
+  },
+  {
+   "id": 1099511657014,
+   "name": "Enemy"
+  }
+ ]
+}
