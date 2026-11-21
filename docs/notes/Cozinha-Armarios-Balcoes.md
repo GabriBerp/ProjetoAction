@@ -717,3 +717,353 @@ Nas duas bocas do A3/A4 a ponte termina em **patamar de 4,0 × 3,2 com 3 degraus
 - **Os 3 barracos da fachada ficam em balanço** de até 0,9 à frente do plano do corpo — apoiados em consolos, como construção de rato; não são estrutura humana.
 - **Primeira execução saiu girada 90°** (a ponte corria em Z, x ±6); o yaw foi corrigido para `atan2(dx, dz)` e a cena foi regravada.
 - **Sem verificação visual:** conferência por bounds de mundo, contagem de renderers e luzes. Nenhuma screenshot.
+
+---
+
+## 19. Execução P1-d (2026-11-21) — as três travessias do anel do tampo
+
+**Feito e salvo na cena** (14,85 MB, 11:21). Três grupos novos sob **`COZINHA/Ratos`** (agora 16 subgrupos): `Travessia_Fogao`, `Travessia_Pia`, `Contorno_Geladeira`. **207 renderers, 126 colisores, 3 luzes.** Nenhum móvel foi tocado — só props de rato. Detalhes pequenos (cordas, panos, cinza, limo) vão sem colisor.
+
+> A regra que organizou tudo: **o anel do tampo tem três interrupções e nenhuma delas se atravessa do mesmo jeito.** O fogão sobe 0,48, a pia desce 0,69 e a geladeira não tem passagem. Cada travessia recebeu vocabulário próprio de borda, corrimão e perigo.
+
+### 19.1 `Travessia_Fogao` — o degrau (topo 13,0)
+
+| Peça | Medida / posição |
+|---|---|
+| Degraus | 2 chapas 1,10 × 0,24 × 1,50, topo **12,76**, em **x 7,90→9,00** e **21,00→22,10**, z −32,55→−31,05 |
+| Deck | 11,20 × 1,30 (base `InteriorDark` em 12,93, tábuas topo **13,09**), z −31,15→−32,45 |
+| Borda de queda | chapa `Rust` de 0,30 de altura em 3 trechos: 9,65→12,15 · 13,45→17,55 · 18,85→20,35, com **2 rombos** |
+| Corrimão | 6 postes de 0,95 (topo 14,04), corda a **13,90**, 3 trechos — o do meio é o maior |
+| Perigo | cinza em 4 manchas, linha de queimado de 8,6 na borda, 4 tocos de corda queimada, tábua solta no degrau leste, sinal em X com pano |
+| Luz | `Luz_Travessia_Fogao` (15 / 13,90 / −35,20), laranja, **0,45 / 6,0** |
+
+Os degraus ficam **por fora da chapa do fogão**: a chapa cobre x 9→21 e invade 1,0 cada balcão, então o degrau tem de nascer em x ≤ 9 e x ≥ 21 — foi o primeiro erro da sessão (degraus nasceram enterrados na chapa e foram refeitos).
+
+**Por que vale:** 0,48 é **1,5 altura de rato**; ninguém sobe isso de uma vez. E a chapa avança **0,9** além da frente dos balcões, com o **forno aberto a 9,88** logo abaixo: quem cai não cai 12,52 de uma vez, cai em dois estágios. A borda interrompida em dois pontos é o que conta essa história sem texto.
+
+### 19.2 `Travessia_Pia` — o vau (água a 11,83)
+
+| Peça | Medida / posição |
+|---|---|
+| Entrada / saída | pranchas 1,40 × 0,14 × 0,90, topo **12,17**, em z 0→−0,90 e −19,10→−20,00 (meio degrau de 0,35 e 0,34) |
+| Passadeira | **7 cortiças** de 0,34 de raio, topo **11,99**, em z −1,75→−8,35, alternando x 33,65 / 34,30 |
+| Sela | 2 tábuas 1,50 × 0,14 × 0,95 a **±14°** sobre a lâmina divisória (z −10), topo **12,47** |
+| Linha de mão | **8 estacas** fincadas na água (x 32,98, 0,79 de altura), corda a **12,60** |
+| Rebordo | 4 estacas de ferro no rebordo de pedra (x 32,18), corda a **12,96** — a pedra tem só 0,72 de largura |
+| Perigo | limo em 5 pontos (inclusive nas cortiças 2 e 5), tábua meio afundada a 8°, 3 ondas, entulho no fundo, régua de fundo de 1,55 com 3 marcas e pano, sinal em X |
+| Luz | `Luz_Travessia_Pia` (34,60 / 12,75 / −10,00), ciano, **0,45 / 5,0** |
+
+**Por que vale:** é a **única travessia para baixo** do anel. A água é malha sólida (sem `WaterVolume`), então o rato **anda sobre 11,83** — e é justamente por isso que o perigo aqui não é queda, é **afogamento e limo**: daí a corda baixa, as cortiças molhadas e a régua de fundo. A lâmina divisória de 0,69 entre as duas cubas é o único ponto onde o vau obriga a subir — a sela é o que faz essa leitura.
+
+### 19.3 `Contorno_Geladeira` — a volta (topo 27)
+
+**A descoberta da sessão:** a geladeira não é só uma parede alta. A **porta inferior está aberta a 45°** (folha 0,75 × 19 × 10, dobradiça em −31,04 / −0,54) e vai até **x −23,70**, selando a frente inteira. A fresta de 0,90 à frente do corpo não leva a lugar nenhum — a única volta é **rondar a ponta livre da folha**, em (−23,96 / 6,54).
+
+| Trecho | Percurso | Comprimento |
+|---|---|---|
+| A — saída | (−33,20 / −1,90) → (−28,70 / −1,70) | 4,51 |
+| B — paralelo à folha | (−28,70 / −1,70) → (−21,00 / 7,40) | 10,96 |
+| C — retorno | (−21,00 / 7,40) → (−32,10 / 11,90) | 11,94 |
+| Plataforma da ponta | 3,20 × 3,20 em (−21,00 / 7,40) | — |
+
+**≈ 27,4 de percurso para vencer um vão de 10.** Deck de 1,5 (1,26 útil), 12 tábuas no trecho C com **1 tábua faltando em 62%** do caminho — o vão de 0,9 é o único salto do anel.
+
+| Peça | Medida / posição |
+|---|---|
+| Estrutura | 2 longarinas `Rust` por trecho, tábuas `WoodOld`/`Rust`, pousos de 2,60 × 1,90 e 3,00 × 2,20 |
+| Sustentação | **3 cabos** ao topo da folha (17,60) + **4 consolos** na face da geladeira |
+| Prumo | corda com **3 nós** do topo da folha (19,30) à plataforma — a altura de 27 lida como a parede que obrigou o desvio |
+| Corrimão | postes de 0,74 a cada 3,10 nos dois lados; **1 trecho de corda arrancado** sobre o vão |
+| Perigo | geada em 4 pontos, 3 pingentes sob a plataforma, 2 tábuas quebradas nas pontas do vão, corda solta pendurada, sinal em X no pouso norte |
+| Luz | `Luz_Contorno_Geladeira` (−24,60 / 13,80 / 3,60), azul-frio, **0,50 / 7,0** |
+
+**Folga conferida:** 0,54 do poste do corrimão à folha da porta e 0,73 das tábuas — só os cabos, os consolos e o prumo tocam a porta, por desenho.
+
+**Por que vale:** é a travessia mais longa e a única que não é um vão: é um **desvio que a cidade aceitou pagar**. Ela também explica a porta aberta — o objeto mais estranho da cozinha vira o motivo da ponte, e a ponte passa a depender dele (cabos, prumo, corrimão de um lado só).
+
+### 19.4 Desvios e notas
+
+- **A chapa do fogão invade 1,0 cada balcão.** Degraus, deck, borda e corrimão foram todos calculados a partir da chapa (x 9→21), não da frente dos balcões — a primeira tentativa errou nisso.
+- **A porta da geladeira define o contorno.** Um projeto que ignorasse a folha aberta teria posto o deck dentro dela; a folga foi medida contra o eixo da folha, não contra o corpo da geladeira.
+- **Sem geometria nova nos móveis:** 0 faces alteradas, 0 móveis movidos, 0 materiais criados (os 8 do §18 bastaram; `Ice` e `MossDry` entraram como leitura).
+- **Sem scripts, sem NavMesh, sem partículas:** as três travessias são estáticas.
+- **A pia é a única com água por baixo.** Ainda não há `WaterVolume`: o rato anda na superfície; se um dia a água virar volume, o vau precisa ser refeito.
+- **Não verificado visualmente:** conferência por bounds de mundo, contagem de renderers/colisores, folga ao eixo da porta e posição das luzes. Nenhuma screenshot.
+
+---
+
+## 20. Execução P1-e (2026-11-21) — circuito vertical fechado
+
+**Feito e salvo na cena** (15,65 MB, 11:43). Três grupos novos sob **`COZINHA/Ratos`** (agora 19 subgrupos): `Descida_Leste`, `Subida_A2`, `Degraus_N1`. **273 renderers, 168 colisores, 3 luzes.** Só caixas e cilindros com o kit do §18 (`WoodOld`, `Cardboard`, `Iron`, `Rust`, `Rope`, `Fabric`); nenhum móvel tocado, nenhuma face alterada.
+
+> O circuito agora tem **duas escadas de 9,98** — uma que desce do alto leste e outra que sobe do tampo norte — e uma **corrente de 12 degraus** que leva do piso à gaveta de N1. Antes, a única ligação chão↔alto era a escada de corda da `Ponte_Armarios`.
+
+### 20.1 `Descida_Leste` — do patamar do A4 ao tampo
+
+| Peça | Medida / posição |
+|---|---|
+| Pousos | **22,50** · **19,40** · **16,30** (2,30 × 2,00) e **13,20** (2,50 × 2,10), todos em x 29,70→32,00 · z 5,40→7,40 |
+| Ligação | 3 escadas de corda de **6 degraus** (0,84 de largura), a primeira com **1 degrau faltando** |
+| Degrau final | 1,40 × 0,34 × 1,60, topo **12,86** em x 32,25→33,65 → dois degraus de 0,34 até o tampo (12,52) |
+| Contra a face | 4 mãos-francesas de 0,75 + 2 escoras diagonais (29,90/22,30 → 31,95/24,60) |
+| Leitura | telheiro de papelão sobre o pouso 2, lamparina, 2 tábuas quebradas no pouso 3, corda solta de 3,7, caixotes no pouso 4 |
+| Luz | `Luz_Descida_Leste` (30,30 / 17,40 / 6,90), azulada, **0,40 / 5,5** |
+
+O pouso 1 casa **flush** com o piso do nicho do A4 (x = 32,00) e a descida fica no **extremo sul da boca aberta (z 5,4→7,4)** — o patamar (z 1,4→4,6) e os 3 degraus existentes continuam livres. Os 9,98 de queda são vencidos em 3 lances de 3,10, cada um com pouso.
+
+**Por que vale:** o patamar terminava em 23,25 e o piso do nicho em 22,50 — o alto leste não tinha como descer. A descida é toda **pendurada** (mãos-francesas e escoras, sem pilar até o chão), o que a distingue da subida norte e mantém o vão de 9,48 legível como vazio.
+
+### 20.2 `Subida_A2` — do tampo ao piso do armário
+
+| Peça | Medida / posição |
+|---|---|
+| Base | caixote 2,40 × 1,02 × 1,80 (topo **13,55**) sobre o tampo norte, em x 22,20→24,60 · z −30,15→−31,95 |
+| Pousos | **16,75** · **19,95** · **22,50** (2,30 × 1,90), em x 22,25→24,55 |
+| Ligação | 3 escadas de corda de **7 · 7 · 6 degraus** (uma faltando na segunda) |
+| Contra a face | 3 consolos de 1,30 na parede do A2 + 2 escoras diagonais |
+| Leitura | coberta de lona a 21,82 sobre o pouso 2, caixote e lata no pouso 1, caixote no 2, tábua solta no 3 |
+| Luz | `Luz_Subida_A2` (23,90 / 18,10 / −30,40), quente, **0,40 / 5,0** |
+
+O pouso 3 (topo **22,50**) termina a **0,05** da face do armário (z −31,95 contra −32,00) — é o único ponto em que uma peça de rato encosta na soleira de um móvel, e é o que fecha o circuito. A subida fica no **extremo oeste** da boca aberta do A2 (que começa em x 22,55): sobram 7,5 de vão livre para o nicho.
+
+**Por que vale:** é a **única subida tampo→armário** do U. Escolhida no A2 porque o tampo ali é fechado (sem nicho, sem porta, sem gaveta) — nenhuma passagem existente foi bloqueada. E é uma torre de **andaime** (caixote, consolos, lona), o oposto da descida pendurada do A4: mesma altura, duas gramáticas.
+
+### 20.3 `Degraus_N1` — a corrente do piso à gaveta
+
+| Peça | Medida / posição |
+|---|---|
+| Degraus | **12**, espalha 0,85 e altura **0,87**, x **−30,90 → −21,55**, z −29,15→−27,55, topo 0,85 → **10,42** |
+| Corpo | caixa 0,86 × altura × 1,60 (material alternando papelão/madeira/ferrugem, girada ±1,5°) + tábua 1,00 × 0,08 no topo |
+| Entrada | caixote de 0,84 com tábua (topo 0,90) em x −31,55 |
+| Corrente | corda a **0,45** acima de cada degrau, 11 lances, **12 nós** e 12 estacas de 0,48 no lado de fora (z −27,52) |
+| Tralha | 2 tampinhas no piso, caixote solto, pano enroscado no 11º degrau |
+| Luz | `Luz_Degraus_N1` (−26,20 / 5,40 / −27,60), quente, **0,40 / 5,0** |
+
+**Encaixe conferido:** o último degrau (topo 10,43) fica **0,52 abaixo da borda da gaveta** (10,95); a gaveta tem piso em **9,00** e frente de 8,55 a 10,95, ou seja, o rato **sobe pela frente e desce 1,95 para dentro da oficina**. A corrente não toca a gaveta nem as duas folhas de porta de N1 (0 interseções); o primeiro degrau nasce em y 0 e o conjunto não entra no corpo do balcão.
+
+**Por que vale:** o piso não tinha nenhuma subida; a gaveta puxada de N1 existia como objeto e não como degrau. A corrente resolve a metade baixa do problema **sem encostar em nada** e dá à gaveta um segundo papel: oficina e acesso.
+
+### 20.4 Desvios e notas
+
+- **Falta o último lance gaveta→tampo:** da borda da gaveta (10,95) ao tampo (12,52) são **1,57 de altura e 2,90 de distância** — não é um degrau, é outra peça. Fica registrado como pendência; o §7.1 tratava a gaveta como "degrau para a bancada", mas a medida real não fecha sozinha.
+- **Duas gramáticas para a mesma altura:** a descida leste é pendurada (mãos-francesas, escoras, escadas de corda); a subida norte é uma torre apoiada (caixote, consolos, lona). Nenhuma das duas usa pilar até o chão no vão.
+- **Todas as escadas de corda têm um degrau faltando em um dos lances** — leitura de abandono, e a subida continua possível pelo degrau seguinte (0,42 de vão).
+- **Sem geometria nova nos móveis:** 0 faces, 0 móveis movidos, 0 materiais criados.
+- **Colisores:** 168 no total, só em pisos, degraus, caixotes e travessas; cordas, panos, estacas e nós ficaram sem colisor.
+- **Sem scripts, sem NavMesh, sem partículas.**
+- **Não verificado visualmente:** conferência por bounds de mundo, encaixe nas faces dos armários (0 peça dentro dos corpos), interseção com gaveta e folhas de porta, contagem de renderers/colisores e posição das luzes. Nenhuma screenshot.
+
+---
+
+## 21. Execução P2-a (2026-11-21) — ponte reta A1 ↔ A2
+
+**Feito e salvo na cena** (15,94 MB, 11:56). Grupo novo `COZINHA/Ratos/Ponte_A1A2`: **97 renderers, 56 colisores, 1 luz**. É o **último vão do anel alto** — com ela, os armários têm duas travessias (A3↔A4 diagonal, A1↔A2 reta) e três ligações verticais (§20).
+
+### 21.1 A ponte
+
+| Peça | Medida / posição |
+|---|---|
+| Deck | **x 6,40 → 22,30** (15,90), z −30,15 → −31,65, topo **22,56** (base `InteriorDark` em 22,32→22,42 + 2 longarinas `Rust`) |
+| Largura | 1,50 de deck, **1,48 livre entre os postes** dos dois corrimãos (mínimo do kit: 1,26) |
+| Pranchas | **14**, 0,62 × 1,50, alternando `WoodOld`/`Rust`; **3 chamuscadas** (`InteriorDark`) sobre o fogão (x 12,6→15,6) |
+| Corrimãos | postes de 0,72 a cada 1,90 nos **dois lados** (a norte também cai: no vão não há armário atrás), corda a 0,70 |
+| Suspensão | **6 cabos** até o teto (32,70) + 1 segmento chamuscado a 25,2→26,6 |
+| Miradouro | 2,40 × 1,90 em x 13,50→15,90, z −29,60→−31,50, com corrimão próprio, lamparina e pano |
+| Pousos | oeste 2,00 × 1,68 (topo **22,60**) e leste 1,40 × 1,62 (22,60); **soleira** de 0,60 × 1,30 em 22,62 que entra até x 22,54 |
+| Leitura de perigo | 3 manchas de fuligem no deck, marca de calor sob a base, corda solta de 1,90 no pouso oeste, 2 caixotes e 1 no leste |
+| Luz | `Luz_Ponte_A1A2` (15,10 / 23,70 / −30,50), quente, **0,45 / 6,0** |
+
+**Nível:** 22,56 é o **piso dos nichos** (22,50), como a `Passarela_Balcoes` a 3,05 — e **não** os 26,0 da `Ponte_Armarios`, que só existe àquela cota por causa dos patamares. Aqui não há patamar: a ponte chega no piso e entra.
+
+### 21.2 As duas cabeceiras
+
+**Oeste — a porta cega do A1.** O A1 termina em x 7,75 e não tem boca: é um bloco maciço de 50 de comprimento. A ponte não podia "entrar" nele, então a cabeceira é uma **porta de rato aplicada na face frontal do A1**, no vão mais a leste (o que o P2 vai abrir):
+
+| Peça | Medida |
+|---|---|
+| Batente | 2 montantes `Iron` de 0,12 em x 3,22 e 7,74 + travessa em 31,52, z −32,01→−31,91 |
+| Folha | **4,30 × 8,94 × 0,35**, x 3,33→7,63, y 22,56→31,50, z −31,99→−31,64 — **fechada** |
+| Ferragem | 3 dobradiças no bordo oeste, puxador a 0,90 no leste |
+| Fechamento | tábua pregada de 4,60 a **26°** + 2 pregos + **3 mordidas** no canto baixo |
+| Sinal | placa de madeira + pano a 8,10, no pouso oeste |
+
+A folha fica **0,01 dentro do plano da face** (z −32,01 no batente) e **0,01 à frente do deck** — o rato chega, encosta e não entra. É a "porta que não abre" até o P2.
+
+**Leste — a boca do A2.** O deck termina em x 22,30 e a soleira em 22,54, pousando **0,06 acima** da plataforma da `Subida_A2` (Piso_3, topo 22,50). Essa plataforma acaba a **0,05 da face do A2** (z −31,95 contra −32,00) e está no nível do piso do nicho — ou seja, a ponte **entra na boca do A2 pela torre** construída no §20, sem precisar de rampa nem de um segundo patamar.
+
+### 21.3 Conferido
+
+| Item | Resultado |
+|---|---|
+| Peças dentro do corpo do A1 / do A2 | **0 / 0** |
+| Menor distância à face do A1 | 0,01 (batente, por desenho) |
+| Largura livre entre corrimãos | **1,48** |
+| Pranchas | 14 (4 posições livres no miradouro) |
+| Vão do anel alto | **14,25** (x 7,75 → 22,00), 9,56 acima do topo do fogão (13,00) |
+
+### 21.4 Desvios e notas
+
+- **A porta é aplicada, não recortada.** O A1 continua fechado (0 faces alteradas, 0 vértices). A folha é uma peça de 0,35 encostada na face, com batente em volta — quando o P2 abrir aquele vão, essa folha passa a ser a porta dele.
+- **O eixo do vão não é o da `Ponte_Armarios`:** aquela é diagonal (10 de deslocamento em Z) porque A3 e A4 se tocam só em z −2; esta é **reta** porque A1 e A2 dividem a mesma cota z.
+- **A ponte corre 0,35 à frente das faces** (z −31,65), no vão de 9,48 — não encosta em nenhum armário e não usa o tampo como apoio.
+- **Pranchas chamuscadas + cabo chamuscado:** o fogão está 9,56 abaixo e a `Travessia_Fogao` (13,0) passa exatamente sob o miradouro. A leitura de calor é o que amarra as duas.
+- **Sem geometria nova nos móveis, sem scripts, sem NavMesh, sem partículas.**
+- **Não verificado visualmente:** conferência por bounds de mundo, contagem de renderers/colisores, largura livre entre postes e ausência de peças dentro dos corpos do A1/A2. Nenhuma screenshot.
+
+---
+
+## 22. Favela de ratos + circuíto vertical que funciona (§22)
+
+### 22.1 A favela
+
+Cinco grupos novos sob `COZINHA/Ratos`, 502 objetos, 4 lâmpadas (`Luz_Favela_Norte`, `Luz_Favela_Leste`, `Luz_Favela_Oeste`, `Luz_Cidade_Mesa`):
+
+| Grupo | Objetos | Onde | Leitura |
+|---|---|---|---|
+| `Favela_Subsolo_Norte` | 132 | x −32..8, z −42,1..−32,1, altura 2,68 | barracos encostados na placa do balcão, becos de 0,7, escadinha de lata |
+| `Favela_Subsolo_Oeste` | 130 | x −41,3..−32,1, z −30,9..40,2 | fita contínua de casas rente ao rodapé, cortada pela geladeira |
+| `Favela_Subsolo_Leste` | 124 | x 32,1..42,9, z −30,9..37 | a maior: duas fileiras com viela central e cisterna |
+| `Cidade_Mesa` | 90 | x −7,6..7,6, z 2..25,5 (topo 11,48) | **cidade central**: praça, casa-torre, passarelas entre casas |
+| `Favela_Solta` | 26 | x −24,7..22,2, z −31,9..−12,3 | barracos avulsos no chão aberto, “área pobre” do meio |
+
+Musgo (`Moss`/`MossDark`) cresce em manchas no chão, na base das casas, nas quinas dos balcões e no topo da mesa. O antigo `Favela_Subsolo` (4 barracos) foi apagado e reconstruído nesses grupos.
+
+### 22.2 Por que as escadas verticais não funcionavam
+
+Três motivos independentes, todos medidos:
+
+1. **Escada de corda / degraus de 0,87** — o agente de navmesh do projeto era o `Humanoid` (raio 0,5 · altura 2 · degrau 0,75). Numa cozinha de rato **nada** passava: as passarelas de 1,50 erodiam para zero.
+2. **O `CharacterMotor` só conta como chão colisor com a tag `Ground`** e não tem step-up: ele empurra `linearVelocity` horizontal e deixa o contato subir. Pisos sem tag = sem pulo e sem coyote.
+3. **Nada ligava o chão (0) ao tampo (12,52).** A corrente `Degraus_N1` subia até 10,42 e morria na gaveta; as torres subiam do tampo para os nichos, mas o tampo era uma ilha.
+
+### 22.3 Agent type `Rato` (novo)
+
+`ProjectSettings/NavMeshAreas.asset` ganhou o segundo agent type e o `Enemy.prefab` foi migrado para ele:
+
+| Parâmetro | Humanoid | **Rato** |
+|---|---|---|
+| raio | 0,50 | **0,24** |
+| altura | 2,00 | **0,50** |
+| degrau (climb) | 0,75 | **0,90** |
+| slope | 45 | **45** |
+| célula | 0,1667 | **0,10** |
+| minRegionArea | 2,00 | **0,40** |
+
+`NavMeshSurface` (`Ground`) está com `agentTypeID = 1` e bake refeito (5.344 triângulos). O climb de 0,90 é o que deixa o rato **subir a corrente N1** (degraus de 0,87) e as beiradas de favela.
+
+### 22.4 As rotas verticais (todas ≤ 45°)
+
+Toda superfície caminhável recebeu a tag `Ground` (116 objetos: tampos dos 18 balcões e 5 armários, `Nicho_Piso`, pousos, pontes, deck das travessias, `Degraus_N1_*_Tabua`, chão).
+
+| Rota | Geometria | Inclinação |
+|---|---|---|
+| **Chão → tampo** (`Rampa_Chao_Tampo`) | prancha de 1,90 × 15,6 de (27,20 / 0,00 / 37,60) a (27,20 / 12,45 / 22,60) + ponte de 5,50 × 1,90 que entra no balcão leste em 12,52 | **39,7°** |
+| **Tampo → nicho A4** (`Descida_Leste`) | rampa de 1,90 de (30,95 / 22,45 / 7,40) a (30,95 / 12,45 / 19,20); pouso da boca 3,70 × 2,30 (22,50) morde 1,55 do piso do A4; pouso de baixo 2,90 × 2,30 (12,52) morde 1,30 do tampo | **40,3°** |
+| **Tampo → nicho A2** (`Subida_A2`) | patamar 1,20 × 2,00 (22,58) + rampa de 1,90 de (25,65 / 22,58 / −31,45) a (36,60 / 12,52 / −31,45); pouso de baixo 3,60 × 2,30 em 12,52 | **42,6°** |
+| **Corrente N1 → tampo** (`Tabua_N1_Tampo`) | tábua de 1,10 de (−21,55 / 12,45 / −31,88) a (−21,55 / 10,43 / −28,55), sai do último degrau | **31,2°** |
+| **Cuba da pia** (`Tampo_Pia`) | tampa de 4,60 × 21,10 em 12,56 que cobre a cuba de z −20,35 a 0,75 e liga o tampo norte ao sul | 0° |
+
+Cada rampa tem degraus de leitura sem colisor (passo 0,60), longarinas `Rust` com colisor nas bordas, corrimão de `Iron` com corda a 1,02 e, na rampa longa, estacas até o chão com base e tirante.
+
+**Decisão de projeto:** as torres de corda do §20 (degraus verticais) **não servem** para nenhum dos dois corpos — foram substituídas por rampas. A corrente `Degraus_N1` ficou como está: o jogador sobe os 0,87 de pulo (altura de pulo 1,83) e o rato sobe pela navmesh.
+
+### 22.5 Ajustes de cenário para o caminho existir
+
+| Peça | Mudança | Motivo |
+|---|---|---|
+| `Porta_A2_Folha` | deslocada **+4,60 em x, +0,15 em z** | estava atravessada na boca do A2 e fechava a ponte A1A2 |
+| `Caixote_Boca` (A2) | removido do pouso; recriado como `Caixote_Nicho` em (25,90 / 22,88 / −33,60) | ficava no meio da entrada da ponte |
+| `Guarda_*` (A2) | removidas | paredes de 2,10 dentro do pouso |
+| `Travessia_Pia` | **removida** | travessia de escala humana (decks em 11,83/12,17 com paredes até 13,40) que muralhava o tampo de z −20 a 0,6; substituída pela tampa `Tampo_Pia` |
+| `Ponte_Pia` | criada e depois removida | virou redundante com a tampa |
+
+### 22.6 Nós de patrulha (10, em `COZINHA/PATROLNODES_ALTO`)
+
+`No_Tampo_Norte`, `No_Tampo_Leste`, `No_Pouso_Leste`, `No_Nicho_A4`, `No_Pouso_A4`, `No_Nicho_A2`, `No_Pouso_A2`, `No_Ponte_A1A2`, `No_Subsolo_N`, `No_Subsolo_L`.
+
+### 22.7 Conferido (`NavMesh.CalculatePath`, agent Rato)
+
+| Trecho | Status | Comprimento |
+|---|---|---|
+| chão → tampo norte | **Complete** | 89,5 |
+| chão → tampo sul | **Complete** | 120,0 |
+| chão → nicho A4 | **Complete** | 96,4 |
+| chão → nicho A2 | **Complete** | 143,8 |
+| chão → ponte A1A2 | **Complete** | 150,6 |
+| chão → A1 | **Complete** | 156,0 |
+| A4 → A2 | **Complete** | 88,7 |
+| A2 → A4 | **Complete** | 92,8 |
+| A2 → A1 | **Complete** | 18,8 |
+| subsolo norte → subsolo leste | **Complete** | 69,6 |
+
+Antes desta rodada: chão → tampo = `PathInvalid`, A4/A2/ponte = `PathPartial` (ilhas). Cena salva em 21/11 13:35.
+
+### 22.8 O que não foi verificado
+
+- **Nada foi jogado em Play Mode.** A inclinação das rampas é medida por geometria (≤ 42,6°), o que o `CharacterMotor` sobe por contato, e os caminhos por `CalculatePath`; mas o pulo entre os degraus da N1 e o atrito nas rampas de 42° não foram testados com o personagem em movimento.
+- Os 0,87 da corrente N1 dependem do pulo (1,83) — se o jogador não quiser pular, a rampa longa é o caminho.
+- Sem screenshot; conferência por bounds, contagem e paths.
+
+---
+
+## 23. Favela empilhada no subsolo + cidade espalhada na mesa
+
+### 23.1 As três favelas debaixo dos balcões
+
+Saíram as fileiras de casas iguais e entraram **clusters empilhados**, gerados por script com semente fixa (`1101` norte · `1202` leste · `1303` oeste sul · `1404` oeste norte), no vocabulário da `Favela_Tampo` (madeira + papelão + ferrugem, telhado maior que a casa, porta/janela de vidro preto, varal, caixote, barril, musgo).
+
+| Regra | Valor |
+|---|---|
+| Ruas | 2 faixas por vão, com jitter de ±22% da profundidade — nada alinhado |
+| Passo entre casas | 0,30 → 1,45 de beco (às vezes **coladas**, com sobreposição de 0,25) |
+| Casa | 0,80–2,40 de largura × 0,80–1,90 de fundo × 0,75–2,12 de altura |
+| Rotação | ±11° na base, +±14° no andar de cima |
+| Andar empilhado | 62% das casas, altura limitada por `2,16 − h` |
+| Puxadinho suspenso | 28%, pendurado na lateral entre 0,45 e h−0,2 |
+| Telhado | laje 0,09 maior que a casa, inclinada ±9° (vira **laje reta** acima de h 1,90) |
+| Varais | 1 a cada ~17 de comprimento, corda a 1,55 com 2–4 panos |
+| Passarelas de tábua | 1 a cada ~14, entre 1,05 e 1,95 de altura |
+| Tralha | caixote, barril, tábua encostada, mancha de musgo (0–1 por casa) |
+| Poste de lampião | 20% das casas |
+
+**Teto:** o vão debaixo dos balcões tem 2,52 (o corpo do balcão começa em 2,52). A altura máxima construída ficou em **2,52 / 2,49 / 2,48** nos três grupos — as lajes retas nos barracos altos existem para não furar o balcão.
+
+| Grupo | Objetos | Bounds |
+|---|---|---|
+| `Favela_Subsolo_Norte` | 227 | x −31,8..6,3 · y 0..2,52 · z −41,4..−33,2 |
+| `Favela_Subsolo_Leste` | 391 | x 32,8..42,3 · y 0..2,49 · z −30,7..36,4 |
+| `Favela_Subsolo_Oeste` (2 blocos, partido pela geladeira) | 377 | x −41,2..−32,5 · y 0..2,48 · z −30,6..39,7 |
+
+### 23.2 A cidade da mesa
+
+Agora é uma **grade irregular com 42% de vazios** (passo 3,3, jitter ±0,95) em vez de um anel: 27 clusters, 47 caixas de casa, 186 renderers, espalhados de x −9,4 a 8,2 e z −8,3 a 25,1 — sem cerca e sem desenho de círculo.
+
+- Alturas de 0,70 a 2,60, com **55%** ganhando segundo andar (até 4,0 de topo) e **35%** desses um terceiro volume menor e mais torto.
+- **Clareira da praça** em (0 / 11,50 / 9): 4 postes, lona `Fabric` em 13,55, balcão de feira, caixote e lampião com `Luz_Cidade_Mesa` (0,55 / 7,5).
+- Louça de verdade espalhada: 3 pratos com talheres, 3 copos (2 com água), 2 canecas com alça, tigela, garrafa com gargalo, 2 guardanapos, vela e 6 migalhas.
+
+### 23.3 As duas pontes mesa → balcão
+
+| Ponte | De | Até | Medida |
+|---|---|---|---|
+| `Ponte_Mesa_Norte` | bordo norte da mesa (−4,2 / **11,50** / −9,55) | tampo norte (−4,2 / **12,52** / −32,15) | 1,70 de largura, 22,6 de vão |
+| `Ponte_Mesa_Leste` | bordo leste (9,55 / **11,50** / 12,0) | tampo leste (32,25 / **12,52** / 12,0) | 1,70 de largura, 22,7 de vão |
+
+Deck de 0,15 com o **topo exatamente na linha** 11,50 → 12,52 (sobe 1,02 em 22,6 = 2,6°), tag `Ground`, corrimão de ferro com corda, **estacas até o chão** a cada ~4,3 com base e travessa diagonal, e placa na cabeceira da mesa. A norte passa por cima da `Favela_Solta`.
+
+### 23.4 Conferido
+
+| Item | Resultado |
+|---|---|
+| Navmesh rebaked | 1 surface, agent `Rato` |
+| chão → mesa | **PathComplete**, 222,9 |
+| mesa → tampo leste | **PathComplete**, 103,4 |
+| mesa sul → mesa oeste | **PathComplete** |
+| Casas fora da mesa | **0** (x −9,45..8,18 dentro de −10..10) |
+| Casas acima do teto do subsolo | **0** (máx. 2,52 contra 2,52) |
+| Nós de patrulha novos | `No_Mesa_1`, `No_Mesa_2`, `No_Mesa_3` |
+
+### 23.5 O que não foi verificado
+
+- **Sem screenshot e sem Play Mode.** A conferência foi por bounds (casas dentro do vão e da mesa, alturas abaixo do teto), contagem de objetos e `NavMesh.CalculatePath`. O enquadramento visual — se o empilhamento lê bem de cima, se algum telhado atravessa outro — não foi olhado.
+- O gerador é determinístico (sementes acima); para mudar a cara da favela basta trocar a semente e rodar de novo.
