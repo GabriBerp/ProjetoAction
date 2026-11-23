@@ -1067,3 +1067,45 @@ Deck de 0,15 com o **topo exatamente na linha** 11,50 → 12,52 (sobe 1,02 em 22
 
 - **Sem screenshot e sem Play Mode.** A conferência foi por bounds (casas dentro do vão e da mesa, alturas abaixo do teto), contagem de objetos e `NavMesh.CalculatePath`. O enquadramento visual — se o empilhamento lê bem de cima, se algum telhado atravessa outro — não foi olhado.
 - O gerador é determinístico (sementes acima); para mudar a cara da favela basta trocar a semente e rodar de novo.
+
+---
+
+## 24. Auditoria de interseção, apoio e peças soltas
+
+Auditoria feita por script dentro do Editor, com `Physics.ComputePenetration` entre as `BoxCollider` dos corpos das casas (medida exata, não AABB) e amostragem de bounds para telhados, passarelas e props.
+**Método anterior (AABB) superestimava:** os corpos giram ±11°, então a caixa alinhada aos eixos inflava o resultado. Os números abaixo são os exatos.
+
+### 24.1 Antes → depois
+
+| Grupo | Corpos penetrando | Profundos (>0,20) | Pior | Telhados flutuando | Passarelas com ponta solta |
+|---|---|---|---|---|---|
+| Norte | 11 → **9** | 9 → **2** | 0,70 → **0,51** | 0 | 3 → **0** |
+| Leste | 20 → **8** | 11 → **1** | 0,72 → **0,34** | 0 | 5 → **0** |
+| Oeste | 13 → **7** | 8 → **1** | 0,68 → **0,22** | 0 | 2 → **0** |
+| Cidade_Mesa | 1 → **0** | 1 → **0** | 0,29 → **0** | 0 | — |
+
+### 24.2 O que foi ajustado
+
+- **29 casas movidas** (6 + 9 + 10 + 1 arrastos, alguns pares movidos dos dois lados) pela direção exata de separação do `ComputePenetration`, sempre movendo a casa **menor** e recusando o movimento quando ele criava penetração pior em outra casa. Cada movimento leva junto telhado, porta, janela e andar de cima.
+- **16 pés de passarela** novos (Norte 4, Leste 9, Oeste 3): as tábuas passavam por cima do beco sem apoio em uma das pontas — agora cada ponta solta tem um mourão de 0,10 até o chão, no material da própria tábua.
+- **2 placas das pontes** baixadas em 0,11 para apoiarem na mesa em vez de flutuarem sobre ela.
+- **Empilhamento vertical** foi excluído da correção de propósito (andar de cima encaixa no de baixo) para não separar andares.
+
+### 24.3 O que ficou
+
+- **24 encostes leves** entre corpos, 4 deles com mais de 0,20 (pior 0,51) onde a rua não tem folga para empurrar: nesses pontos o corpo se apoia no vizinho, sem peça no ar.
+- **Telhados entrando na casa vizinha:** 14 Norte / 26 Leste / 12 Oeste / 3 mesa (era 21/46/23/3). É o beiral maior que a casa, torto, encostando no vizinho — a linguagem da `Favela_Tampo`. Tentativa de podar o beiral por `localScale` **piorou** (o pivô puxava o telhado para o outro lado, 31/42/20/22) e foi descartada.
+- **Falso positivo que vale registrar:** os "postes fora do deck" das pontes (12 e 20) seguem a inclinação do deck e estão corretos; e os lampiões a ~1,2 do chão estão pendurados no poste, que não tem collider.
+
+### 24.4 Conferido depois dos ajustes
+
+| Item | Resultado |
+|---|---|
+| Topo das favelas | 2,52 / 2,49 / 2,48 (teto 2,52) |
+| Limites | Norte x −31,77..6,96 · Leste 32,82..42,34 · Oeste −41,17..−32,45 — dentro das três faixas |
+| Mesa | x −9,45..8,18 · z −8,35..25,09 dentro de 20×40 |
+| Navmesh | rebaked |
+| chão → mesa / chão → tampo / mesa → tampo | **PathComplete** nos três |
+| Cena | salva em `Assets/Scenes/SampleScene.unity` |
+
+Sem screenshot e sem Play Mode: o julgamento é numérico (colisores e bounds), não visual.
