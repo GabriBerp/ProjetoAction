@@ -24,11 +24,17 @@ public class Gun : MonoBehaviour, IUsable, IReloadable
     private ObjectPool<Bullet> pool;
     private float nextFireTime;
     private bool isReloading;
+    private float reloadStartedAt;
 
     // Útil pra UI
     public int CurrentAmmo => currentAmmo;
     public int ReserveAmmo => reserveAmmo;
+    public int ClipSize => clipSize;
     public bool IsUsable => currentAmmo > 0 || reserveAmmo > 0;
+    public bool IsReloading => isReloading;
+    public float ReloadProgress => isReloading && reloadTime > 0f
+        ? Mathf.Clamp01((Time.time - reloadStartedAt) / reloadTime)
+        : 0f;
 
     private void Awake()
     {
@@ -76,6 +82,7 @@ public class Gun : MonoBehaviour, IUsable, IReloadable
     private IEnumerator ReloadRoutine()
     {
         isReloading = true;
+        reloadStartedAt = Time.time;
         yield return new WaitForSeconds(reloadTime);
 
         int needed = clipSize - currentAmmo;

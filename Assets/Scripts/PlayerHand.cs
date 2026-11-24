@@ -25,6 +25,9 @@ public class PlayerHand : MonoBehaviour
     private IOwnedItem heldOwned;
     private SwingWeapon heldWeapon;
 
+    public IPickable Held => heldItem;
+    public Backpack Bag => backpack;
+
     public event Action ItemUsed;
     public event Action ItemSwung;
     public event Action ItemTossed;

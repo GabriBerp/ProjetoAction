@@ -9,7 +9,11 @@ public class Backpack : MonoBehaviour
     private readonly Stack<IPickable> items = new Stack<IPickable>();
 
     public int Count => items.Count;
+    public int Capacity => capacity;
     public bool IsFull => items.Count >= capacity;
+
+    // Topo da pilha primeiro (LIFO). Usado pela interface espacial da sacola.
+    public IEnumerable<IPickable> Items => items;
 
     /// <summary>Guarda o item na bolsa: solta da mão e desativa o objeto.</summary>
     public bool TryStore(IPickable item)
