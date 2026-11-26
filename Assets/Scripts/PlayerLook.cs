@@ -12,6 +12,15 @@ public class PlayerLook : MonoBehaviour
     private float yaw;
     public float Yaw => yaw;
 
+    // Usado no respawn: recoloca o olhar sem depender do mouse.
+    public void ResetLook(float yawDegrees)
+    {
+        yaw = yawDegrees;
+        pitch = 0f;
+        transform.rotation = Quaternion.Euler(0f, yaw, 0f);
+        if (cameraRoot != null) cameraRoot.localRotation = Quaternion.identity;
+    }
+
     void Awake()
     {
         yaw = transform.eulerAngles.y;

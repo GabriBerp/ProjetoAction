@@ -52,6 +52,18 @@ public class Health : MonoBehaviour, IDamageable, IHealth
     public event Action<int> Damaged;
     public event Action<int, int> HealthChanged;   // atual, maximo
 
+    // Eventos globais para UI que precisa reagir a QUALQUER Health (barras sobre inimigos, numeros de dano).
+    public static event Action<Health, int> AnyDamaged;
+    public static event Action<Health> AnyDied;
+
+    // Com "Enter Play Mode Options" sem domain reload, assinantes de uma sessao anterior sobreviveriam.
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetStatics()
+    {
+        AnyDamaged = null;
+        AnyDied = null;
+    }
+
     private void Awake()
     {
         lockable = GetComponent<ILockable>();   // pode ser null (caixa)
@@ -75,14 +87,20 @@ public class Health : MonoBehaviour, IDamageable, IHealth
     {
         if (dead || invulnerable || d <= 0) return;
 
+        // Uma chamada so: TryDefend gasta carga e aplica o stun do Perfect Parry. Perguntar
+        // duas vezes queimava duas cargas por golpe (e parava o atacante duas vezes).
         // Sem atacante (queda, armadilha, etc.) nao ha o que bloquear.
         if (defense != null && attacker != null && defense.TryDefend(attacker) != DefenseResult.None)
             return;
 
         health = Mathf.Max(0, health - d);
+        
+        Debug.Log($"{name} - Vida restante: {health}");
+
         Damaged?.Invoke(d);
         onDamaged?.Invoke(d);
         HealthChanged?.Invoke(health, maxHealth);
+        AnyDamaged?.Invoke(this, d);
 
         if (health <= 0) { Die(); return; }
 
@@ -152,6 +170,7 @@ public class Health : MonoBehaviour, IDamageable, IHealth
         // Eventos antes de desligar os componentes, pra eles ainda poderem reagir (ex: soltar o item)
         Died?.Invoke();
         onDied?.Invoke();
+        AnyDied?.Invoke(this);
         foreach (var b in disableOnDeath) if (b != null) b.enabled = false;
 
         switch (deathAction)

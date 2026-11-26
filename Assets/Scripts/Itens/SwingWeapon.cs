@@ -144,6 +144,9 @@ public class SwingWeapon : MonoBehaviour, IUsable, ISwingWeapon, IOwnedItem
             if (hitMultiple)
             {
                 target.ReceberDano(damage, owner);
+
+                Debug.Log($"{owner} causou {damage}");
+
                 continue;
             }
 
@@ -151,7 +154,11 @@ public class SwingWeapon : MonoBehaviour, IUsable, ISwingWeapon, IOwnedItem
             if (dist < closestDist) { closestDist = dist; closest = target; }
         }
 
-        if (closest != null) closest.ReceberDano(damage, owner);
+        if (closest != null) {
+            closest.ReceberDano(damage, owner);
+
+            Debug.Log($"{closest} recebeu {damage} por estar perto de {owner}");
+        }
     }
 
     private void GetAim(out Vector3 origin, out Vector3 direction)

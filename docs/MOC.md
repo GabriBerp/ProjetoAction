@@ -17,6 +17,7 @@
 - [[notes/Player]] — movimento, câmera/olhar, boca (1 item), animação, vida e feedback.
 - [[notes/Inventory]] — sacola LIFO, coleta, uso/reload/arremesso e legibilidade.
 - [[notes/Feedback-GameFeel]] — vida baixa, feedback de uso/falha, pistas visuais 3D e prompts.
+- [[notes/Dialogos-NPC]] — conversas com NPCs: marcador/aura, câmera cinematográfica, texto 3D e bloqueio do jogador (plano + estado atual).
 
 ### IA e mundo
 - [[notes/Enemy]] — navegação/patrulha, ataque, animação e sinalização de estado.

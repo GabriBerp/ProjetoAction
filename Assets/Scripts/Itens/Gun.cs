@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class Gun : MonoBehaviour, IUsable, IReloadable
+public class Gun : MonoBehaviour, IUsable, IReloadable, IOwnedItem, IAmmoSource
 {
     [Header("Bala")]
     [SerializeField] private Bullet bulletPrefab;
@@ -13,6 +14,10 @@ public class Gun : MonoBehaviour, IUsable, IReloadable
     [SerializeField] private int currentAmmo = 12;
     [SerializeField] private int reserveAmmo = 36;
 
+    [Header("Som")]
+    [Tooltip("Raio em que a IA escuta o disparo sem precisar ver o tiro.")]
+    [SerializeField] private float gunshotNoiseRadius = 25f;
+
     [Header("Tempo")]
     [SerializeField] private float fireRate = 0.15f;  // segundos entre tiros
     [SerializeField] private float reloadTime = 1.5f;
@@ -22,6 +27,7 @@ public class Gun : MonoBehaviour, IUsable, IReloadable
     [SerializeField] private int poolMaxSize = 50;
 
     private ObjectPool<Bullet> pool;
+    private Health owner;
     private float nextFireTime;
     private bool isReloading;
     private float reloadStartedAt;
@@ -31,6 +37,14 @@ public class Gun : MonoBehaviour, IUsable, IReloadable
     public int ReserveAmmo => reserveAmmo;
     public int ClipSize => clipSize;
     public bool IsUsable => currentAmmo > 0 || reserveAmmo > 0;
+
+    // Quem atira e a origem do dano: vai na bala pra o alvo saber a quem bloquear.
+    public void SetOwner(Health newOwner, Transform aim) => owner = newOwner;
+
+    public int Ammo => currentAmmo;
+    public int Reserve => reserveAmmo;
+    public int MagazineSize => clipSize;
+    public event Action AmmoChanged;
     public bool IsReloading => isReloading;
     public float ReloadProgress => isReloading && reloadTime > 0f
         ? Mathf.Clamp01((Time.time - reloadStartedAt) / reloadTime)
@@ -66,8 +80,14 @@ public class Gun : MonoBehaviour, IUsable, IReloadable
         nextFireTime = Time.time + fireRate;
         currentAmmo--;
 
+        NotifyAmmo();
+
+        // Tiro avisa a IA por som; o proprio rato armado nao se denuncia.
+        if (owner == null || owner.GetComponent<EnemyNavmesh>() == null)
+            Noise.Emit(muzzle.position, gunshotNoiseRadius);
+
         Bullet bullet = pool.Get();
-        bullet.Fire(muzzle.position, muzzle.rotation);
+        bullet.Fire(muzzle.position, muzzle.rotation, owner);
     }
 
     public void Reload()
@@ -92,7 +112,10 @@ public class Gun : MonoBehaviour, IUsable, IReloadable
         reserveAmmo -= taken;
 
         isReloading = false;
+        NotifyAmmo();
     }
+
+    private void NotifyAmmo() => AmmoChanged?.Invoke();
 
     private void OnDestroy() => pool?.Dispose();
 }

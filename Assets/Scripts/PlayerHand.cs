@@ -28,9 +28,14 @@ public class PlayerHand : MonoBehaviour
     public IPickable Held => heldItem;
     public Backpack Bag => backpack;
 
+    // Item que o [E] pegaria agora (mirado, no alcance, mao vazia). Usado pelo prompt da UI.
+    public IPickable LookTarget { get; private set; }
+
     public event Action ItemUsed;
     public event Action ItemSwung;
     public event Action ItemTossed;
+    // Disparado ao pegar, guardar, arremessar, ou quando a arma quebra. Argumento null = mao vazia.
+    public event Action<IPickable> HeldChanged;
 
     private void Awake()
     {
@@ -42,6 +47,8 @@ public class PlayerHand : MonoBehaviour
     {
         var kb = Keyboard.current;
         bool stunned = health != null && health.IsStunned;
+
+        LookTarget = heldItem == null ? FindPickable() : null;
 
         if (kb[Key.E].wasPressedThisFrame && heldItem == null)
             TryPickUp();
@@ -93,16 +100,23 @@ public class PlayerHand : MonoBehaviour
             defense.TryStartBlock();
     }
 
-    private void TryPickUp()
+    // Mesma checagem do pickup, separada para o prompt da UI poder consultar todo frame.
+    private IPickable FindPickable()
     {
         Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
 
         if (!Physics.Raycast(ray, out RaycastHit hit, pickupRange, pickupMask,
                              QueryTriggerInteraction.Ignore))
-            return;
+            return null;
 
         var pickable = hit.collider.GetComponentInParent<IPickable>();
-        if (pickable == null || pickable.IsHeld) return;
+        return pickable == null || pickable.IsHeld ? null : pickable;
+    }
+
+    private void TryPickUp()
+    {
+        var pickable = FindPickable();
+        if (pickable == null) return;
 
         pickable.PickUp(holdPoint);
         SetHeld(pickable);
@@ -167,6 +181,10 @@ public class PlayerHand : MonoBehaviour
 
         heldOwned = (pickable as Component)?.GetComponent<IOwnedItem>();
         if (heldOwned != null) heldOwned.SetOwner(health, cameraTransform);
+
+        // Sem isso o prompt ficaria 1 frame com o item que acabou de entrar na mao.
+        LookTarget = null;
+        HeldChanged?.Invoke(pickable);
     }
 
     private void ClearHeld()
@@ -178,6 +196,7 @@ public class PlayerHand : MonoBehaviour
         heldUsable = null;
         heldReloadable = null;
         heldSwing = null;
+        HeldChanged?.Invoke(null);
     }
 
     // A arma quebrou na mao: a referencia nao pode continuar apontando pra ela.

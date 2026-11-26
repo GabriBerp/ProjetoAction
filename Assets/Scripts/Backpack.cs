@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +16,9 @@ public class Backpack : MonoBehaviour
     // Topo da pilha primeiro (LIFO). Usado pela interface espacial da sacola.
     public IEnumerable<IPickable> Items => items;
 
+    // Disparado a cada mudanca no conteudo (guardar, retirar, descarte de item destruido).
+    public event Action Changed;
+
     /// <summary>Guarda o item na bolsa: solta da mão e desativa o objeto.</summary>
     public bool TryStore(IPickable item)
     {
@@ -28,6 +32,7 @@ public class Backpack : MonoBehaviour
 
         component.gameObject.SetActive(false);
         items.Push(item);
+        Changed?.Invoke();
         return true;
     }
 
@@ -35,10 +40,12 @@ public class Backpack : MonoBehaviour
     public bool TryRetrieve(out IPickable item)
     {
         item = null;
+        bool changed = false;
 
         while (items.Count > 0)
         {
             var candidate = items.Pop();
+            changed = true;
             var component = candidate as Component;
 
             // Pula itens que foram destruídos enquanto estavam na bolsa
@@ -46,9 +53,10 @@ public class Backpack : MonoBehaviour
 
             component.gameObject.SetActive(true);
             item = candidate;
-            return true;
+            break;
         }
 
-        return false;
+        if (changed) Changed?.Invoke();
+        return item != null;
     }
 }

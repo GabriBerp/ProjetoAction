@@ -30,9 +30,16 @@ public class CharacterMotor : MonoBehaviour
 
     private float coyoteTimer;
     private int airJumpsLeft;
+    private float stepTimer;
 
     public event Action AirJumped;
     public float MaxFallSpeed { get; set; } = float.PositiveInfinity;
+
+    [Header("Som dos passos (para a IA ouvir)")]
+    [Tooltip("Raio do barulho correndo. 0 = correndo sem fazer barulho.")]
+    [SerializeField] private float runNoiseRadius = 14f;
+    [Tooltip("Intervalo entre passos audiveis, em segundos.")]
+    [SerializeField] private float runStepInterval = 0.45f;
 
     [Header("Water")]
     [SerializeField] private float waterSpeedMultiplier = 0.6f;  // velocidade com 100% submerso
@@ -68,6 +75,26 @@ public class CharacterMotor : MonoBehaviour
 
         float waterMul = Mathf.Lerp(1f, waterSpeedMultiplier, Submersion);
         speed = (input.Run ? baseSpeed * runMultiplier : baseSpeed) * waterMul;
+
+        EmitFootsteps();
+    }
+
+    // Correr faz barulho: e assim que um rato que nao esta vendo o jogador sabe que ele passou.
+    private void EmitFootsteps()
+    {
+        bool running = input.Run && !Locked && IsGrounded && localDir.sqrMagnitude > 0.01f;
+
+        if (!running)
+        {
+            stepTimer = 0f;   // o primeiro passo sai assim que ele voltar a correr
+            return;
+        }
+
+        stepTimer -= Time.deltaTime;
+        if (stepTimer > 0f) return;
+
+        stepTimer = runStepInterval;
+        Noise.Emit(transform.position, runNoiseRadius);
     }
 
     void FixedUpdate()
