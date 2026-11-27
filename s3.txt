@@ -1,0 +1,4 @@
+{
+  "status": "see file",
+  "body": "\"globalThis.setTimeout = function(){};\\nglobalThis.clearTimeout = function(){};\\nconst fn = async () => {\\n  const resp = await unity.command('scene get_hierarchy', {});\\n  console.log('FULL:', JSON.stringify(resp).slice(0, 3000));\\n};\\nfn();\\n\""
+}
