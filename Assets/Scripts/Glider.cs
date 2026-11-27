@@ -14,6 +14,7 @@ public class Glider : MonoBehaviour
     private CharacterMotor motor;
     private IMoveInput input;
     private Rigidbody rb;
+    private FallDamage fallDamage;
 
     private float stamina = 1f;
     private bool gliding;
@@ -32,6 +33,8 @@ public class Glider : MonoBehaviour
         motor = GetComponent<CharacterMotor>();
         input = GetComponent<IMoveInput>();
         rb = GetComponent<Rigidbody>();
+        // Pode ainda nao existir: o FallDamage tambem entra sozinho nos personagens.
+        fallDamage = FallDamage.Ensure(gameObject);
         if (gliderVisual != null) gliderVisual.enabled = false;
     }
 
@@ -78,6 +81,9 @@ public class Glider : MonoBehaviour
         gliding = value;
         motor.MaxFallSpeed = value ? glideFallSpeed : float.PositiveInfinity;
         if (gliderVisual != null) gliderVisual.enabled = value;
+
+        // Planando nao machuca; ao fechar a asa no ar, a contagem recomeca de onde parou.
+        if (fallDamage != null) fallDamage.SetSuspended(value);
 
         if (value) GlideStarted?.Invoke();
         else GlideStopped?.Invoke();

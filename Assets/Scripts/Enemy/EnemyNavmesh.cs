@@ -171,6 +171,9 @@ public class EnemyNavmesh : MonoBehaviour, IRatSized, ILockable
         if (eyes == null) eyes = transform;
         body = GetComponent<Rigidbody>();
         profile = size.GetProfile();
+
+        // Inimigo tambem leva dano de queda (cobre inimigos criados em runtime).
+        FallDamage.Ensure(gameObject);
     }
 
     private void OnEnable()
